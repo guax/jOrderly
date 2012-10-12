@@ -1,3 +1,0 @@
-object { string mood [ "happy", "sad", "meh" ]; integer secretOfLife [ 7, 42 ]; };
-
-
