@@ -6,20 +6,23 @@ options {
 
 @header {
 package net.guax.jorderly.parser;
+
+import java.util.HashMap;
 import net.guax.jorderly.json.*;
 }
+
 
 @lexer::header {
 package net.guax.jorderly.parser;
 }
 
-orderly_schema
-    :	unnamed_entry ';'? EOF {System.out.println($unnamed_entry.property);}
+orderly_schema returns [JsonProperty rootProperty]
+    :	unnamed_entry ';'? { $rootProperty = $unnamed_entry.property;}
     ;
     
 unnamed_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } definition_suffix
-    |	'string' range? perl_regex? definition_suffix
+    |	'string' { $property = new JsonString(); } range? perl_regex? definition_suffix
     ;
 
 definition_suffix
@@ -27,31 +30,32 @@ definition_suffix
 	;
 
 definition_prefix returns [JsonProperty property]
-	@init {$property = null;}
     :	'integer' { $property = new JsonInteger(); } range?
     |	'number' { $property = new JsonNumber(); } range?
     |	'boolean' { $property = new JsonBoolean(); }
     |	'null' { $property = new JsonNull(); }
     |	'any' { $property = new JsonAny(); }
     // a tuple-typed array 
-    |	'array' { $property = new JsonArray(); }  '{' unnamed_entries? '}' additional_marker? range?
+    |	'array' { $property = new JsonArray(); }  '{' unnamed_entries? {JsonArray.class.cast($property).setProperties($unnamed_entries.properties);} '}' range?
     // a simple-typed array (notice the '*' marker is disallowed)
     |	'array' { $property = new JsonArray(); } '[' unnamed_entry ']' range?
-    |	'object' { $property = new JsonObject(); } '{' named_entries? '}' additional_marker?
+    |	'object' { $property = new JsonObject(); } '{' named_entries? { JsonObject.class.cast($property).setProperties($named_entries.properties); } '}' (additional_marker { JsonObject.class.cast($property).setAllowAdditionalProperties(true); })?
     |	'union'  { $property = new JsonUnion(); } '{' unnamed_entry ';' unnamed_entries '}' // At least two entries are required
     ;
 
-named_entry
-    :	definition_prefix property_name definition_suffix
-    |	'string' range? property_name perl_regex? definition_suffix
+named_entry returns [JsonProperty property]
+    :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName($property_name.text); } definition_suffix
+    |	'string' { $property = new JsonString(); } range? property_name {$property.setName($property_name.text);} perl_regex? definition_suffix
     ;
 
-named_entries
-    :	named_entry (';' named_entry)* ';'?
+named_entries returns [HashMap<String, JsonProperty> properties]
+	@init { $properties = new HashMap<String, JsonProperty>(); }
+    :	n1=named_entry {$properties.put($n1.property.getName(),$n1.property);} (';' n2=named_entry{$properties.put($n2.property.getName(),$n2.property);})* ';'?
     ;
 
-unnamed_entries
-    :	unnamed_entry (';' unnamed_entry)* ';'?
+unnamed_entries returns [List<JsonProperty> properties]
+	@init { $properties = new ArrayList<JsonProperty>(); }
+    :	un1=unnamed_entry {$properties.add($un1.property);} (';' un2=unnamed_entry {$properties.add($un2.property);} )* ';'?
     ;
 
 csv_property_names
@@ -85,8 +89,8 @@ range
 	;
 
 property_name
-	:	IDENTIFIER { System.out.println("Property Name: " + $IDENTIFIER.text); }
-	|	STRING { System.out.println("Property Name: " + $STRING.text); }
+	:	IDENTIFIER
+	|	STRING
 	;
 
 perl_regex

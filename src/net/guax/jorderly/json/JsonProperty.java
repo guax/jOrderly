@@ -21,6 +21,25 @@ abstract public class JsonProperty {
     protected List<String> requires = null;
     
     protected List<Value> enumValues = null;
+    
+    protected String name = null;
+    
+    public boolean allow(Class type) {
+        if(this.getClass() == type) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Value getDefaultValue() {
         return defaultValue;

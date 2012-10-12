@@ -1,10 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.guax.jorderly;
 
 import java.io.IOException;
+import net.guax.jorderly.json.JsonProperty;
+import net.guax.jorderly.parser.JSONLexer;
+import net.guax.jorderly.parser.JSONParser;
 import net.guax.jorderly.parser.OrderlyLexer;
 import net.guax.jorderly.parser.OrderlyParser;
 import org.antlr.runtime.ANTLRFileStream;
@@ -25,8 +24,15 @@ public class Main {
         TokenStream tokenStream = new CommonTokenStream(lexer);
         OrderlyParser parser = new OrderlyParser(tokenStream);
         
-        parser.orderly_schema();
+        JsonProperty parseTree = parser.orderly_schema();
         
-        System.out.println(parser.getNumberOfSyntaxErrors() > 1 ? "Cagou" : "Foi!");
+        stream = new ANTLRFileStream("examples/browserplus_services.json");
+        JSONLexer jsonLexer = new JSONLexer(stream);
+        tokenStream = new CommonTokenStream(jsonLexer);
+        JSONParser jsonParser = new JSONParser(tokenStream);
+        
+        jsonParser.setValidationTree(parseTree);
+        
+        jsonParser.jsonDocument();
     }
 }

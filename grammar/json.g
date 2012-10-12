@@ -1,15 +1,41 @@
-grammar json;
+grammar JSON;
 
 options { 
     language = Java;
 }
-	
-fragment INT : ('-' | '+') ? ('0'..'9' | '1'..'9' '0'..'9'+ ) ;
 
-fragment EXP : ( 'e' | 'E' ) ('+'|'-') ? '0'..'9'+ ;
+@header {
+package net.guax.jorderly.parser;
+
+import java.util.HashMap;
+import net.guax.jorderly.json.*;
+}
+
+@lexer::header {
+package net.guax.jorderly.parser;
+}
+
+@members {
+JsonProperty expectedProperty;
+
+JsonProperty validationTree;
+
+public void setValidationTree(JsonProperty validationTree) {
+	this.validationTree = this.expectedProperty = validationTree;
+}
+}
+
+// Starting Symbol
+jsonDocument 
+	: {this.validationTree != null}? jsonValue
+	;
+
+fragment INT : ('-' | '+') ? (DIGIT | '1'..'9' DIGIT+ ) ;
+
+fragment EXP : ( 'e' | 'E' ) ('+'|'-') ? DIGIT+ ;
 
 fragment FRAC
-   : '.' '0'..'9'+
+   : '.' DIGIT+
    ;
  
 NUMBER
@@ -37,44 +63,53 @@ fragment UnicodeEscape
     ;
  
 fragment HexDigit
-    : '0'..'9' | 'A'..'F' | 'a'..'f'
+    : DIGIT | 'A'..'F' | 'a'..'f'
     ;
  
-fragment Digit
+fragment DIGIT
     : '0'..'9'
     ;
 
-String  :
+REGEX 
+	:	'/' ( '\\' . | ~('\u0000'..'\u001f' | '\\' | '/' ) )* '/'
+	;
+
+STRING  :
     '"' ( EscapeSequence | ~('\u0000'..'\u001f' | '\\' | '\"' ) )* '"'
     ;
 
-WS: (' '|'\n'|'\r'|'\t')+ { $channel = HIDDEN; } ; // ignore whitespace
-
-jsonDocument 
-	:	jsonValue EOF
+IDENTIFIER
+    :	('a'..'z' | 'A'..'Z' | DIGIT )('a'..'z' | 'A'..'Z' | '_' | '-' | DIGIT )*
 	;
 
-jsonValue
-    : NULL
-    | jsonBooleanLiteral
-    | String
-    | NUMBER
-    | jsonObject
-    | jsonArray
-    ;
+WS: (' '|'\n'|'\r'|'\t')+ { $channel = HIDDEN; } ; // ignore whitespace
+
+COMMENT : ('//' | '#' ) .* ('\n'|'\r') { $channel = HIDDEN; };
+
+
 
 jsonBooleanLiteral
     : TRUE
     | FALSE
     ;
-    
+
 jsonObject
     : '{' '}'
     | '{' jsonMemberList '}'
     ;
-
+jsonValue
+	@init { JsonProperty expected = this.expectedProperty; }
+	@after { this.expectedProperty = expected; }
+    : { expected.allow(JsonNull.class) }? NULL
+    | { expected.allow(JsonBoolean.class) }? jsonBooleanLiteral
+    | { expected.allow(JsonString.class) }? STRING
+    | { expected.allow(JsonNumber.class) }? NUMBER
+    | { expected.allow(JsonObject.class) }? jsonObject
+    | { expected.allow(JsonArray.class) }? jsonArray
+    ;
+    
 jsonMember
-    : String ':' jsonValue
+    : STRING ':' jsonValue
     ;
 
 jsonMemberList
@@ -87,5 +122,5 @@ jsonArray
     ;
 
 jsonElementList
-    : jsonValue (',' jsonElementList)?
+    : jsonValue (',' jsonValue)*
     ;

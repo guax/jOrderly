@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/guax/jOrderly/grammar/Orderly.g 2012-10-02 20:32:40
+// $ANTLR 3.4 /Users/guax/jOrderly/grammar/JSON.g 2012-10-02 22:46:38
 
 package net.guax.jorderly.parser;
 
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
-public class OrderlyLexer extends Lexer {
+public class JSONLexer extends Lexer {
     public static final int EOF=-1;
     public static final int T__20=20;
     public static final int T__21=21;
@@ -17,20 +17,6 @@ public class OrderlyLexer extends Lexer {
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
-    public static final int T__26=26;
-    public static final int T__27=27;
-    public static final int T__28=28;
-    public static final int T__29=29;
-    public static final int T__30=30;
-    public static final int T__31=31;
-    public static final int T__32=32;
-    public static final int T__33=33;
-    public static final int T__34=34;
-    public static final int T__35=35;
-    public static final int T__36=36;
-    public static final int T__37=37;
-    public static final int T__38=38;
-    public static final int T__39=39;
     public static final int COMMENT=4;
     public static final int DIGIT=5;
     public static final int EXP=6;
@@ -54,24 +40,24 @@ public class OrderlyLexer extends Lexer {
         return new Lexer[] {};
     }
 
-    public OrderlyLexer() {} 
-    public OrderlyLexer(CharStream input) {
+    public JSONLexer() {} 
+    public JSONLexer(CharStream input) {
         this(input, new RecognizerSharedState());
     }
-    public OrderlyLexer(CharStream input, RecognizerSharedState state) {
+    public JSONLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "/Users/guax/jOrderly/grammar/Orderly.g"; }
+    public String getGrammarFileName() { return "/Users/guax/jOrderly/grammar/JSON.g"; }
 
     // $ANTLR start "T__20"
     public final void mT__20() throws RecognitionException {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:11:7: ( '*' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:11:9: '*'
+            // /Users/guax/jOrderly/grammar/JSON.g:11:7: ( ',' )
+            // /Users/guax/jOrderly/grammar/JSON.g:11:9: ','
             {
-            match('*'); 
+            match(','); 
 
             }
 
@@ -89,10 +75,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:12:7: ( ',' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:12:9: ','
+            // /Users/guax/jOrderly/grammar/JSON.g:12:7: ( ':' )
+            // /Users/guax/jOrderly/grammar/JSON.g:12:9: ':'
             {
-            match(','); 
+            match(':'); 
 
             }
 
@@ -110,10 +96,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:13:7: ( ':' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:13:9: ':'
+            // /Users/guax/jOrderly/grammar/JSON.g:13:7: ( '[' )
+            // /Users/guax/jOrderly/grammar/JSON.g:13:9: '['
             {
-            match(':'); 
+            match('['); 
 
             }
 
@@ -131,10 +117,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:14:7: ( ';' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:14:9: ';'
+            // /Users/guax/jOrderly/grammar/JSON.g:14:7: ( ']' )
+            // /Users/guax/jOrderly/grammar/JSON.g:14:9: ']'
             {
-            match(';'); 
+            match(']'); 
 
             }
 
@@ -152,10 +138,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:15:7: ( '<' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:15:9: '<'
+            // /Users/guax/jOrderly/grammar/JSON.g:15:7: ( '{' )
+            // /Users/guax/jOrderly/grammar/JSON.g:15:9: '{'
             {
-            match('<'); 
+            match('{'); 
 
             }
 
@@ -173,318 +159,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:16:7: ( '=' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:16:9: '='
-            {
-            match('='); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__25"
-
-    // $ANTLR start "T__26"
-    public final void mT__26() throws RecognitionException {
-        try {
-            int _type = T__26;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:17:7: ( '>' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:17:9: '>'
-            {
-            match('>'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__26"
-
-    // $ANTLR start "T__27"
-    public final void mT__27() throws RecognitionException {
-        try {
-            int _type = T__27;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:18:7: ( '?' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:18:9: '?'
-            {
-            match('?'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__27"
-
-    // $ANTLR start "T__28"
-    public final void mT__28() throws RecognitionException {
-        try {
-            int _type = T__28;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:19:7: ( '[' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:19:9: '['
-            {
-            match('['); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__28"
-
-    // $ANTLR start "T__29"
-    public final void mT__29() throws RecognitionException {
-        try {
-            int _type = T__29;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:20:7: ( ']' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:20:9: ']'
-            {
-            match(']'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__29"
-
-    // $ANTLR start "T__30"
-    public final void mT__30() throws RecognitionException {
-        try {
-            int _type = T__30;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:21:7: ( 'any' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:21:9: 'any'
-            {
-            match("any"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__30"
-
-    // $ANTLR start "T__31"
-    public final void mT__31() throws RecognitionException {
-        try {
-            int _type = T__31;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:22:7: ( 'array' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:22:9: 'array'
-            {
-            match("array"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__31"
-
-    // $ANTLR start "T__32"
-    public final void mT__32() throws RecognitionException {
-        try {
-            int _type = T__32;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:23:7: ( 'boolean' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:23:9: 'boolean'
-            {
-            match("boolean"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__32"
-
-    // $ANTLR start "T__33"
-    public final void mT__33() throws RecognitionException {
-        try {
-            int _type = T__33;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:24:7: ( 'integer' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:24:9: 'integer'
-            {
-            match("integer"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__33"
-
-    // $ANTLR start "T__34"
-    public final void mT__34() throws RecognitionException {
-        try {
-            int _type = T__34;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:25:7: ( 'number' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:25:9: 'number'
-            {
-            match("number"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__34"
-
-    // $ANTLR start "T__35"
-    public final void mT__35() throws RecognitionException {
-        try {
-            int _type = T__35;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:26:7: ( 'object' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:26:9: 'object'
-            {
-            match("object"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__35"
-
-    // $ANTLR start "T__36"
-    public final void mT__36() throws RecognitionException {
-        try {
-            int _type = T__36;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:27:7: ( 'string' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:27:9: 'string'
-            {
-            match("string"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__36"
-
-    // $ANTLR start "T__37"
-    public final void mT__37() throws RecognitionException {
-        try {
-            int _type = T__37;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:28:7: ( 'union' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:28:9: 'union'
-            {
-            match("union"); 
-
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__37"
-
-    // $ANTLR start "T__38"
-    public final void mT__38() throws RecognitionException {
-        try {
-            int _type = T__38;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:29:7: ( '{' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:29:9: '{'
-            {
-            match('{'); 
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        	// do for sure before leaving
-        }
-    }
-    // $ANTLR end "T__38"
-
-    // $ANTLR start "T__39"
-    public final void mT__39() throws RecognitionException {
-        try {
-            int _type = T__39;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:30:7: ( '}' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:30:9: '}'
+            // /Users/guax/jOrderly/grammar/JSON.g:16:7: ( '}' )
+            // /Users/guax/jOrderly/grammar/JSON.g:16:9: '}'
             {
             match('}'); 
 
@@ -497,15 +173,15 @@ public class OrderlyLexer extends Lexer {
         	// do for sure before leaving
         }
     }
-    // $ANTLR end "T__39"
+    // $ANTLR end "T__25"
 
     // $ANTLR start "INT"
     public final void mINT() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/Orderly.g:108:14: ( ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ ) )
-            // /Users/guax/jOrderly/grammar/Orderly.g:108:16: ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ )
+            // /Users/guax/jOrderly/grammar/JSON.g:33:14: ( ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ ) )
+            // /Users/guax/jOrderly/grammar/JSON.g:33:16: ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ )
             {
-            // /Users/guax/jOrderly/grammar/Orderly.g:108:16: ( '-' | '+' )?
+            // /Users/guax/jOrderly/grammar/JSON.g:33:16: ( '-' | '+' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -514,7 +190,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:
+                    // /Users/guax/jOrderly/grammar/JSON.g:
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
@@ -532,7 +208,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:108:30: ( DIGIT | '1' .. '9' ( DIGIT )+ )
+            // /Users/guax/jOrderly/grammar/JSON.g:33:30: ( DIGIT | '1' .. '9' ( DIGIT )+ )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -558,7 +234,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:108:31: DIGIT
+                    // /Users/guax/jOrderly/grammar/JSON.g:33:31: DIGIT
                     {
                     mDIGIT(); 
 
@@ -566,11 +242,11 @@ public class OrderlyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:108:39: '1' .. '9' ( DIGIT )+
+                    // /Users/guax/jOrderly/grammar/JSON.g:33:39: '1' .. '9' ( DIGIT )+
                     {
                     matchRange('1','9'); 
 
-                    // /Users/guax/jOrderly/grammar/Orderly.g:108:48: ( DIGIT )+
+                    // /Users/guax/jOrderly/grammar/JSON.g:33:48: ( DIGIT )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -584,7 +260,7 @@ public class OrderlyLexer extends Lexer {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // /Users/guax/jOrderly/grammar/Orderly.g:
+                    	    // /Users/guax/jOrderly/grammar/JSON.g:
                     	    {
                     	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                     	        input.consume();
@@ -628,8 +304,8 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "EXP"
     public final void mEXP() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/Orderly.g:106:14: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
-            // /Users/guax/jOrderly/grammar/Orderly.g:106:16: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
+            // /Users/guax/jOrderly/grammar/JSON.g:35:14: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
+            // /Users/guax/jOrderly/grammar/JSON.g:35:16: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -641,7 +317,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:106:30: ( '+' | '-' )?
+            // /Users/guax/jOrderly/grammar/JSON.g:35:30: ( '+' | '-' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -650,7 +326,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:
+                    // /Users/guax/jOrderly/grammar/JSON.g:
                     {
                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                         input.consume();
@@ -668,7 +344,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:106:42: ( DIGIT )+
+            // /Users/guax/jOrderly/grammar/JSON.g:35:42: ( DIGIT )+
             int cnt5=0;
             loop5:
             do {
@@ -682,7 +358,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:
+            	    // /Users/guax/jOrderly/grammar/JSON.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
             	        input.consume();
@@ -720,12 +396,12 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "FRAC"
     public final void mFRAC() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/Orderly.g:109:4: ( '.' ( DIGIT )+ )
-            // /Users/guax/jOrderly/grammar/Orderly.g:109:6: '.' ( DIGIT )+
+            // /Users/guax/jOrderly/grammar/JSON.g:38:4: ( '.' ( DIGIT )+ )
+            // /Users/guax/jOrderly/grammar/JSON.g:38:6: '.' ( DIGIT )+
             {
             match('.'); 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:109:10: ( DIGIT )+
+            // /Users/guax/jOrderly/grammar/JSON.g:38:10: ( DIGIT )+
             int cnt6=0;
             loop6:
             do {
@@ -739,7 +415,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:
+            	    // /Users/guax/jOrderly/grammar/JSON.g:
             	    {
             	    if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
             	        input.consume();
@@ -779,13 +455,13 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:113:5: ( INT ( FRAC )? ( EXP )? )
-            // /Users/guax/jOrderly/grammar/Orderly.g:113:7: INT ( FRAC )? ( EXP )?
+            // /Users/guax/jOrderly/grammar/JSON.g:42:5: ( INT ( FRAC )? ( EXP )? )
+            // /Users/guax/jOrderly/grammar/JSON.g:42:7: INT ( FRAC )? ( EXP )?
             {
             mINT(); 
 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:113:11: ( FRAC )?
+            // /Users/guax/jOrderly/grammar/JSON.g:42:11: ( FRAC )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -794,7 +470,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:113:11: FRAC
+                    // /Users/guax/jOrderly/grammar/JSON.g:42:11: FRAC
                     {
                     mFRAC(); 
 
@@ -805,7 +481,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:113:17: ( EXP )?
+            // /Users/guax/jOrderly/grammar/JSON.g:42:17: ( EXP )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -814,7 +490,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:113:17: EXP
+                    // /Users/guax/jOrderly/grammar/JSON.g:42:17: EXP
                     {
                     mEXP(); 
 
@@ -841,8 +517,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:117:5: ( 'null' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:117:7: 'null'
+            // /Users/guax/jOrderly/grammar/JSON.g:46:5: ( 'null' )
+            // /Users/guax/jOrderly/grammar/JSON.g:46:7: 'null'
             {
             match("null"); 
 
@@ -864,8 +540,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:121:5: ( 'true' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:121:7: 'true'
+            // /Users/guax/jOrderly/grammar/JSON.g:50:5: ( 'true' )
+            // /Users/guax/jOrderly/grammar/JSON.g:50:7: 'true'
             {
             match("true"); 
 
@@ -887,8 +563,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:125:5: ( 'false' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:125:7: 'false'
+            // /Users/guax/jOrderly/grammar/JSON.g:54:5: ( 'false' )
+            // /Users/guax/jOrderly/grammar/JSON.g:54:7: 'false'
             {
             match("false"); 
 
@@ -908,12 +584,12 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/Orderly.g:129:9: ( '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // /Users/guax/jOrderly/grammar/Orderly.g:129:13: '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // /Users/guax/jOrderly/grammar/JSON.g:58:9: ( '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // /Users/guax/jOrderly/grammar/JSON.g:58:13: '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:129:18: ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // /Users/guax/jOrderly/grammar/JSON.g:58:18: ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             int alt9=9;
             switch ( input.LA(1) ) {
             case 'u':
@@ -971,7 +647,7 @@ public class OrderlyLexer extends Lexer {
 
             switch (alt9) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:19: UnicodeEscape
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:19: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
@@ -979,56 +655,56 @@ public class OrderlyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:34: 'b'
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:34: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 3 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:38: 't'
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:38: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 4 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:42: 'n'
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:42: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 5 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:46: 'f'
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:46: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 6 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:50: 'r'
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:50: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 7 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:54: '\\\"'
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:54: '\\\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 8 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:59: '\\''
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:59: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 9 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:129:64: '\\\\'
+                    // /Users/guax/jOrderly/grammar/JSON.g:58:64: '\\\\'
                     {
                     match('\\'); 
 
@@ -1051,8 +727,8 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/Orderly.g:133:5: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-            // /Users/guax/jOrderly/grammar/Orderly.g:133:7: 'u' HexDigit HexDigit HexDigit HexDigit
+            // /Users/guax/jOrderly/grammar/JSON.g:62:5: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+            // /Users/guax/jOrderly/grammar/JSON.g:62:7: 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('u'); 
 
@@ -1081,8 +757,8 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/Orderly.g:137:5: ( DIGIT | 'A' .. 'F' | 'a' .. 'f' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:
+            // /Users/guax/jOrderly/grammar/JSON.g:66:5: ( DIGIT | 'A' .. 'F' | 'a' .. 'f' )
+            // /Users/guax/jOrderly/grammar/JSON.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
                 input.consume();
@@ -1107,8 +783,8 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/Orderly.g:141:5: ( '0' .. '9' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:
+            // /Users/guax/jOrderly/grammar/JSON.g:70:5: ( '0' .. '9' )
+            // /Users/guax/jOrderly/grammar/JSON.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
                 input.consume();
@@ -1135,12 +811,12 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = REGEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:145:2: ( '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:145:4: '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/'
+            // /Users/guax/jOrderly/grammar/JSON.g:74:2: ( '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/' )
+            // /Users/guax/jOrderly/grammar/JSON.g:74:4: '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/'
             {
             match('/'); 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:145:8: ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )*
+            // /Users/guax/jOrderly/grammar/JSON.g:74:8: ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )*
             loop10:
             do {
                 int alt10=3;
@@ -1156,7 +832,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:145:10: '\\\\' .
+            	    // /Users/guax/jOrderly/grammar/JSON.g:74:10: '\\\\' .
             	    {
             	    match('\\'); 
 
@@ -1165,7 +841,7 @@ public class OrderlyLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:145:19: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' )
+            	    // /Users/guax/jOrderly/grammar/JSON.g:74:19: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '.')||(input.LA(1) >= '0' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1204,12 +880,12 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:148:9: ( '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' )
-            // /Users/guax/jOrderly/grammar/Orderly.g:149:5: '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
+            // /Users/guax/jOrderly/grammar/JSON.g:77:9: ( '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' )
+            // /Users/guax/jOrderly/grammar/JSON.g:78:5: '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
             {
             match('\"'); 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:149:9: ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
+            // /Users/guax/jOrderly/grammar/JSON.g:78:9: ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
             loop11:
             do {
                 int alt11=3;
@@ -1225,7 +901,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:149:11: EscapeSequence
+            	    // /Users/guax/jOrderly/grammar/JSON.g:78:11: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
@@ -1233,7 +909,7 @@ public class OrderlyLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:149:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
+            	    // /Users/guax/jOrderly/grammar/JSON.g:78:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1272,8 +948,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:153:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )* )
-            // /Users/guax/jOrderly/grammar/Orderly.g:153:7: ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
+            // /Users/guax/jOrderly/grammar/JSON.g:82:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )* )
+            // /Users/guax/jOrderly/grammar/JSON.g:82:7: ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1285,7 +961,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:153:37: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
+            // /Users/guax/jOrderly/grammar/JSON.g:82:37: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
             loop12:
             do {
                 int alt12=2;
@@ -1298,7 +974,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt12) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:
+            	    // /Users/guax/jOrderly/grammar/JSON.g:
             	    {
             	    if ( input.LA(1)=='-'||(input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||input.LA(1)=='_'||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
             	        input.consume();
@@ -1335,10 +1011,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:156:3: ( ( ' ' | '\\n' | '\\r' | '\\t' )+ )
-            // /Users/guax/jOrderly/grammar/Orderly.g:156:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
+            // /Users/guax/jOrderly/grammar/JSON.g:85:3: ( ( ' ' | '\\n' | '\\r' | '\\t' )+ )
+            // /Users/guax/jOrderly/grammar/JSON.g:85:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
             {
-            // /Users/guax/jOrderly/grammar/Orderly.g:156:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
+            // /Users/guax/jOrderly/grammar/JSON.g:85:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
             int cnt13=0;
             loop13:
             do {
@@ -1352,7 +1028,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:
+            	    // /Users/guax/jOrderly/grammar/JSON.g:
             	    {
             	    if ( (input.LA(1) >= '\t' && input.LA(1) <= '\n')||input.LA(1)=='\r'||input.LA(1)==' ' ) {
             	        input.consume();
@@ -1395,10 +1071,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // /Users/guax/jOrderly/grammar/Orderly.g:158:9: ( ( '//' | '#' ) ( . )* ( '\\n' | '\\r' ) )
-            // /Users/guax/jOrderly/grammar/Orderly.g:158:11: ( '//' | '#' ) ( . )* ( '\\n' | '\\r' )
+            // /Users/guax/jOrderly/grammar/JSON.g:87:9: ( ( '//' | '#' ) ( . )* ( '\\n' | '\\r' ) )
+            // /Users/guax/jOrderly/grammar/JSON.g:87:11: ( '//' | '#' ) ( . )* ( '\\n' | '\\r' )
             {
-            // /Users/guax/jOrderly/grammar/Orderly.g:158:11: ( '//' | '#' )
+            // /Users/guax/jOrderly/grammar/JSON.g:87:11: ( '//' | '#' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1417,7 +1093,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:158:12: '//'
+                    // /Users/guax/jOrderly/grammar/JSON.g:87:12: '//'
                     {
                     match("//"); 
 
@@ -1426,7 +1102,7 @@ public class OrderlyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // /Users/guax/jOrderly/grammar/Orderly.g:158:19: '#'
+                    // /Users/guax/jOrderly/grammar/JSON.g:87:19: '#'
                     {
                     match('#'); 
 
@@ -1436,7 +1112,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // /Users/guax/jOrderly/grammar/Orderly.g:158:25: ( . )*
+            // /Users/guax/jOrderly/grammar/JSON.g:87:25: ( . )*
             loop15:
             do {
                 int alt15=2;
@@ -1452,7 +1128,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/Orderly.g:158:25: .
+            	    // /Users/guax/jOrderly/grammar/JSON.g:87:25: .
             	    {
             	    matchAny(); 
 
@@ -1489,12 +1165,12 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR end "COMMENT"
 
     public void mTokens() throws RecognitionException {
-        // /Users/guax/jOrderly/grammar/Orderly.g:1:8: ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | NUMBER | NULL | TRUE | FALSE | REGEX | STRING | IDENTIFIER | WS | COMMENT )
-        int alt16=29;
+        // /Users/guax/jOrderly/grammar/JSON.g:1:8: ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | NUMBER | NULL | TRUE | FALSE | REGEX | STRING | IDENTIFIER | WS | COMMENT )
+        int alt16=15;
         alt16 = dfa16.predict(input);
         switch (alt16) {
             case 1 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:10: T__20
+                // /Users/guax/jOrderly/grammar/JSON.g:1:10: T__20
                 {
                 mT__20(); 
 
@@ -1502,7 +1178,7 @@ public class OrderlyLexer extends Lexer {
                 }
                 break;
             case 2 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:16: T__21
+                // /Users/guax/jOrderly/grammar/JSON.g:1:16: T__21
                 {
                 mT__21(); 
 
@@ -1510,7 +1186,7 @@ public class OrderlyLexer extends Lexer {
                 }
                 break;
             case 3 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:22: T__22
+                // /Users/guax/jOrderly/grammar/JSON.g:1:22: T__22
                 {
                 mT__22(); 
 
@@ -1518,7 +1194,7 @@ public class OrderlyLexer extends Lexer {
                 }
                 break;
             case 4 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:28: T__23
+                // /Users/guax/jOrderly/grammar/JSON.g:1:28: T__23
                 {
                 mT__23(); 
 
@@ -1526,7 +1202,7 @@ public class OrderlyLexer extends Lexer {
                 }
                 break;
             case 5 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:34: T__24
+                // /Users/guax/jOrderly/grammar/JSON.g:1:34: T__24
                 {
                 mT__24(); 
 
@@ -1534,7 +1210,7 @@ public class OrderlyLexer extends Lexer {
                 }
                 break;
             case 6 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:40: T__25
+                // /Users/guax/jOrderly/grammar/JSON.g:1:40: T__25
                 {
                 mT__25(); 
 
@@ -1542,183 +1218,71 @@ public class OrderlyLexer extends Lexer {
                 }
                 break;
             case 7 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:46: T__26
-                {
-                mT__26(); 
-
-
-                }
-                break;
-            case 8 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:52: T__27
-                {
-                mT__27(); 
-
-
-                }
-                break;
-            case 9 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:58: T__28
-                {
-                mT__28(); 
-
-
-                }
-                break;
-            case 10 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:64: T__29
-                {
-                mT__29(); 
-
-
-                }
-                break;
-            case 11 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:70: T__30
-                {
-                mT__30(); 
-
-
-                }
-                break;
-            case 12 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:76: T__31
-                {
-                mT__31(); 
-
-
-                }
-                break;
-            case 13 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:82: T__32
-                {
-                mT__32(); 
-
-
-                }
-                break;
-            case 14 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:88: T__33
-                {
-                mT__33(); 
-
-
-                }
-                break;
-            case 15 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:94: T__34
-                {
-                mT__34(); 
-
-
-                }
-                break;
-            case 16 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:100: T__35
-                {
-                mT__35(); 
-
-
-                }
-                break;
-            case 17 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:106: T__36
-                {
-                mT__36(); 
-
-
-                }
-                break;
-            case 18 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:112: T__37
-                {
-                mT__37(); 
-
-
-                }
-                break;
-            case 19 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:118: T__38
-                {
-                mT__38(); 
-
-
-                }
-                break;
-            case 20 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:124: T__39
-                {
-                mT__39(); 
-
-
-                }
-                break;
-            case 21 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:130: NUMBER
+                // /Users/guax/jOrderly/grammar/JSON.g:1:46: NUMBER
                 {
                 mNUMBER(); 
 
 
                 }
                 break;
-            case 22 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:137: NULL
+            case 8 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:53: NULL
                 {
                 mNULL(); 
 
 
                 }
                 break;
-            case 23 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:142: TRUE
+            case 9 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:58: TRUE
                 {
                 mTRUE(); 
 
 
                 }
                 break;
-            case 24 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:147: FALSE
+            case 10 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:63: FALSE
                 {
                 mFALSE(); 
 
 
                 }
                 break;
-            case 25 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:153: REGEX
+            case 11 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:69: REGEX
                 {
                 mREGEX(); 
 
 
                 }
                 break;
-            case 26 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:159: STRING
+            case 12 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:75: STRING
                 {
                 mSTRING(); 
 
 
                 }
                 break;
-            case 27 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:166: IDENTIFIER
+            case 13 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:82: IDENTIFIER
                 {
                 mIDENTIFIER(); 
 
 
                 }
                 break;
-            case 28 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:177: WS
+            case 14 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:93: WS
                 {
                 mWS(); 
 
 
                 }
                 break;
-            case 29 :
-                // /Users/guax/jOrderly/grammar/Orderly.g:1:180: COMMENT
+            case 15 :
+                // /Users/guax/jOrderly/grammar/JSON.g:1:96: COMMENT
                 {
                 mCOMMENT(); 
 
@@ -1733,41 +1297,28 @@ public class OrderlyLexer extends Lexer {
 
     protected DFA16 dfa16 = new DFA16(this);
     static final String DFA16_eotS =
-        "\13\uffff\7\33\3\uffff\2\24\2\33\5\uffff\11\33\1\24\2\33\1\53\1"+
-        "\uffff\1\71\11\33\1\24\2\33\1\uffff\4\33\1\110\3\33\1\114\1\33\1"+
-        "\116\3\33\1\uffff\2\33\1\124\1\uffff\1\125\1\uffff\2\33\1\130\1"+
-        "\131\1\132\2\uffff\1\133\1\134\5\uffff";
+        "\10\uffff\2\7\3\17\5\uffff\1\17\1\7\3\17\1\30\1\uffff\1\17\1\7\3"+
+        "\17\1\41\1\42\1\17\2\uffff\1\44\1\uffff";
     static final String DFA16_eofS =
-        "\135\uffff";
+        "\45\uffff";
     static final String DFA16_minS =
-        "\1\11\12\uffff\1\156\1\157\1\156\1\165\1\142\1\164\1\156\3\uffff"+
-        "\2\55\1\162\1\141\1\40\4\uffff\1\171\1\162\1\157\1\164\1\154\1\152"+
-        "\1\162\1\151\1\53\1\55\1\165\1\154\1\0\1\uffff\1\55\1\141\1\154"+
-        "\1\145\1\142\1\154\1\145\1\151\1\157\1\60\1\55\1\145\1\163\1\uffff"+
-        "\1\171\1\145\1\147\1\145\1\55\1\143\2\156\1\55\1\145\1\55\1\141"+
-        "\1\145\1\162\1\uffff\1\164\1\147\1\55\1\uffff\1\55\1\uffff\1\156"+
-        "\1\162\3\55\2\uffff\2\55\5\uffff";
+        "\1\11\7\uffff\2\55\1\165\1\162\1\141\1\40\4\uffff\1\53\1\55\1\154"+
+        "\1\165\1\154\1\0\1\uffff\1\60\1\55\1\154\1\145\1\163\2\55\1\145"+
+        "\2\uffff\1\55\1\uffff";
     static final String DFA16_maxS =
-        "\1\175\12\uffff\1\162\1\157\1\156\1\165\1\142\1\164\1\156\3\uffff"+
-        "\2\172\1\162\1\141\1\uffff\4\uffff\1\171\1\162\1\157\1\164\1\155"+
-        "\1\152\1\162\1\151\1\71\1\172\1\165\1\154\1\uffff\1\uffff\1\172"+
-        "\1\141\1\154\1\145\1\142\1\154\1\145\1\151\1\157\1\71\1\172\1\145"+
-        "\1\163\1\uffff\1\171\1\145\1\147\1\145\1\172\1\143\2\156\1\172\1"+
-        "\145\1\172\1\141\1\145\1\162\1\uffff\1\164\1\147\1\172\1\uffff\1"+
-        "\172\1\uffff\1\156\1\162\3\172\2\uffff\2\172\5\uffff";
+        "\1\175\7\uffff\2\172\1\165\1\162\1\141\1\uffff\4\uffff\1\71\1\172"+
+        "\1\154\1\165\1\154\1\uffff\1\uffff\1\71\1\172\1\154\1\145\1\163"+
+        "\2\172\1\145\2\uffff\1\172\1\uffff";
     static final String DFA16_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\7\uffff\1\23"+
-        "\1\24\1\25\5\uffff\1\32\1\33\1\34\1\35\15\uffff\1\31\15\uffff\1"+
-        "\13\16\uffff\1\26\3\uffff\1\27\1\uffff\1\14\5\uffff\1\22\1\30\2"+
-        "\uffff\1\17\1\20\1\21\1\15\1\16";
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\6\uffff\1\14\1\15\1\16\1\17"+
+        "\6\uffff\1\13\10\uffff\1\10\1\11\1\uffff\1\12";
     static final String DFA16_specialS =
-        "\52\uffff\1\0\62\uffff}>";
+        "\27\uffff\1\0\15\uffff}>";
     static final String[] DFA16_transitionS = {
-            "\2\34\2\uffff\1\34\22\uffff\1\34\1\uffff\1\32\1\35\6\uffff\1"+
-            "\1\1\24\1\2\1\24\1\uffff\1\31\1\26\11\25\1\3\1\4\1\5\1\6\1\7"+
-            "\1\10\1\uffff\32\33\1\11\1\uffff\1\12\3\uffff\1\13\1\14\3\33"+
-            "\1\30\2\33\1\15\4\33\1\16\1\17\3\33\1\20\1\27\1\21\5\33\1\22"+
-            "\1\uffff\1\23",
+            "\2\20\2\uffff\1\20\22\uffff\1\20\1\uffff\1\16\1\21\7\uffff\1"+
+            "\7\1\1\1\7\1\uffff\1\15\1\11\11\10\1\2\6\uffff\32\17\1\3\1\uffff"+
+            "\1\4\3\uffff\5\17\1\14\7\17\1\12\5\17\1\13\6\17\1\5\1\uffff"+
+            "\1\6",
             "",
             "",
             "",
@@ -1775,93 +1326,37 @@ public class OrderlyLexer extends Lexer {
             "",
             "",
             "",
+            "\1\17\2\uffff\12\23\7\uffff\4\17\1\22\25\17\4\uffff\1\17\1"+
+            "\uffff\4\17\1\22\25\17",
+            "\1\17\2\uffff\12\17\7\uffff\4\17\1\22\25\17\4\uffff\1\17\1"+
+            "\uffff\4\17\1\22\25\17",
+            "\1\24",
+            "\1\25",
+            "\1\26",
+            "\17\30\1\27\uffd0\30",
             "",
             "",
             "",
-            "\1\36\3\uffff\1\37",
+            "",
+            "\1\7\1\uffff\1\31\2\uffff\12\32",
+            "\1\17\2\uffff\12\23\7\uffff\4\17\1\22\25\17\4\uffff\1\17\1"+
+            "\uffff\4\17\1\22\25\17",
+            "\1\33",
+            "\1\34",
+            "\1\35",
+            "\0\21",
+            "",
+            "\12\32",
+            "\1\17\2\uffff\12\32\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
+            "\1\36",
+            "\1\37",
             "\1\40",
-            "\1\41",
-            "\1\42",
+            "\1\17\2\uffff\12\17\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
+            "\1\17\2\uffff\12\17\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
             "\1\43",
-            "\1\44",
-            "\1\45",
             "",
             "",
-            "",
-            "\1\33\2\uffff\12\47\7\uffff\4\33\1\46\25\33\4\uffff\1\33\1"+
-            "\uffff\4\33\1\46\25\33",
-            "\1\33\2\uffff\12\33\7\uffff\4\33\1\46\25\33\4\uffff\1\33\1"+
-            "\uffff\4\33\1\46\25\33",
-            "\1\50",
-            "\1\51",
-            "\17\53\1\52\uffd0\53",
-            "",
-            "",
-            "",
-            "",
-            "\1\54",
-            "\1\55",
-            "\1\56",
-            "\1\57",
-            "\1\61\1\60",
-            "\1\62",
-            "\1\63",
-            "\1\64",
-            "\1\24\1\uffff\1\65\2\uffff\12\66",
-            "\1\33\2\uffff\12\47\7\uffff\4\33\1\46\25\33\4\uffff\1\33\1"+
-            "\uffff\4\33\1\46\25\33",
-            "\1\67",
-            "\1\70",
-            "\0\35",
-            "",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\72",
-            "\1\73",
-            "\1\74",
-            "\1\75",
-            "\1\76",
-            "\1\77",
-            "\1\100",
-            "\1\101",
-            "\12\66",
-            "\1\33\2\uffff\12\66\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\102",
-            "\1\103",
-            "",
-            "\1\104",
-            "\1\105",
-            "\1\106",
-            "\1\107",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\111",
-            "\1\112",
-            "\1\113",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\115",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\117",
-            "\1\120",
-            "\1\121",
-            "",
-            "\1\122",
-            "\1\123",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "\1\126",
-            "\1\127",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "\1\33\2\uffff\12\33\7\uffff\32\33\4\uffff\1\33\1\uffff\32\33",
-            "",
-            "",
-            "",
-            "",
+            "\1\17\2\uffff\12\17\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
             ""
     };
 
@@ -1895,19 +1390,19 @@ public class OrderlyLexer extends Lexer {
             this.transition = DFA16_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | NUMBER | NULL | TRUE | FALSE | REGEX | STRING | IDENTIFIER | WS | COMMENT );";
+            return "1:1: Tokens : ( T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | NUMBER | NULL | TRUE | FALSE | REGEX | STRING | IDENTIFIER | WS | COMMENT );";
         }
         public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA16_42 = input.LA(1);
+                        int LA16_23 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA16_42 >= '\u0000' && LA16_42 <= '\uFFFF')) ) {s = 29;}
+                        if ( ((LA16_23 >= '\u0000' && LA16_23 <= '\uFFFF')) ) {s = 17;}
 
-                        else s = 43;
+                        else s = 24;
 
                         if ( s>=0 ) return s;
                         break;

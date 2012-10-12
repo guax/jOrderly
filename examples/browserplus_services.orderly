@@ -17,5 +17,5 @@ array {
       string Version;
       string Minversion;
     } CoreletRequires ?;
-  };
+  }*;
 };
