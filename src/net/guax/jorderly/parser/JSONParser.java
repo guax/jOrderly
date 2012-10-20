@@ -1,4 +1,4 @@
-// $ANTLR 3.4 /Users/guax/jOrderly/grammar/JSON.g 2012-10-02 22:46:38
+// $ANTLR 3.4 JSON.g 2012-10-20 20:55:33
 
 package net.guax.jorderly.parser;
 
@@ -57,7 +57,7 @@ public class JSONParser extends Parser {
     }
 
     public String[] getTokenNames() { return JSONParser.tokenNames; }
-    public String getGrammarFileName() { return "/Users/guax/jOrderly/grammar/JSON.g"; }
+    public String getGrammarFileName() { return "JSON.g"; }
 
 
     JsonProperty expectedProperty;
@@ -71,11 +71,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonDocument"
-    // /Users/guax/jOrderly/grammar/JSON.g:29:1: jsonDocument :{...}? jsonValue ;
+    // JSON.g:29:1: jsonDocument :{...}? jsonValue ;
     public final void jsonDocument() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:30:2: ({...}? jsonValue )
-            // /Users/guax/jOrderly/grammar/JSON.g:30:4: {...}? jsonValue
+            // JSON.g:30:2: ({...}? jsonValue )
+            // JSON.g:30:4: {...}? jsonValue
             {
             if ( !((this.validationTree != null)) ) {
                 throw new FailedPredicateException(input, "jsonDocument", "this.validationTree != null");
@@ -105,11 +105,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonBooleanLiteral"
-    // /Users/guax/jOrderly/grammar/JSON.g:91:1: jsonBooleanLiteral : ( TRUE | FALSE );
+    // JSON.g:91:1: jsonBooleanLiteral : ( TRUE | FALSE );
     public final void jsonBooleanLiteral() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:92:5: ( TRUE | FALSE )
-            // /Users/guax/jOrderly/grammar/JSON.g:
+            // JSON.g:92:5: ( TRUE | FALSE )
+            // JSON.g:
             {
             if ( input.LA(1)==FALSE||input.LA(1)==TRUE ) {
                 input.consume();
@@ -139,10 +139,10 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonObject"
-    // /Users/guax/jOrderly/grammar/JSON.g:96:1: jsonObject : ( '{' '}' | '{' jsonMemberList '}' );
+    // JSON.g:96:1: jsonObject : ( '{' '}' | '{' jsonMemberList '}' );
     public final void jsonObject() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:97:5: ( '{' '}' | '{' jsonMemberList '}' )
+            // JSON.g:97:5: ( '{' '}' | '{' jsonMemberList '}' )
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -172,7 +172,7 @@ public class JSONParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:97:7: '{' '}'
+                    // JSON.g:97:7: '{' '}'
                     {
                     match(input,24,FOLLOW_24_in_jsonObject570); 
 
@@ -181,7 +181,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:98:7: '{' jsonMemberList '}'
+                    // JSON.g:98:7: '{' jsonMemberList '}'
                     {
                     match(input,24,FOLLOW_24_in_jsonObject580); 
 
@@ -213,11 +213,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonValue"
-    // /Users/guax/jOrderly/grammar/JSON.g:100:1: jsonValue : ({...}? NULL |{...}? jsonBooleanLiteral |{...}? STRING |{...}? NUMBER |{...}? jsonObject |{...}? jsonArray );
+    // JSON.g:100:1: jsonValue : ({...}? NULL |{...}? jsonBooleanLiteral |{...}? STRING |{...}? NUMBER |{...}? jsonObject |{...}? jsonArray );
     public final void jsonValue() throws RecognitionException {
          JsonProperty expected = this.expectedProperty; 
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:103:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}? STRING |{...}? NUMBER |{...}? jsonObject |{...}? jsonArray )
+            // JSON.g:103:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}? STRING |{...}? NUMBER |{...}? jsonObject |{...}? jsonArray )
             int alt2=6;
             switch ( input.LA(1) ) {
             case NULL:
@@ -261,7 +261,7 @@ public class JSONParser extends Parser {
 
             switch (alt2) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:103:7: {...}? NULL
+                    // JSON.g:103:7: {...}? NULL
                     {
                     if ( !(( expected.allow(JsonNull.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonNull.class) ");
@@ -272,7 +272,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:104:7: {...}? jsonBooleanLiteral
+                    // JSON.g:104:7: {...}? jsonBooleanLiteral
                     {
                     if ( !(( expected.allow(JsonBoolean.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonBoolean.class) ");
@@ -287,7 +287,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:105:7: {...}? STRING
+                    // JSON.g:105:7: {...}? STRING
                     {
                     if ( !(( expected.allow(JsonString.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonString.class) ");
@@ -298,7 +298,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:106:7: {...}? NUMBER
+                    // JSON.g:106:7: {...}? NUMBER
                     {
                     if ( !(( expected.allow(JsonNumber.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonNumber.class) ");
@@ -309,7 +309,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:107:7: {...}? jsonObject
+                    // JSON.g:107:7: {...}? jsonObject
                     {
                     if ( !(( expected.allow(JsonObject.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonObject.class) ");
@@ -324,7 +324,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:108:7: {...}? jsonArray
+                    // JSON.g:108:7: {...}? jsonArray
                     {
                     if ( !(( expected.allow(JsonArray.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonArray.class) ");
@@ -357,11 +357,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonMember"
-    // /Users/guax/jOrderly/grammar/JSON.g:111:1: jsonMember : STRING ':' jsonValue ;
+    // JSON.g:111:1: jsonMember : STRING ':' jsonValue ;
     public final void jsonMember() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:112:5: ( STRING ':' jsonValue )
-            // /Users/guax/jOrderly/grammar/JSON.g:112:7: STRING ':' jsonValue
+            // JSON.g:112:5: ( STRING ':' jsonValue )
+            // JSON.g:112:7: STRING ':' jsonValue
             {
             match(input,STRING,FOLLOW_STRING_in_jsonMember685); 
 
@@ -391,11 +391,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonMemberList"
-    // /Users/guax/jOrderly/grammar/JSON.g:115:1: jsonMemberList : jsonMember ( ',' jsonMemberList )? ;
+    // JSON.g:115:1: jsonMemberList : jsonMember ( ',' jsonMemberList )? ;
     public final void jsonMemberList() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:116:5: ( jsonMember ( ',' jsonMemberList )? )
-            // /Users/guax/jOrderly/grammar/JSON.g:116:7: jsonMember ( ',' jsonMemberList )?
+            // JSON.g:116:5: ( jsonMember ( ',' jsonMemberList )? )
+            // JSON.g:116:7: jsonMember ( ',' jsonMemberList )?
             {
             pushFollow(FOLLOW_jsonMember_in_jsonMemberList706);
             jsonMember();
@@ -403,7 +403,7 @@ public class JSONParser extends Parser {
             state._fsp--;
 
 
-            // /Users/guax/jOrderly/grammar/JSON.g:116:18: ( ',' jsonMemberList )?
+            // JSON.g:116:18: ( ',' jsonMemberList )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -412,7 +412,7 @@ public class JSONParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:116:19: ',' jsonMemberList
+                    // JSON.g:116:19: ',' jsonMemberList
                     {
                     match(input,20,FOLLOW_20_in_jsonMemberList709); 
 
@@ -446,10 +446,10 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonArray"
-    // /Users/guax/jOrderly/grammar/JSON.g:119:1: jsonArray : ( '[' ']' | '[' jsonElementList ']' );
+    // JSON.g:119:1: jsonArray : ( '[' ']' | '[' jsonElementList ']' );
     public final void jsonArray() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:120:5: ( '[' ']' | '[' jsonElementList ']' )
+            // JSON.g:120:5: ( '[' ']' | '[' jsonElementList ']' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -479,7 +479,7 @@ public class JSONParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:120:7: '[' ']'
+                    // JSON.g:120:7: '[' ']'
                     {
                     match(input,22,FOLLOW_22_in_jsonArray730); 
 
@@ -488,7 +488,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // /Users/guax/jOrderly/grammar/JSON.g:121:7: '[' jsonElementList ']'
+                    // JSON.g:121:7: '[' jsonElementList ']'
                     {
                     match(input,22,FOLLOW_22_in_jsonArray740); 
 
@@ -520,11 +520,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonElementList"
-    // /Users/guax/jOrderly/grammar/JSON.g:124:1: jsonElementList : jsonValue ( ',' jsonValue )* ;
+    // JSON.g:124:1: jsonElementList : jsonValue ( ',' jsonValue )* ;
     public final void jsonElementList() throws RecognitionException {
         try {
-            // /Users/guax/jOrderly/grammar/JSON.g:125:5: ( jsonValue ( ',' jsonValue )* )
-            // /Users/guax/jOrderly/grammar/JSON.g:125:7: jsonValue ( ',' jsonValue )*
+            // JSON.g:125:5: ( jsonValue ( ',' jsonValue )* )
+            // JSON.g:125:7: jsonValue ( ',' jsonValue )*
             {
             pushFollow(FOLLOW_jsonValue_in_jsonElementList761);
             jsonValue();
@@ -532,7 +532,7 @@ public class JSONParser extends Parser {
             state._fsp--;
 
 
-            // /Users/guax/jOrderly/grammar/JSON.g:125:17: ( ',' jsonValue )*
+            // JSON.g:125:17: ( ',' jsonValue )*
             loop5:
             do {
                 int alt5=2;
@@ -545,7 +545,7 @@ public class JSONParser extends Parser {
 
                 switch (alt5) {
             	case 1 :
-            	    // /Users/guax/jOrderly/grammar/JSON.g:125:18: ',' jsonValue
+            	    // JSON.g:125:18: ',' jsonValue
             	    {
             	    match(input,20,FOLLOW_20_in_jsonElementList764); 
 
