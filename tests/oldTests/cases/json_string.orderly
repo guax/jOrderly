@@ -1,0 +1,4 @@
+# json style strings are also allowed in orderly
+object { 
+  string "foo";
+};
