@@ -19,14 +19,14 @@ import org.antlr.runtime.TokenStream;
 public class Main {
 
     public static void main(String args[]) throws IOException, RecognitionException {
-        CharStream stream = new ANTLRFileStream("examples/browserplus_services.orderly");
+        CharStream stream = new ANTLRFileStream(args[0]);
         OrderlyLexer lexer = new OrderlyLexer(stream);
         TokenStream tokenStream = new CommonTokenStream(lexer);
         OrderlyParser parser = new OrderlyParser(tokenStream);
         
         JsonProperty parseTree = parser.orderly_schema();
         
-        stream = new ANTLRFileStream("examples/browserplus_services.json");
+        stream = new ANTLRFileStream(args[1]);
         JSONLexer jsonLexer = new JSONLexer(stream);
         tokenStream = new CommonTokenStream(jsonLexer);
         JSONParser jsonParser = new JSONParser(tokenStream);
@@ -34,5 +34,9 @@ public class Main {
         jsonParser.setValidationTree(parseTree);
         
         jsonParser.jsonDocument();
+        
+        if(jsonParser.getNumberOfSyntaxErrors() > 0) {
+            System.exit(1);
+        }
     }
 }

@@ -34,7 +34,7 @@ public class JsonArray extends JsonProperty {
 
     @Override
     public boolean allow(Class type) {
-        if(this.getClass() == type || this.findInstance(type.getClass()) != null) {
+        if(this.getClass() == type || this.findInstance(type) != null) {
             return true;
         }
         else {
