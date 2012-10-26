@@ -1,6 +1,7 @@
 package net.guax.jorderly.json;
 
 import java.util.List;
+import org.antlr.runtime.IntStream;
 
 /**
  *
@@ -8,13 +9,22 @@ import java.util.List;
  */
 abstract public class JsonProperty {
     
+    IntStream input;
+
+    public IntStream getInput() {
+        return input;
+    }
+
+    public void setInput(IntStream input) {
+        this.input = input;
+    }
+    
     /**
      * Default value.
      * 
      * Do not confuse null with JSONValueNull
      */
     protected Value defaultValue = null;
-    
     
     protected boolean optional = false;
     

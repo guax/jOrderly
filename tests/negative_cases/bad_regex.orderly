@@ -1,2 +1,0 @@
-// We are lacking the last ) to be a valid regex.
-string /^((john)|(bob)|(susan)|(георги)|(цветанка)$/;

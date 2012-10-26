@@ -98,12 +98,12 @@ jsonObject
     | '{' jsonMemberList '}'
     ;
 jsonValue
-	@init { JsonProperty expected = this.expectedProperty; }
+	@init { JsonProperty expected = this.expectedProperty; expected.setInput(this.input); }
 	@after { this.expectedProperty = expected; }
     : { expected.allow(JsonNull.class) }? NULL
     | { expected.allow(JsonBoolean.class) }? jsonBooleanLiteral
     | { expected.allow(JsonString.class) }? STRING
-    | { expected.allow(JsonNumber.class) }? NUMBER
+    | { expected.allow(JsonNumber.class) }? number=NUMBER { JsonNumber.class.cast(expected).isValidNumber($number.getText()) }?
     | { expected.allow(JsonObject.class) }? jsonObject
     | { expected.allow(JsonArray.class) }? jsonArray
     ;

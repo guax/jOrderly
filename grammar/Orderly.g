@@ -9,6 +9,7 @@ package net.guax.jorderly.parser;
 
 import java.util.HashMap;
 import net.guax.jorderly.json.*;
+import java.math.BigDecimal;
 }
 
 
@@ -30,8 +31,8 @@ definition_suffix
 	;
 
 definition_prefix returns [JsonProperty property]
-    :	'integer' { $property = new JsonInteger(); } range?
-    |	'number' { $property = new JsonNumber(); } range?
+    :	'integer' { $property = new JsonInteger(); } range? {JsonInteger.class.cast($property).setRange($range.range);}
+    |	'number' { $property = new JsonNumber(); } range? {JsonNumber.class.cast($property).setRange($range.range);}
     |	'boolean' { $property = new JsonBoolean(); }
     |	'null' { $property = new JsonNull(); }
     |	'any' { $property = new JsonAny(); }
@@ -82,10 +83,11 @@ default_value
     :	'=' jsonValue
 	;
 
-range
-    :	'{' NUMBER ',' NUMBER '}'
-    |	'{' NUMBER ',' '}'
-    |	'{' ',' NUMBER '}'
+range returns [Range range]
+    @init {$range = new Range(); BigDecimal lowerBound; BigDecimal upperBound;}
+    :	'{' lower=NUMBER ',' upper=NUMBER '}' {$range.lowerBound = new BigDecimal($lower.getText()); $range.upperBound = new BigDecimal($upper.getText());}
+    |	'{' lower=NUMBER ',' '}' {$range.lowerBound = new BigDecimal($lower.getText());}
+    |	'{' ',' upper=NUMBER '}' {$range.upperBound = new BigDecimal($upper.getText());}
 	;
 
 property_name
