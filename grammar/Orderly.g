@@ -40,7 +40,7 @@ definition_prefix returns [JsonProperty property]
     // a tuple-typed array 
     |	'array' { $property = new JsonArray(); }  '{' unnamed_entries? {JsonArray.class.cast($property).setProperties($unnamed_entries.properties);} '}' range? {JsonArray.class.cast($property).setRange($range.range);}
     // a simple-typed array (notice the '*' marker is disallowed)
-    |	'array' { $property = new JsonArray(); } '[' unnamed_entry ']' range? {JsonArray.class.cast($property).setRange($range.range);}
+    |	'array' { $property = new JsonArray(); } '[' { HashMap propertyMap = new HashMap<String, JsonProperty>(); } un=unnamed_entry {propertyMap.put($un.property.getClass().getName(),$un.property); JsonArray.class.cast($property).setProperties(propertyMap); } ']' range? {JsonArray.class.cast($property).setRange($range.range);}
     |	'object' { $property = new JsonObject(); } '{' named_entries? { JsonObject.class.cast($property).setProperties($named_entries.properties); } '}' (additional_marker { JsonObject.class.cast($property).setAllowAdditionalProperties(true); })?
     |	'union'  { $property = new JsonUnion(); } '{' unnamed_entry ';' unnamed_entries '}' // At least two entries are required
     ;
@@ -55,9 +55,9 @@ named_entries returns [HashMap<String, JsonProperty> properties]
     :	n1=named_entry {$properties.put($n1.property.getName(),$n1.property);} (';' n2=named_entry{$properties.put($n2.property.getName(),$n2.property);})* ';'?
     ;
 
-unnamed_entries returns [List<JsonProperty> properties]
-	@init { $properties = new ArrayList<JsonProperty>(); }
-    :	un1=unnamed_entry {$properties.add($un1.property);} (';' un2=unnamed_entry {$properties.add($un2.property);} )* ';'?
+unnamed_entries returns [HashMap<String, JsonProperty> properties]
+	@init { $properties = new HashMap<String, JsonProperty>(); }
+    :	un1=unnamed_entry {$properties.put($un1.property.getClass().getName(),$un1.property);} (';' un2=unnamed_entry {$properties.put($un2.property.getClass().getName(), $un2.property);} )* ';'?
     ;
 
 csv_property_names

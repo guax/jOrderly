@@ -16,13 +16,21 @@ package net.guax.jorderly.parser;
 }
 
 @members {
-JsonProperty expectedProperty;
+    JsonProperty expectedProperty;
 
-JsonProperty validationTree;
+    JsonProperty validationTree;
 
-public void setValidationTree(JsonProperty validationTree) {
-	this.validationTree = this.expectedProperty = validationTree;
-}
+    public void setValidationTree(JsonProperty validationTree) {
+    	this.validationTree = this.expectedProperty = validationTree;
+    }
+
+    public JsonProperty resolvArrayContext(String type) {
+        if (this.expectedProperty instanceof JsonArray && JsonArray.class.cast(this.expectedProperty).inArray) {
+            return JsonArray.class.cast(this.expectedProperty).getProperty(type);
+        }
+
+        return this.expectedProperty;
+    }
 }
 
 // Starting Symbol
@@ -100,12 +108,12 @@ jsonObject
 jsonValue
 	@init { JsonProperty expected = this.expectedProperty; expected.setInput(this.input); }
 	@after { this.expectedProperty = expected; }
-    : { expected.allow(JsonNull.class) }? NULL
-    | { expected.allow(JsonBoolean.class) }? jsonBooleanLiteral
-    | { expected.allow(JsonString.class) }? string=STRING { JsonString.class.cast(expected).isValid($string.getText()) }?
-    | { expected.allow(JsonNumber.class) }? number=NUMBER { JsonNumber.class.cast(expected).isValidNumber($number.getText()) }?
-    | { expected.allow(JsonObject.class) }? jsonObject
-    | { expected.allow(JsonArray.class) }? jsonArray
+    : { this.expectedProperty.allow(JsonNull.class) }? NULL
+    | { this.expectedProperty.allow(JsonBoolean.class) }? {this.expectedProperty = resolvArrayContext(JsonBoolean.class.getName());} jsonBooleanLiteral
+    | { this.expectedProperty.allow(JsonString.class) }? {this.expectedProperty = resolvArrayContext(JsonString.class.getName());} string=STRING { JsonString.class.cast(this.expectedProperty).isValid($string.getText()) }?
+    | { this.expectedProperty.allow(JsonNumber.class) }? {this.expectedProperty = resolvArrayContext(JsonNumber.class.getName());} number=NUMBER { JsonNumber.class.cast(this.expectedProperty).isValidNumber($number.getText()) }?
+    | { this.expectedProperty.allow(JsonObject.class) }? {this.expectedProperty = resolvArrayContext(JsonObject.class.getName());} jsonObject
+    | { this.expectedProperty.allow(JsonArray.class) }? {this.expectedProperty = resolvArrayContext(JsonArray.class.getName());} { JsonArray.class.cast(this.expectedProperty).setInArray(true); } jsonArray { JsonArray.class.cast(this.expectedProperty).setInArray(false); }
     ;
     
 jsonMember

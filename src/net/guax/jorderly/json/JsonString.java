@@ -14,7 +14,7 @@ import org.antlr.runtime.FailedPredicateException;
  */
 public class JsonString extends JsonProperty {
     RegularExpression regex;
-
+    
     public RegularExpression getRegex() {
         return regex;
     }
@@ -34,6 +34,10 @@ public class JsonString extends JsonProperty {
     }
     
     protected boolean inRange(String value) {
+        if (this.range == null) {
+            return true;
+        }
+        
         // lower bound > value.lenght
         if (this.range.lowerBound != null && this.range.lowerBound.compareTo(new BigDecimal(value.length())) > 0) {
             return false;

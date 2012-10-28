@@ -1,4 +1,4 @@
-// $ANTLR 3.4 JSON.g 2012-10-28 14:14:59
+// $ANTLR 3.4 JSON.g 2012-10-28 16:59:27
 
 package net.guax.jorderly.parser;
 
@@ -178,10 +178,10 @@ public class JSONLexer extends Lexer {
     // $ANTLR start "INT"
     public final void mINT() throws RecognitionException {
         try {
-            // JSON.g:33:14: ( ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ ) )
-            // JSON.g:33:16: ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ )
+            // JSON.g:41:14: ( ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ ) )
+            // JSON.g:41:16: ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ )
             {
-            // JSON.g:33:16: ( '-' | '+' )?
+            // JSON.g:41:16: ( '-' | '+' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -208,7 +208,7 @@ public class JSONLexer extends Lexer {
             }
 
 
-            // JSON.g:33:30: ( DIGIT | '1' .. '9' ( DIGIT )+ )
+            // JSON.g:41:30: ( DIGIT | '1' .. '9' ( DIGIT )+ )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -234,7 +234,7 @@ public class JSONLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // JSON.g:33:31: DIGIT
+                    // JSON.g:41:31: DIGIT
                     {
                     mDIGIT(); 
 
@@ -242,11 +242,11 @@ public class JSONLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // JSON.g:33:39: '1' .. '9' ( DIGIT )+
+                    // JSON.g:41:39: '1' .. '9' ( DIGIT )+
                     {
                     matchRange('1','9'); 
 
-                    // JSON.g:33:48: ( DIGIT )+
+                    // JSON.g:41:48: ( DIGIT )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -304,8 +304,8 @@ public class JSONLexer extends Lexer {
     // $ANTLR start "EXP"
     public final void mEXP() throws RecognitionException {
         try {
-            // JSON.g:35:14: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
-            // JSON.g:35:16: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
+            // JSON.g:43:14: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
+            // JSON.g:43:16: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -317,7 +317,7 @@ public class JSONLexer extends Lexer {
             }
 
 
-            // JSON.g:35:30: ( '+' | '-' )?
+            // JSON.g:43:30: ( '+' | '-' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -344,7 +344,7 @@ public class JSONLexer extends Lexer {
             }
 
 
-            // JSON.g:35:42: ( DIGIT )+
+            // JSON.g:43:42: ( DIGIT )+
             int cnt5=0;
             loop5:
             do {
@@ -396,12 +396,12 @@ public class JSONLexer extends Lexer {
     // $ANTLR start "FRAC"
     public final void mFRAC() throws RecognitionException {
         try {
-            // JSON.g:38:4: ( '.' ( DIGIT )+ )
-            // JSON.g:38:6: '.' ( DIGIT )+
+            // JSON.g:46:4: ( '.' ( DIGIT )+ )
+            // JSON.g:46:6: '.' ( DIGIT )+
             {
             match('.'); 
 
-            // JSON.g:38:10: ( DIGIT )+
+            // JSON.g:46:10: ( DIGIT )+
             int cnt6=0;
             loop6:
             do {
@@ -455,13 +455,13 @@ public class JSONLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:42:5: ( INT ( FRAC )? ( EXP )? )
-            // JSON.g:42:7: INT ( FRAC )? ( EXP )?
+            // JSON.g:50:5: ( INT ( FRAC )? ( EXP )? )
+            // JSON.g:50:7: INT ( FRAC )? ( EXP )?
             {
             mINT(); 
 
 
-            // JSON.g:42:11: ( FRAC )?
+            // JSON.g:50:11: ( FRAC )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -470,7 +470,7 @@ public class JSONLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // JSON.g:42:11: FRAC
+                    // JSON.g:50:11: FRAC
                     {
                     mFRAC(); 
 
@@ -481,7 +481,7 @@ public class JSONLexer extends Lexer {
             }
 
 
-            // JSON.g:42:17: ( EXP )?
+            // JSON.g:50:17: ( EXP )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -490,7 +490,7 @@ public class JSONLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // JSON.g:42:17: EXP
+                    // JSON.g:50:17: EXP
                     {
                     mEXP(); 
 
@@ -517,8 +517,8 @@ public class JSONLexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:46:5: ( 'null' )
-            // JSON.g:46:7: 'null'
+            // JSON.g:54:5: ( 'null' )
+            // JSON.g:54:7: 'null'
             {
             match("null"); 
 
@@ -540,8 +540,8 @@ public class JSONLexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:50:5: ( 'true' )
-            // JSON.g:50:7: 'true'
+            // JSON.g:58:5: ( 'true' )
+            // JSON.g:58:7: 'true'
             {
             match("true"); 
 
@@ -563,8 +563,8 @@ public class JSONLexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:54:5: ( 'false' )
-            // JSON.g:54:7: 'false'
+            // JSON.g:62:5: ( 'false' )
+            // JSON.g:62:7: 'false'
             {
             match("false"); 
 
@@ -584,12 +584,12 @@ public class JSONLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // JSON.g:58:9: ( '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // JSON.g:58:13: '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // JSON.g:66:9: ( '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // JSON.g:66:13: '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
 
-            // JSON.g:58:18: ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // JSON.g:66:18: ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             int alt9=9;
             switch ( input.LA(1) ) {
             case 'u':
@@ -647,7 +647,7 @@ public class JSONLexer extends Lexer {
 
             switch (alt9) {
                 case 1 :
-                    // JSON.g:58:19: UnicodeEscape
+                    // JSON.g:66:19: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
@@ -655,56 +655,56 @@ public class JSONLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // JSON.g:58:34: 'b'
+                    // JSON.g:66:34: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 3 :
-                    // JSON.g:58:38: 't'
+                    // JSON.g:66:38: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 4 :
-                    // JSON.g:58:42: 'n'
+                    // JSON.g:66:42: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 5 :
-                    // JSON.g:58:46: 'f'
+                    // JSON.g:66:46: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 6 :
-                    // JSON.g:58:50: 'r'
+                    // JSON.g:66:50: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 7 :
-                    // JSON.g:58:54: '\\\"'
+                    // JSON.g:66:54: '\\\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 8 :
-                    // JSON.g:58:59: '\\''
+                    // JSON.g:66:59: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 9 :
-                    // JSON.g:58:64: '\\\\'
+                    // JSON.g:66:64: '\\\\'
                     {
                     match('\\'); 
 
@@ -727,8 +727,8 @@ public class JSONLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // JSON.g:62:5: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-            // JSON.g:62:7: 'u' HexDigit HexDigit HexDigit HexDigit
+            // JSON.g:70:5: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+            // JSON.g:70:7: 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('u'); 
 
@@ -757,7 +757,7 @@ public class JSONLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // JSON.g:66:5: ( DIGIT | 'A' .. 'F' | 'a' .. 'f' )
+            // JSON.g:74:5: ( DIGIT | 'A' .. 'F' | 'a' .. 'f' )
             // JSON.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -783,7 +783,7 @@ public class JSONLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // JSON.g:70:5: ( '0' .. '9' )
+            // JSON.g:78:5: ( '0' .. '9' )
             // JSON.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -811,12 +811,12 @@ public class JSONLexer extends Lexer {
         try {
             int _type = REGEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:74:2: ( '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/' )
-            // JSON.g:74:4: '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/'
+            // JSON.g:82:2: ( '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/' )
+            // JSON.g:82:4: '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/'
             {
             match('/'); 
 
-            // JSON.g:74:8: ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )*
+            // JSON.g:82:8: ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )*
             loop10:
             do {
                 int alt10=3;
@@ -832,7 +832,7 @@ public class JSONLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // JSON.g:74:10: '\\\\' .
+            	    // JSON.g:82:10: '\\\\' .
             	    {
             	    match('\\'); 
 
@@ -841,7 +841,7 @@ public class JSONLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // JSON.g:74:19: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' )
+            	    // JSON.g:82:19: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '.')||(input.LA(1) >= '0' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -880,12 +880,12 @@ public class JSONLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:77:9: ( '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' )
-            // JSON.g:78:5: '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
+            // JSON.g:85:9: ( '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' )
+            // JSON.g:86:5: '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
             {
             match('\"'); 
 
-            // JSON.g:78:9: ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
+            // JSON.g:86:9: ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
             loop11:
             do {
                 int alt11=3;
@@ -901,7 +901,7 @@ public class JSONLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // JSON.g:78:11: EscapeSequence
+            	    // JSON.g:86:11: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
@@ -909,7 +909,7 @@ public class JSONLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // JSON.g:78:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
+            	    // JSON.g:86:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -948,8 +948,8 @@ public class JSONLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:82:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )* )
-            // JSON.g:82:7: ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
+            // JSON.g:90:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )* )
+            // JSON.g:90:7: ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -961,7 +961,7 @@ public class JSONLexer extends Lexer {
             }
 
 
-            // JSON.g:82:37: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
+            // JSON.g:90:37: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
             loop12:
             do {
                 int alt12=2;
@@ -1011,10 +1011,10 @@ public class JSONLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:85:3: ( ( ' ' | '\\n' | '\\r' | '\\t' )+ )
-            // JSON.g:85:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
+            // JSON.g:93:3: ( ( ' ' | '\\n' | '\\r' | '\\t' )+ )
+            // JSON.g:93:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
             {
-            // JSON.g:85:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
+            // JSON.g:93:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
             int cnt13=0;
             loop13:
             do {
@@ -1071,10 +1071,10 @@ public class JSONLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // JSON.g:87:9: ( ( '//' | '#' ) ( . )* ( '\\n' | '\\r' ) )
-            // JSON.g:87:11: ( '//' | '#' ) ( . )* ( '\\n' | '\\r' )
+            // JSON.g:95:9: ( ( '//' | '#' ) ( . )* ( '\\n' | '\\r' ) )
+            // JSON.g:95:11: ( '//' | '#' ) ( . )* ( '\\n' | '\\r' )
             {
-            // JSON.g:87:11: ( '//' | '#' )
+            // JSON.g:95:11: ( '//' | '#' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1093,7 +1093,7 @@ public class JSONLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // JSON.g:87:12: '//'
+                    // JSON.g:95:12: '//'
                     {
                     match("//"); 
 
@@ -1102,7 +1102,7 @@ public class JSONLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // JSON.g:87:19: '#'
+                    // JSON.g:95:19: '#'
                     {
                     match('#'); 
 
@@ -1112,7 +1112,7 @@ public class JSONLexer extends Lexer {
             }
 
 
-            // JSON.g:87:25: ( . )*
+            // JSON.g:95:25: ( . )*
             loop15:
             do {
                 int alt15=2;
@@ -1128,7 +1128,7 @@ public class JSONLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // JSON.g:87:25: .
+            	    // JSON.g:95:25: .
             	    {
             	    matchAny(); 
 

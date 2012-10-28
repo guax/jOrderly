@@ -5,7 +5,7 @@
 package net.guax.jorderly.json;
 
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.HashMap;
 import org.antlr.runtime.FailedPredicateException;
 
 /**
@@ -14,10 +14,26 @@ import org.antlr.runtime.FailedPredicateException;
  */
 public class JsonArray extends JsonProperty {
 
-    protected List<JsonProperty> properties;
+    protected HashMap<String, JsonProperty> properties;
+    
+    protected boolean allowAdditionalProperties = false;
 
-    public List<JsonProperty> getProperties() {
+    public HashMap<String, JsonProperty> getProperties() {
         return properties;
+    }
+
+    public void setProperties(HashMap<String, JsonProperty> properties) {
+        this.properties = properties;
+    }
+    
+    public JsonProperty getProperty(String type) {
+        return properties.get(type);
+    }
+    
+    public boolean inArray;
+
+    public void setInArray(boolean inArray) {
+        this.inArray = inArray;
     }
     
     Range range;
@@ -28,10 +44,6 @@ public class JsonArray extends JsonProperty {
 
     public void setRange(Range range) {
         this.range = range;
-    }
-
-    public void setProperties(List<JsonProperty> properties) {
-        this.properties = properties;
     }
     
     public boolean inRange(int value) throws FailedPredicateException {
@@ -48,7 +60,7 @@ public class JsonArray extends JsonProperty {
     }
 
     protected <T> T findInstance(Class<T> clazz) {
-        for (Object o : this.properties) {
+        for (Object o : this.properties.values()) {
             if (o != null && o.getClass() == clazz) {
                 return clazz.cast(o);
             }
