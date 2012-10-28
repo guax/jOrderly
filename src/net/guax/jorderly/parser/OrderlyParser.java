@@ -1,7 +1,8 @@
-// $ANTLR 3.4 Orderly.g 2012-10-27 21:26:28
+// $ANTLR 3.4 Orderly.g 2012-10-27 22:25:51
 
 package net.guax.jorderly.parser;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import java.util.HashMap;
 import net.guax.jorderly.json.*;
 import java.math.BigDecimal;
@@ -77,7 +78,7 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "orderly_schema"
-    // Orderly.g:20:1: orderly_schema returns [JsonProperty rootProperty] : unnamed_entry ( ';' )? ;
+    // Orderly.g:21:1: orderly_schema returns [JsonProperty rootProperty] : unnamed_entry ( ';' )? ;
     public final JsonProperty orderly_schema() throws RecognitionException {
         JsonProperty rootProperty = null;
 
@@ -86,8 +87,8 @@ public class OrderlyParser extends Parser {
 
 
         try {
-            // Orderly.g:21:5: ( unnamed_entry ( ';' )? )
-            // Orderly.g:21:7: unnamed_entry ( ';' )?
+            // Orderly.g:22:5: ( unnamed_entry ( ';' )? )
+            // Orderly.g:22:7: unnamed_entry ( ';' )?
             {
             pushFollow(FOLLOW_unnamed_entry_in_orderly_schema51);
             unnamed_entry1=unnamed_entry();
@@ -95,7 +96,7 @@ public class OrderlyParser extends Parser {
             state._fsp--;
 
 
-            // Orderly.g:21:21: ( ';' )?
+            // Orderly.g:22:21: ( ';' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -104,7 +105,7 @@ public class OrderlyParser extends Parser {
             }
             switch (alt1) {
                 case 1 :
-                    // Orderly.g:21:21: ';'
+                    // Orderly.g:22:21: ';'
                     {
                     match(input,23,FOLLOW_23_in_orderly_schema53); 
 
@@ -134,16 +135,20 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "unnamed_entry"
-    // Orderly.g:24:1: unnamed_entry returns [JsonProperty property] : ( definition_prefix definition_suffix | 'string' ( range )? ( perl_regex )? definition_suffix );
+    // Orderly.g:25:1: unnamed_entry returns [JsonProperty property] : ( definition_prefix definition_suffix | 'string' ( range )? (regex= perl_regex )? definition_suffix );
     public final JsonProperty unnamed_entry() throws RecognitionException {
         JsonProperty property = null;
 
 
+        RegularExpression regex =null;
+
         JsonProperty definition_prefix2 =null;
+
+        Range range3 =null;
 
 
         try {
-            // Orderly.g:25:5: ( definition_prefix definition_suffix | 'string' ( range )? ( perl_regex )? definition_suffix )
+            // Orderly.g:26:5: ( definition_prefix definition_suffix | 'string' ( range )? (regex= perl_regex )? definition_suffix )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -162,7 +167,7 @@ public class OrderlyParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // Orderly.g:25:7: definition_prefix definition_suffix
+                    // Orderly.g:26:7: definition_prefix definition_suffix
                     {
                     pushFollow(FOLLOW_definition_prefix_in_unnamed_entry81);
                     definition_prefix2=definition_prefix();
@@ -181,13 +186,13 @@ public class OrderlyParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Orderly.g:26:7: 'string' ( range )? ( perl_regex )? definition_suffix
+                    // Orderly.g:27:7: 'string' ( range )? (regex= perl_regex )? definition_suffix
                     {
                     match(input,36,FOLLOW_36_in_unnamed_entry93); 
 
                      property = new JsonString(); 
 
-                    // Orderly.g:26:50: ( range )?
+                    // Orderly.g:27:50: ( range )?
                     int alt2=2;
                     int LA2_0 = input.LA(1);
 
@@ -196,10 +201,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt2) {
                         case 1 :
-                            // Orderly.g:26:50: range
+                            // Orderly.g:27:50: range
                             {
                             pushFollow(FOLLOW_range_in_unnamed_entry97);
-                            range();
+                            range3=range();
 
                             state._fsp--;
 
@@ -210,7 +215,9 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                    // Orderly.g:26:57: ( perl_regex )?
+                    JsonString.class.cast(property).setRange(range3);
+
+                    // Orderly.g:27:121: (regex= perl_regex )?
                     int alt3=2;
                     int LA3_0 = input.LA(1);
 
@@ -219,10 +226,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt3) {
                         case 1 :
-                            // Orderly.g:26:57: perl_regex
+                            // Orderly.g:27:121: regex= perl_regex
                             {
-                            pushFollow(FOLLOW_perl_regex_in_unnamed_entry100);
-                            perl_regex();
+                            pushFollow(FOLLOW_perl_regex_in_unnamed_entry104);
+                            regex=perl_regex();
 
                             state._fsp--;
 
@@ -233,7 +240,9 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                    pushFollow(FOLLOW_definition_suffix_in_unnamed_entry103);
+                    JsonString.class.cast(property).setRegExp(regex);
+
+                    pushFollow(FOLLOW_definition_suffix_in_unnamed_entry109);
                     definition_suffix();
 
                     state._fsp--;
@@ -259,13 +268,13 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "definition_suffix"
-    // Orderly.g:29:1: definition_suffix : ( enum_values )? ( default_value )? ( requires )? ( optional_marker )? ;
+    // Orderly.g:30:1: definition_suffix : ( enum_values )? ( default_value )? ( requires )? ( optional_marker )? ;
     public final void definition_suffix() throws RecognitionException {
         try {
-            // Orderly.g:30:5: ( ( enum_values )? ( default_value )? ( requires )? ( optional_marker )? )
-            // Orderly.g:30:7: ( enum_values )? ( default_value )? ( requires )? ( optional_marker )?
+            // Orderly.g:31:5: ( ( enum_values )? ( default_value )? ( requires )? ( optional_marker )? )
+            // Orderly.g:31:7: ( enum_values )? ( default_value )? ( requires )? ( optional_marker )?
             {
-            // Orderly.g:30:7: ( enum_values )?
+            // Orderly.g:31:7: ( enum_values )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -274,9 +283,9 @@ public class OrderlyParser extends Parser {
             }
             switch (alt5) {
                 case 1 :
-                    // Orderly.g:30:7: enum_values
+                    // Orderly.g:31:7: enum_values
                     {
-                    pushFollow(FOLLOW_enum_values_in_definition_suffix120);
+                    pushFollow(FOLLOW_enum_values_in_definition_suffix126);
                     enum_values();
 
                     state._fsp--;
@@ -288,7 +297,7 @@ public class OrderlyParser extends Parser {
             }
 
 
-            // Orderly.g:30:20: ( default_value )?
+            // Orderly.g:31:20: ( default_value )?
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -297,9 +306,9 @@ public class OrderlyParser extends Parser {
             }
             switch (alt6) {
                 case 1 :
-                    // Orderly.g:30:20: default_value
+                    // Orderly.g:31:20: default_value
                     {
-                    pushFollow(FOLLOW_default_value_in_definition_suffix123);
+                    pushFollow(FOLLOW_default_value_in_definition_suffix129);
                     default_value();
 
                     state._fsp--;
@@ -311,7 +320,7 @@ public class OrderlyParser extends Parser {
             }
 
 
-            // Orderly.g:30:35: ( requires )?
+            // Orderly.g:31:35: ( requires )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -320,9 +329,9 @@ public class OrderlyParser extends Parser {
             }
             switch (alt7) {
                 case 1 :
-                    // Orderly.g:30:35: requires
+                    // Orderly.g:31:35: requires
                     {
-                    pushFollow(FOLLOW_requires_in_definition_suffix126);
+                    pushFollow(FOLLOW_requires_in_definition_suffix132);
                     requires();
 
                     state._fsp--;
@@ -334,7 +343,7 @@ public class OrderlyParser extends Parser {
             }
 
 
-            // Orderly.g:30:45: ( optional_marker )?
+            // Orderly.g:31:45: ( optional_marker )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -343,9 +352,9 @@ public class OrderlyParser extends Parser {
             }
             switch (alt8) {
                 case 1 :
-                    // Orderly.g:30:45: optional_marker
+                    // Orderly.g:31:45: optional_marker
                     {
-                    pushFollow(FOLLOW_optional_marker_in_definition_suffix129);
+                    pushFollow(FOLLOW_optional_marker_in_definition_suffix135);
                     optional_marker();
 
                     state._fsp--;
@@ -375,24 +384,26 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "definition_prefix"
-    // Orderly.g:33:1: definition_prefix returns [JsonProperty property] : ( 'integer' ( range )? | 'number' ( range )? | 'boolean' | 'null' | 'any' | 'array' '{' ( unnamed_entries )? '}' ( range )? | 'array' '[' unnamed_entry ']' ( range )? | 'object' '{' ( named_entries )? '}' ( additional_marker )? | 'union' '{' unnamed_entry ';' unnamed_entries '}' );
+    // Orderly.g:34:1: definition_prefix returns [JsonProperty property] : ( 'integer' ( range )? | 'number' ( range )? | 'boolean' | 'null' | 'any' | 'array' '{' ( unnamed_entries )? '}' ( range )? | 'array' '[' unnamed_entry ']' ( range )? | 'object' '{' ( named_entries )? '}' ( additional_marker )? | 'union' '{' unnamed_entry ';' unnamed_entries '}' );
     public final JsonProperty definition_prefix() throws RecognitionException {
         JsonProperty property = null;
 
 
-        Range range3 =null;
-
         Range range4 =null;
 
-        List<JsonProperty> unnamed_entries5 =null;
+        Range range5 =null;
 
-        Range range6 =null;
+        List<JsonProperty> unnamed_entries6 =null;
 
-        HashMap<String, JsonProperty> named_entries7 =null;
+        Range range7 =null;
+
+        Range range8 =null;
+
+        HashMap<String, JsonProperty> named_entries9 =null;
 
 
         try {
-            // Orderly.g:34:5: ( 'integer' ( range )? | 'number' ( range )? | 'boolean' | 'null' | 'any' | 'array' '{' ( unnamed_entries )? '}' ( range )? | 'array' '[' unnamed_entry ']' ( range )? | 'object' '{' ( named_entries )? '}' ( additional_marker )? | 'union' '{' unnamed_entry ';' unnamed_entries '}' )
+            // Orderly.g:35:5: ( 'integer' ( range )? | 'number' ( range )? | 'boolean' | 'null' | 'any' | 'array' '{' ( unnamed_entries )? '}' ( range )? | 'array' '[' unnamed_entry ']' ( range )? | 'object' '{' ( named_entries )? '}' ( additional_marker )? | 'union' '{' unnamed_entry ';' unnamed_entries '}' )
             int alt16=9;
             switch ( input.LA(1) ) {
             case 33:
@@ -459,13 +470,13 @@ public class OrderlyParser extends Parser {
 
             switch (alt16) {
                 case 1 :
-                    // Orderly.g:34:7: 'integer' ( range )?
+                    // Orderly.g:35:7: 'integer' ( range )?
                     {
-                    match(input,33,FOLLOW_33_in_definition_prefix148); 
+                    match(input,33,FOLLOW_33_in_definition_prefix154); 
 
                      property = new JsonInteger(); 
 
-                    // Orderly.g:34:52: ( range )?
+                    // Orderly.g:35:52: ( range )?
                     int alt9=2;
                     int LA9_0 = input.LA(1);
 
@@ -474,43 +485,9 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt9) {
                         case 1 :
-                            // Orderly.g:34:52: range
+                            // Orderly.g:35:52: range
                             {
-                            pushFollow(FOLLOW_range_in_definition_prefix152);
-                            range3=range();
-
-                            state._fsp--;
-
-
-                            }
-                            break;
-
-                    }
-
-
-                    JsonInteger.class.cast(property).setRange(range3);
-
-                    }
-                    break;
-                case 2 :
-                    // Orderly.g:35:7: 'number' ( range )?
-                    {
-                    match(input,34,FOLLOW_34_in_definition_prefix163); 
-
-                     property = new JsonNumber(); 
-
-                    // Orderly.g:35:50: ( range )?
-                    int alt10=2;
-                    int LA10_0 = input.LA(1);
-
-                    if ( (LA10_0==38) ) {
-                        alt10=1;
-                    }
-                    switch (alt10) {
-                        case 1 :
-                            // Orderly.g:35:50: range
-                            {
-                            pushFollow(FOLLOW_range_in_definition_prefix167);
+                            pushFollow(FOLLOW_range_in_definition_prefix158);
                             range4=range();
 
                             state._fsp--;
@@ -522,47 +499,81 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                    JsonNumber.class.cast(property).setRange(range4);
+                    JsonInteger.class.cast(property).setRange(range4);
+
+                    }
+                    break;
+                case 2 :
+                    // Orderly.g:36:7: 'number' ( range )?
+                    {
+                    match(input,34,FOLLOW_34_in_definition_prefix169); 
+
+                     property = new JsonNumber(); 
+
+                    // Orderly.g:36:50: ( range )?
+                    int alt10=2;
+                    int LA10_0 = input.LA(1);
+
+                    if ( (LA10_0==38) ) {
+                        alt10=1;
+                    }
+                    switch (alt10) {
+                        case 1 :
+                            // Orderly.g:36:50: range
+                            {
+                            pushFollow(FOLLOW_range_in_definition_prefix173);
+                            range5=range();
+
+                            state._fsp--;
+
+
+                            }
+                            break;
+
+                    }
+
+
+                    JsonNumber.class.cast(property).setRange(range5);
 
                     }
                     break;
                 case 3 :
-                    // Orderly.g:36:7: 'boolean'
+                    // Orderly.g:37:7: 'boolean'
                     {
-                    match(input,32,FOLLOW_32_in_definition_prefix178); 
+                    match(input,32,FOLLOW_32_in_definition_prefix184); 
 
                      property = new JsonBoolean(); 
 
                     }
                     break;
                 case 4 :
-                    // Orderly.g:37:7: 'null'
+                    // Orderly.g:38:7: 'null'
                     {
-                    match(input,NULL,FOLLOW_NULL_in_definition_prefix188); 
+                    match(input,NULL,FOLLOW_NULL_in_definition_prefix194); 
 
                      property = new JsonNull(); 
 
                     }
                     break;
                 case 5 :
-                    // Orderly.g:38:7: 'any'
+                    // Orderly.g:39:7: 'any'
                     {
-                    match(input,30,FOLLOW_30_in_definition_prefix198); 
+                    match(input,30,FOLLOW_30_in_definition_prefix204); 
 
                      property = new JsonAny(); 
 
                     }
                     break;
                 case 6 :
-                    // Orderly.g:40:7: 'array' '{' ( unnamed_entries )? '}' ( range )?
+                    // Orderly.g:41:7: 'array' '{' ( unnamed_entries )? '}' ( range )?
                     {
-                    match(input,31,FOLLOW_31_in_definition_prefix213); 
+                    match(input,31,FOLLOW_31_in_definition_prefix219); 
 
                      property = new JsonArray(); 
 
-                    match(input,38,FOLLOW_38_in_definition_prefix218); 
+                    match(input,38,FOLLOW_38_in_definition_prefix224); 
 
-                    // Orderly.g:40:53: ( unnamed_entries )?
+                    // Orderly.g:41:53: ( unnamed_entries )?
                     int alt11=2;
                     int LA11_0 = input.LA(1);
 
@@ -571,10 +582,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt11) {
                         case 1 :
-                            // Orderly.g:40:53: unnamed_entries
+                            // Orderly.g:41:53: unnamed_entries
                             {
-                            pushFollow(FOLLOW_unnamed_entries_in_definition_prefix220);
-                            unnamed_entries5=unnamed_entries();
+                            pushFollow(FOLLOW_unnamed_entries_in_definition_prefix226);
+                            unnamed_entries6=unnamed_entries();
 
                             state._fsp--;
 
@@ -585,11 +596,11 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                    JsonArray.class.cast(property).setProperties(unnamed_entries5);
+                    JsonArray.class.cast(property).setProperties(unnamed_entries6);
 
-                    match(input,39,FOLLOW_39_in_definition_prefix225); 
+                    match(input,39,FOLLOW_39_in_definition_prefix231); 
 
-                    // Orderly.g:40:152: ( range )?
+                    // Orderly.g:41:152: ( range )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -598,10 +609,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt12) {
                         case 1 :
-                            // Orderly.g:40:152: range
+                            // Orderly.g:41:152: range
                             {
-                            pushFollow(FOLLOW_range_in_definition_prefix227);
-                            range();
+                            pushFollow(FOLLOW_range_in_definition_prefix233);
+                            range7=range();
 
                             state._fsp--;
 
@@ -612,26 +623,28 @@ public class OrderlyParser extends Parser {
                     }
 
 
+                    JsonArray.class.cast(property).setRange(range7);
+
                     }
                     break;
                 case 7 :
-                    // Orderly.g:42:7: 'array' '[' unnamed_entry ']' ( range )?
+                    // Orderly.g:43:7: 'array' '[' unnamed_entry ']' ( range )?
                     {
-                    match(input,31,FOLLOW_31_in_definition_prefix241); 
+                    match(input,31,FOLLOW_31_in_definition_prefix249); 
 
                      property = new JsonArray(); 
 
-                    match(input,28,FOLLOW_28_in_definition_prefix245); 
+                    match(input,28,FOLLOW_28_in_definition_prefix253); 
 
-                    pushFollow(FOLLOW_unnamed_entry_in_definition_prefix247);
+                    pushFollow(FOLLOW_unnamed_entry_in_definition_prefix255);
                     unnamed_entry();
 
                     state._fsp--;
 
 
-                    match(input,29,FOLLOW_29_in_definition_prefix249); 
+                    match(input,29,FOLLOW_29_in_definition_prefix257); 
 
-                    // Orderly.g:42:70: ( range )?
+                    // Orderly.g:43:70: ( range )?
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -640,10 +653,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt13) {
                         case 1 :
-                            // Orderly.g:42:70: range
+                            // Orderly.g:43:70: range
                             {
-                            pushFollow(FOLLOW_range_in_definition_prefix251);
-                            range6=range();
+                            pushFollow(FOLLOW_range_in_definition_prefix259);
+                            range8=range();
 
                             state._fsp--;
 
@@ -654,20 +667,20 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                    JsonArray.class.cast(property).setRange(range6);
+                    JsonArray.class.cast(property).setRange(range8);
 
                     }
                     break;
                 case 8 :
-                    // Orderly.g:43:7: 'object' '{' ( named_entries )? '}' ( additional_marker )?
+                    // Orderly.g:44:7: 'object' '{' ( named_entries )? '}' ( additional_marker )?
                     {
-                    match(input,35,FOLLOW_35_in_definition_prefix262); 
+                    match(input,35,FOLLOW_35_in_definition_prefix270); 
 
                      property = new JsonObject(); 
 
-                    match(input,38,FOLLOW_38_in_definition_prefix266); 
+                    match(input,38,FOLLOW_38_in_definition_prefix274); 
 
-                    // Orderly.g:43:54: ( named_entries )?
+                    // Orderly.g:44:54: ( named_entries )?
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -676,10 +689,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt14) {
                         case 1 :
-                            // Orderly.g:43:54: named_entries
+                            // Orderly.g:44:54: named_entries
                             {
-                            pushFollow(FOLLOW_named_entries_in_definition_prefix268);
-                            named_entries7=named_entries();
+                            pushFollow(FOLLOW_named_entries_in_definition_prefix276);
+                            named_entries9=named_entries();
 
                             state._fsp--;
 
@@ -690,11 +703,11 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                     JsonObject.class.cast(property).setProperties(named_entries7); 
+                     JsonObject.class.cast(property).setProperties(named_entries9); 
 
-                    match(input,39,FOLLOW_39_in_definition_prefix273); 
+                    match(input,39,FOLLOW_39_in_definition_prefix281); 
 
-                    // Orderly.g:43:152: ( additional_marker )?
+                    // Orderly.g:44:152: ( additional_marker )?
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -703,9 +716,9 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // Orderly.g:43:153: additional_marker
+                            // Orderly.g:44:153: additional_marker
                             {
-                            pushFollow(FOLLOW_additional_marker_in_definition_prefix276);
+                            pushFollow(FOLLOW_additional_marker_in_definition_prefix284);
                             additional_marker();
 
                             state._fsp--;
@@ -722,29 +735,29 @@ public class OrderlyParser extends Parser {
                     }
                     break;
                 case 9 :
-                    // Orderly.g:44:7: 'union' '{' unnamed_entry ';' unnamed_entries '}'
+                    // Orderly.g:45:7: 'union' '{' unnamed_entry ';' unnamed_entries '}'
                     {
-                    match(input,37,FOLLOW_37_in_definition_prefix288); 
+                    match(input,37,FOLLOW_37_in_definition_prefix296); 
 
                      property = new JsonUnion(); 
 
-                    match(input,38,FOLLOW_38_in_definition_prefix293); 
+                    match(input,38,FOLLOW_38_in_definition_prefix301); 
 
-                    pushFollow(FOLLOW_unnamed_entry_in_definition_prefix295);
+                    pushFollow(FOLLOW_unnamed_entry_in_definition_prefix303);
                     unnamed_entry();
 
                     state._fsp--;
 
 
-                    match(input,23,FOLLOW_23_in_definition_prefix297); 
+                    match(input,23,FOLLOW_23_in_definition_prefix305); 
 
-                    pushFollow(FOLLOW_unnamed_entries_in_definition_prefix299);
+                    pushFollow(FOLLOW_unnamed_entries_in_definition_prefix307);
                     unnamed_entries();
 
                     state._fsp--;
 
 
-                    match(input,39,FOLLOW_39_in_definition_prefix301); 
+                    match(input,39,FOLLOW_39_in_definition_prefix309); 
 
                     }
                     break;
@@ -766,20 +779,24 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "named_entry"
-    // Orderly.g:47:1: named_entry returns [JsonProperty property] : ( definition_prefix property_name definition_suffix | 'string' ( range )? property_name ( perl_regex )? definition_suffix );
+    // Orderly.g:48:1: named_entry returns [JsonProperty property] : ( definition_prefix property_name definition_suffix | 'string' ( range )? property_name (regex= perl_regex )? definition_suffix );
     public final JsonProperty named_entry() throws RecognitionException {
         JsonProperty property = null;
 
 
-        JsonProperty definition_prefix8 =null;
+        RegularExpression regex =null;
 
-        OrderlyParser.property_name_return property_name9 =null;
+        JsonProperty definition_prefix10 =null;
 
-        OrderlyParser.property_name_return property_name10 =null;
+        OrderlyParser.property_name_return property_name11 =null;
+
+        Range range12 =null;
+
+        OrderlyParser.property_name_return property_name13 =null;
 
 
         try {
-            // Orderly.g:48:5: ( definition_prefix property_name definition_suffix | 'string' ( range )? property_name ( perl_regex )? definition_suffix )
+            // Orderly.g:49:5: ( definition_prefix property_name definition_suffix | 'string' ( range )? property_name (regex= perl_regex )? definition_suffix )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
@@ -798,25 +815,25 @@ public class OrderlyParser extends Parser {
             }
             switch (alt19) {
                 case 1 :
-                    // Orderly.g:48:7: definition_prefix property_name definition_suffix
+                    // Orderly.g:49:7: definition_prefix property_name definition_suffix
                     {
-                    pushFollow(FOLLOW_definition_prefix_in_named_entry323);
-                    definition_prefix8=definition_prefix();
+                    pushFollow(FOLLOW_definition_prefix_in_named_entry331);
+                    definition_prefix10=definition_prefix();
 
                     state._fsp--;
 
 
-                     property = definition_prefix8; 
+                     property = definition_prefix10; 
 
-                    pushFollow(FOLLOW_property_name_in_named_entry327);
-                    property_name9=property_name();
+                    pushFollow(FOLLOW_property_name_in_named_entry335);
+                    property_name11=property_name();
 
                     state._fsp--;
 
 
-                     property.setName((property_name9!=null?input.toString(property_name9.start,property_name9.stop):null)); 
+                     property.setName((property_name11!=null?input.toString(property_name11.start,property_name11.stop):null)); 
 
-                    pushFollow(FOLLOW_definition_suffix_in_named_entry331);
+                    pushFollow(FOLLOW_definition_suffix_in_named_entry339);
                     definition_suffix();
 
                     state._fsp--;
@@ -825,13 +842,13 @@ public class OrderlyParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Orderly.g:49:7: 'string' ( range )? property_name ( perl_regex )? definition_suffix
+                    // Orderly.g:50:7: 'string' ( range )? property_name (regex= perl_regex )? definition_suffix
                     {
-                    match(input,36,FOLLOW_36_in_named_entry339); 
+                    match(input,36,FOLLOW_36_in_named_entry347); 
 
                      property = new JsonString(); 
 
-                    // Orderly.g:49:50: ( range )?
+                    // Orderly.g:50:50: ( range )?
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -840,10 +857,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt17) {
                         case 1 :
-                            // Orderly.g:49:50: range
+                            // Orderly.g:50:50: range
                             {
-                            pushFollow(FOLLOW_range_in_named_entry343);
-                            range();
+                            pushFollow(FOLLOW_range_in_named_entry351);
+                            range12=range();
 
                             state._fsp--;
 
@@ -854,15 +871,17 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                    pushFollow(FOLLOW_property_name_in_named_entry346);
-                    property_name10=property_name();
+                    JsonString.class.cast(property).setRange(range12);
+
+                    pushFollow(FOLLOW_property_name_in_named_entry356);
+                    property_name13=property_name();
 
                     state._fsp--;
 
 
-                    property.setName((property_name10!=null?input.toString(property_name10.start,property_name10.stop):null));
+                    property.setName((property_name13!=null?input.toString(property_name13.start,property_name13.stop):null));
 
-                    // Orderly.g:49:113: ( perl_regex )?
+                    // Orderly.g:50:177: (regex= perl_regex )?
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -871,10 +890,10 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // Orderly.g:49:113: perl_regex
+                            // Orderly.g:50:177: regex= perl_regex
                             {
-                            pushFollow(FOLLOW_perl_regex_in_named_entry350);
-                            perl_regex();
+                            pushFollow(FOLLOW_perl_regex_in_named_entry362);
+                            regex=perl_regex();
 
                             state._fsp--;
 
@@ -885,7 +904,9 @@ public class OrderlyParser extends Parser {
                     }
 
 
-                    pushFollow(FOLLOW_definition_suffix_in_named_entry353);
+                    JsonString.class.cast(property).setRegExp(regex);
+
+                    pushFollow(FOLLOW_definition_suffix_in_named_entry367);
                     definition_suffix();
 
                     state._fsp--;
@@ -911,7 +932,7 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "named_entries"
-    // Orderly.g:52:1: named_entries returns [HashMap<String, JsonProperty> properties] : n1= named_entry ( ';' n2= named_entry )* ( ';' )? ;
+    // Orderly.g:53:1: named_entries returns [HashMap<String, JsonProperty> properties] : n1= named_entry ( ';' n2= named_entry )* ( ';' )? ;
     public final HashMap<String, JsonProperty> named_entries() throws RecognitionException {
         HashMap<String, JsonProperty> properties = null;
 
@@ -923,10 +944,10 @@ public class OrderlyParser extends Parser {
 
          properties = new HashMap<String, JsonProperty>(); 
         try {
-            // Orderly.g:54:5: (n1= named_entry ( ';' n2= named_entry )* ( ';' )? )
-            // Orderly.g:54:7: n1= named_entry ( ';' n2= named_entry )* ( ';' )?
+            // Orderly.g:55:5: (n1= named_entry ( ';' n2= named_entry )* ( ';' )? )
+            // Orderly.g:55:7: n1= named_entry ( ';' n2= named_entry )* ( ';' )?
             {
-            pushFollow(FOLLOW_named_entry_in_named_entries382);
+            pushFollow(FOLLOW_named_entry_in_named_entries396);
             n1=named_entry();
 
             state._fsp--;
@@ -934,7 +955,7 @@ public class OrderlyParser extends Parser {
 
             properties.put(n1.getName(),n1);
 
-            // Orderly.g:54:78: ( ';' n2= named_entry )*
+            // Orderly.g:55:78: ( ';' n2= named_entry )*
             loop20:
             do {
                 int alt20=2;
@@ -953,11 +974,11 @@ public class OrderlyParser extends Parser {
 
                 switch (alt20) {
             	case 1 :
-            	    // Orderly.g:54:79: ';' n2= named_entry
+            	    // Orderly.g:55:79: ';' n2= named_entry
             	    {
-            	    match(input,23,FOLLOW_23_in_named_entries387); 
+            	    match(input,23,FOLLOW_23_in_named_entries401); 
 
-            	    pushFollow(FOLLOW_named_entry_in_named_entries391);
+            	    pushFollow(FOLLOW_named_entry_in_named_entries405);
             	    n2=named_entry();
 
             	    state._fsp--;
@@ -974,7 +995,7 @@ public class OrderlyParser extends Parser {
             } while (true);
 
 
-            // Orderly.g:54:155: ( ';' )?
+            // Orderly.g:55:155: ( ';' )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -983,9 +1004,9 @@ public class OrderlyParser extends Parser {
             }
             switch (alt21) {
                 case 1 :
-                    // Orderly.g:54:155: ';'
+                    // Orderly.g:55:155: ';'
                     {
-                    match(input,23,FOLLOW_23_in_named_entries396); 
+                    match(input,23,FOLLOW_23_in_named_entries410); 
 
                     }
                     break;
@@ -1011,7 +1032,7 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "unnamed_entries"
-    // Orderly.g:57:1: unnamed_entries returns [List<JsonProperty> properties] : un1= unnamed_entry ( ';' un2= unnamed_entry )* ( ';' )? ;
+    // Orderly.g:58:1: unnamed_entries returns [List<JsonProperty> properties] : un1= unnamed_entry ( ';' un2= unnamed_entry )* ( ';' )? ;
     public final List<JsonProperty> unnamed_entries() throws RecognitionException {
         List<JsonProperty> properties = null;
 
@@ -1023,10 +1044,10 @@ public class OrderlyParser extends Parser {
 
          properties = new ArrayList<JsonProperty>(); 
         try {
-            // Orderly.g:59:5: (un1= unnamed_entry ( ';' un2= unnamed_entry )* ( ';' )? )
-            // Orderly.g:59:7: un1= unnamed_entry ( ';' un2= unnamed_entry )* ( ';' )?
+            // Orderly.g:60:5: (un1= unnamed_entry ( ';' un2= unnamed_entry )* ( ';' )? )
+            // Orderly.g:60:7: un1= unnamed_entry ( ';' un2= unnamed_entry )* ( ';' )?
             {
-            pushFollow(FOLLOW_unnamed_entry_in_unnamed_entries426);
+            pushFollow(FOLLOW_unnamed_entry_in_unnamed_entries440);
             un1=unnamed_entry();
 
             state._fsp--;
@@ -1034,7 +1055,7 @@ public class OrderlyParser extends Parser {
 
             properties.add(un1);
 
-            // Orderly.g:59:59: ( ';' un2= unnamed_entry )*
+            // Orderly.g:60:59: ( ';' un2= unnamed_entry )*
             loop22:
             do {
                 int alt22=2;
@@ -1053,11 +1074,11 @@ public class OrderlyParser extends Parser {
 
                 switch (alt22) {
             	case 1 :
-            	    // Orderly.g:59:60: ';' un2= unnamed_entry
+            	    // Orderly.g:60:60: ';' un2= unnamed_entry
             	    {
-            	    match(input,23,FOLLOW_23_in_unnamed_entries431); 
+            	    match(input,23,FOLLOW_23_in_unnamed_entries445); 
 
-            	    pushFollow(FOLLOW_unnamed_entry_in_unnamed_entries435);
+            	    pushFollow(FOLLOW_unnamed_entry_in_unnamed_entries449);
             	    un2=unnamed_entry();
 
             	    state._fsp--;
@@ -1074,7 +1095,7 @@ public class OrderlyParser extends Parser {
             } while (true);
 
 
-            // Orderly.g:59:119: ( ';' )?
+            // Orderly.g:60:119: ( ';' )?
             int alt23=2;
             int LA23_0 = input.LA(1);
 
@@ -1083,9 +1104,9 @@ public class OrderlyParser extends Parser {
             }
             switch (alt23) {
                 case 1 :
-                    // Orderly.g:59:119: ';'
+                    // Orderly.g:60:119: ';'
                     {
-                    match(input,23,FOLLOW_23_in_unnamed_entries442); 
+                    match(input,23,FOLLOW_23_in_unnamed_entries456); 
 
                     }
                     break;
@@ -1111,19 +1132,19 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "csv_property_names"
-    // Orderly.g:62:1: csv_property_names : property_name ( ',' property_name )* ;
+    // Orderly.g:63:1: csv_property_names : property_name ( ',' property_name )* ;
     public final void csv_property_names() throws RecognitionException {
         try {
-            // Orderly.g:63:5: ( property_name ( ',' property_name )* )
-            // Orderly.g:63:7: property_name ( ',' property_name )*
+            // Orderly.g:64:5: ( property_name ( ',' property_name )* )
+            // Orderly.g:64:7: property_name ( ',' property_name )*
             {
-            pushFollow(FOLLOW_property_name_in_csv_property_names460);
+            pushFollow(FOLLOW_property_name_in_csv_property_names474);
             property_name();
 
             state._fsp--;
 
 
-            // Orderly.g:63:21: ( ',' property_name )*
+            // Orderly.g:64:21: ( ',' property_name )*
             loop24:
             do {
                 int alt24=2;
@@ -1136,11 +1157,11 @@ public class OrderlyParser extends Parser {
 
                 switch (alt24) {
             	case 1 :
-            	    // Orderly.g:63:22: ',' property_name
+            	    // Orderly.g:64:22: ',' property_name
             	    {
-            	    match(input,21,FOLLOW_21_in_csv_property_names463); 
+            	    match(input,21,FOLLOW_21_in_csv_property_names477); 
 
-            	    pushFollow(FOLLOW_property_name_in_csv_property_names465);
+            	    pushFollow(FOLLOW_property_name_in_csv_property_names479);
             	    property_name();
 
             	    state._fsp--;
@@ -1173,21 +1194,21 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "requires"
-    // Orderly.g:66:1: requires : '<' csv_property_names '>' ;
+    // Orderly.g:67:1: requires : '<' csv_property_names '>' ;
     public final void requires() throws RecognitionException {
         try {
-            // Orderly.g:67:5: ( '<' csv_property_names '>' )
-            // Orderly.g:67:7: '<' csv_property_names '>'
+            // Orderly.g:68:5: ( '<' csv_property_names '>' )
+            // Orderly.g:68:7: '<' csv_property_names '>'
             {
-            match(input,24,FOLLOW_24_in_requires481); 
+            match(input,24,FOLLOW_24_in_requires495); 
 
-            pushFollow(FOLLOW_csv_property_names_in_requires483);
+            pushFollow(FOLLOW_csv_property_names_in_requires497);
             csv_property_names();
 
             state._fsp--;
 
 
-            match(input,26,FOLLOW_26_in_requires485); 
+            match(input,26,FOLLOW_26_in_requires499); 
 
             }
 
@@ -1207,13 +1228,13 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "optional_marker"
-    // Orderly.g:70:1: optional_marker : '?' ;
+    // Orderly.g:71:1: optional_marker : '?' ;
     public final void optional_marker() throws RecognitionException {
         try {
-            // Orderly.g:71:5: ( '?' )
-            // Orderly.g:71:7: '?'
+            // Orderly.g:72:5: ( '?' )
+            // Orderly.g:72:7: '?'
             {
-            match(input,27,FOLLOW_27_in_optional_marker499); 
+            match(input,27,FOLLOW_27_in_optional_marker513); 
 
             }
 
@@ -1233,13 +1254,13 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "additional_marker"
-    // Orderly.g:74:1: additional_marker : '*' ;
+    // Orderly.g:75:1: additional_marker : '*' ;
     public final void additional_marker() throws RecognitionException {
         try {
-            // Orderly.g:75:5: ( '*' )
-            // Orderly.g:75:7: '*'
+            // Orderly.g:76:5: ( '*' )
+            // Orderly.g:76:7: '*'
             {
-            match(input,20,FOLLOW_20_in_additional_marker516); 
+            match(input,20,FOLLOW_20_in_additional_marker530); 
 
             }
 
@@ -1259,13 +1280,13 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "enum_values"
-    // Orderly.g:78:1: enum_values : jsonArray ;
+    // Orderly.g:79:1: enum_values : jsonArray ;
     public final void enum_values() throws RecognitionException {
         try {
-            // Orderly.g:79:5: ( jsonArray )
-            // Orderly.g:79:7: jsonArray
+            // Orderly.g:80:5: ( jsonArray )
+            // Orderly.g:80:7: jsonArray
             {
-            pushFollow(FOLLOW_jsonArray_in_enum_values533);
+            pushFollow(FOLLOW_jsonArray_in_enum_values547);
             jsonArray();
 
             state._fsp--;
@@ -1289,15 +1310,15 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "default_value"
-    // Orderly.g:82:1: default_value : '=' jsonValue ;
+    // Orderly.g:83:1: default_value : '=' jsonValue ;
     public final void default_value() throws RecognitionException {
         try {
-            // Orderly.g:83:5: ( '=' jsonValue )
-            // Orderly.g:83:7: '=' jsonValue
+            // Orderly.g:84:5: ( '=' jsonValue )
+            // Orderly.g:84:7: '=' jsonValue
             {
-            match(input,25,FOLLOW_25_in_default_value550); 
+            match(input,25,FOLLOW_25_in_default_value564); 
 
-            pushFollow(FOLLOW_jsonValue_in_default_value552);
+            pushFollow(FOLLOW_jsonValue_in_default_value566);
             jsonValue();
 
             state._fsp--;
@@ -1321,7 +1342,7 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "range"
-    // Orderly.g:86:1: range returns [Range range] : ( '{' lower= NUMBER ',' upper= NUMBER '}' | '{' lower= NUMBER ',' '}' | '{' ',' upper= NUMBER '}' );
+    // Orderly.g:87:1: range returns [Range range] : ( '{' lower= NUMBER ',' upper= NUMBER '}' | '{' lower= NUMBER ',' '}' | '{' ',' upper= NUMBER '}' );
     public final Range range() throws RecognitionException {
         Range range = null;
 
@@ -1331,7 +1352,7 @@ public class OrderlyParser extends Parser {
 
         range = new Range(); BigDecimal lowerBound; BigDecimal upperBound;
         try {
-            // Orderly.g:88:5: ( '{' lower= NUMBER ',' upper= NUMBER '}' | '{' lower= NUMBER ',' '}' | '{' ',' upper= NUMBER '}' )
+            // Orderly.g:89:5: ( '{' lower= NUMBER ',' upper= NUMBER '}' | '{' lower= NUMBER ',' '}' | '{' ',' upper= NUMBER '}' )
             int alt25=3;
             int LA25_0 = input.LA(1);
 
@@ -1386,47 +1407,47 @@ public class OrderlyParser extends Parser {
             }
             switch (alt25) {
                 case 1 :
-                    // Orderly.g:88:7: '{' lower= NUMBER ',' upper= NUMBER '}'
+                    // Orderly.g:89:7: '{' lower= NUMBER ',' upper= NUMBER '}'
                     {
-                    match(input,38,FOLLOW_38_in_range579); 
+                    match(input,38,FOLLOW_38_in_range593); 
 
-                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range583); 
+                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range597); 
 
-                    match(input,21,FOLLOW_21_in_range585); 
+                    match(input,21,FOLLOW_21_in_range599); 
 
-                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range589); 
+                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range603); 
 
-                    match(input,39,FOLLOW_39_in_range591); 
+                    match(input,39,FOLLOW_39_in_range605); 
 
                     range.lowerBound = new BigDecimal(lower.getText()); range.upperBound = new BigDecimal(upper.getText());
 
                     }
                     break;
                 case 2 :
-                    // Orderly.g:89:7: '{' lower= NUMBER ',' '}'
+                    // Orderly.g:90:7: '{' lower= NUMBER ',' '}'
                     {
-                    match(input,38,FOLLOW_38_in_range601); 
+                    match(input,38,FOLLOW_38_in_range615); 
 
-                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range605); 
+                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range619); 
 
-                    match(input,21,FOLLOW_21_in_range607); 
+                    match(input,21,FOLLOW_21_in_range621); 
 
-                    match(input,39,FOLLOW_39_in_range609); 
+                    match(input,39,FOLLOW_39_in_range623); 
 
                     range.lowerBound = new BigDecimal(lower.getText());
 
                     }
                     break;
                 case 3 :
-                    // Orderly.g:90:7: '{' ',' upper= NUMBER '}'
+                    // Orderly.g:91:7: '{' ',' upper= NUMBER '}'
                     {
-                    match(input,38,FOLLOW_38_in_range619); 
+                    match(input,38,FOLLOW_38_in_range633); 
 
-                    match(input,21,FOLLOW_21_in_range621); 
+                    match(input,21,FOLLOW_21_in_range635); 
 
-                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range625); 
+                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range639); 
 
-                    match(input,39,FOLLOW_39_in_range627); 
+                    match(input,39,FOLLOW_39_in_range641); 
 
                     range.upperBound = new BigDecimal(upper.getText());
 
@@ -1453,14 +1474,14 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "property_name"
-    // Orderly.g:93:1: property_name : ( IDENTIFIER | STRING );
+    // Orderly.g:94:1: property_name : ( IDENTIFIER | STRING );
     public final OrderlyParser.property_name_return property_name() throws RecognitionException {
         OrderlyParser.property_name_return retval = new OrderlyParser.property_name_return();
         retval.start = input.LT(1);
 
 
         try {
-            // Orderly.g:94:2: ( IDENTIFIER | STRING )
+            // Orderly.g:95:2: ( IDENTIFIER | STRING )
             // Orderly.g:
             {
             if ( input.LA(1)==IDENTIFIER||input.LA(1)==STRING ) {
@@ -1494,13 +1515,20 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "perl_regex"
-    // Orderly.g:98:1: perl_regex : REGEX ;
-    public final void perl_regex() throws RecognitionException {
+    // Orderly.g:99:1: perl_regex returns [RegularExpression regex] : exp= REGEX ;
+    public final RegularExpression perl_regex() throws RecognitionException {
+        RegularExpression regex = null;
+
+
+        Token exp=null;
+
         try {
-            // Orderly.g:99:2: ( REGEX )
-            // Orderly.g:99:4: REGEX
+            // Orderly.g:100:2: (exp= REGEX )
+            // Orderly.g:100:4: exp= REGEX
             {
-            match(input,REGEX,FOLLOW_REGEX_in_perl_regex656); 
+            exp=(Token)match(input,REGEX,FOLLOW_REGEX_in_perl_regex676); 
+
+            regex = new RegularExpression(exp.getText());
 
             }
 
@@ -1513,17 +1541,17 @@ public class OrderlyParser extends Parser {
         finally {
         	// do for sure before leaving
         }
-        return ;
+        return regex;
     }
     // $ANTLR end "perl_regex"
 
 
 
     // $ANTLR start "jsonValue"
-    // Orderly.g:163:1: jsonValue : ( NULL | jsonBooleanLiteral | STRING | NUMBER | jsonObject | jsonArray );
+    // Orderly.g:164:1: jsonValue : ( NULL | jsonBooleanLiteral | STRING | NUMBER | jsonObject | jsonArray );
     public final void jsonValue() throws RecognitionException {
         try {
-            // Orderly.g:164:5: ( NULL | jsonBooleanLiteral | STRING | NUMBER | jsonObject | jsonArray )
+            // Orderly.g:165:5: ( NULL | jsonBooleanLiteral | STRING | NUMBER | jsonObject | jsonArray )
             int alt26=6;
             switch ( input.LA(1) ) {
             case NULL:
@@ -1567,16 +1595,16 @@ public class OrderlyParser extends Parser {
 
             switch (alt26) {
                 case 1 :
-                    // Orderly.g:164:7: NULL
+                    // Orderly.g:165:7: NULL
                     {
-                    match(input,NULL,FOLLOW_NULL_in_jsonValue1154); 
+                    match(input,NULL,FOLLOW_NULL_in_jsonValue1176); 
 
                     }
                     break;
                 case 2 :
-                    // Orderly.g:165:7: jsonBooleanLiteral
+                    // Orderly.g:166:7: jsonBooleanLiteral
                     {
-                    pushFollow(FOLLOW_jsonBooleanLiteral_in_jsonValue1162);
+                    pushFollow(FOLLOW_jsonBooleanLiteral_in_jsonValue1184);
                     jsonBooleanLiteral();
 
                     state._fsp--;
@@ -1585,23 +1613,23 @@ public class OrderlyParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // Orderly.g:166:7: STRING
+                    // Orderly.g:167:7: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_jsonValue1170); 
+                    match(input,STRING,FOLLOW_STRING_in_jsonValue1192); 
 
                     }
                     break;
                 case 4 :
-                    // Orderly.g:167:7: NUMBER
+                    // Orderly.g:168:7: NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue1178); 
+                    match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue1200); 
 
                     }
                     break;
                 case 5 :
-                    // Orderly.g:168:7: jsonObject
+                    // Orderly.g:169:7: jsonObject
                     {
-                    pushFollow(FOLLOW_jsonObject_in_jsonValue1186);
+                    pushFollow(FOLLOW_jsonObject_in_jsonValue1208);
                     jsonObject();
 
                     state._fsp--;
@@ -1610,9 +1638,9 @@ public class OrderlyParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // Orderly.g:169:7: jsonArray
+                    // Orderly.g:170:7: jsonArray
                     {
-                    pushFollow(FOLLOW_jsonArray_in_jsonValue1194);
+                    pushFollow(FOLLOW_jsonArray_in_jsonValue1216);
                     jsonArray();
 
                     state._fsp--;
@@ -1638,10 +1666,10 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "jsonBooleanLiteral"
-    // Orderly.g:172:1: jsonBooleanLiteral : ( TRUE | FALSE );
+    // Orderly.g:173:1: jsonBooleanLiteral : ( TRUE | FALSE );
     public final void jsonBooleanLiteral() throws RecognitionException {
         try {
-            // Orderly.g:173:5: ( TRUE | FALSE )
+            // Orderly.g:174:5: ( TRUE | FALSE )
             // Orderly.g:
             {
             if ( input.LA(1)==FALSE||input.LA(1)==TRUE ) {
@@ -1672,10 +1700,10 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "jsonObject"
-    // Orderly.g:177:1: jsonObject : ( '{' '}' | '{' jsonMemberList '}' );
+    // Orderly.g:178:1: jsonObject : ( '{' '}' | '{' jsonMemberList '}' );
     public final void jsonObject() throws RecognitionException {
         try {
-            // Orderly.g:178:5: ( '{' '}' | '{' jsonMemberList '}' )
+            // Orderly.g:179:5: ( '{' '}' | '{' jsonMemberList '}' )
             int alt27=2;
             int LA27_0 = input.LA(1);
 
@@ -1705,26 +1733,26 @@ public class OrderlyParser extends Parser {
             }
             switch (alt27) {
                 case 1 :
-                    // Orderly.g:178:7: '{' '}'
+                    // Orderly.g:179:7: '{' '}'
                     {
-                    match(input,38,FOLLOW_38_in_jsonObject1240); 
+                    match(input,38,FOLLOW_38_in_jsonObject1262); 
 
-                    match(input,39,FOLLOW_39_in_jsonObject1242); 
+                    match(input,39,FOLLOW_39_in_jsonObject1264); 
 
                     }
                     break;
                 case 2 :
-                    // Orderly.g:179:7: '{' jsonMemberList '}'
+                    // Orderly.g:180:7: '{' jsonMemberList '}'
                     {
-                    match(input,38,FOLLOW_38_in_jsonObject1250); 
+                    match(input,38,FOLLOW_38_in_jsonObject1272); 
 
-                    pushFollow(FOLLOW_jsonMemberList_in_jsonObject1252);
+                    pushFollow(FOLLOW_jsonMemberList_in_jsonObject1274);
                     jsonMemberList();
 
                     state._fsp--;
 
 
-                    match(input,39,FOLLOW_39_in_jsonObject1254); 
+                    match(input,39,FOLLOW_39_in_jsonObject1276); 
 
                     }
                     break;
@@ -1746,17 +1774,17 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "jsonMember"
-    // Orderly.g:182:1: jsonMember : STRING ':' jsonValue ;
+    // Orderly.g:183:1: jsonMember : STRING ':' jsonValue ;
     public final void jsonMember() throws RecognitionException {
         try {
-            // Orderly.g:183:5: ( STRING ':' jsonValue )
-            // Orderly.g:183:7: STRING ':' jsonValue
+            // Orderly.g:184:5: ( STRING ':' jsonValue )
+            // Orderly.g:184:7: STRING ':' jsonValue
             {
-            match(input,STRING,FOLLOW_STRING_in_jsonMember1271); 
+            match(input,STRING,FOLLOW_STRING_in_jsonMember1293); 
 
-            match(input,22,FOLLOW_22_in_jsonMember1273); 
+            match(input,22,FOLLOW_22_in_jsonMember1295); 
 
-            pushFollow(FOLLOW_jsonValue_in_jsonMember1275);
+            pushFollow(FOLLOW_jsonValue_in_jsonMember1297);
             jsonValue();
 
             state._fsp--;
@@ -1780,19 +1808,19 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "jsonMemberList"
-    // Orderly.g:186:1: jsonMemberList : jsonMember ( ',' jsonMemberList )? ;
+    // Orderly.g:187:1: jsonMemberList : jsonMember ( ',' jsonMemberList )? ;
     public final void jsonMemberList() throws RecognitionException {
         try {
-            // Orderly.g:187:5: ( jsonMember ( ',' jsonMemberList )? )
-            // Orderly.g:187:7: jsonMember ( ',' jsonMemberList )?
+            // Orderly.g:188:5: ( jsonMember ( ',' jsonMemberList )? )
+            // Orderly.g:188:7: jsonMember ( ',' jsonMemberList )?
             {
-            pushFollow(FOLLOW_jsonMember_in_jsonMemberList1292);
+            pushFollow(FOLLOW_jsonMember_in_jsonMemberList1314);
             jsonMember();
 
             state._fsp--;
 
 
-            // Orderly.g:187:18: ( ',' jsonMemberList )?
+            // Orderly.g:188:18: ( ',' jsonMemberList )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -1801,11 +1829,11 @@ public class OrderlyParser extends Parser {
             }
             switch (alt28) {
                 case 1 :
-                    // Orderly.g:187:19: ',' jsonMemberList
+                    // Orderly.g:188:19: ',' jsonMemberList
                     {
-                    match(input,21,FOLLOW_21_in_jsonMemberList1295); 
+                    match(input,21,FOLLOW_21_in_jsonMemberList1317); 
 
-                    pushFollow(FOLLOW_jsonMemberList_in_jsonMemberList1297);
+                    pushFollow(FOLLOW_jsonMemberList_in_jsonMemberList1319);
                     jsonMemberList();
 
                     state._fsp--;
@@ -1835,10 +1863,10 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "jsonArray"
-    // Orderly.g:190:1: jsonArray : ( '[' ']' | '[' jsonElementList ']' );
+    // Orderly.g:191:1: jsonArray : ( '[' ']' | '[' jsonElementList ']' );
     public final void jsonArray() throws RecognitionException {
         try {
-            // Orderly.g:191:5: ( '[' ']' | '[' jsonElementList ']' )
+            // Orderly.g:192:5: ( '[' ']' | '[' jsonElementList ']' )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
@@ -1868,26 +1896,26 @@ public class OrderlyParser extends Parser {
             }
             switch (alt29) {
                 case 1 :
-                    // Orderly.g:191:7: '[' ']'
+                    // Orderly.g:192:7: '[' ']'
                     {
-                    match(input,28,FOLLOW_28_in_jsonArray1316); 
+                    match(input,28,FOLLOW_28_in_jsonArray1338); 
 
-                    match(input,29,FOLLOW_29_in_jsonArray1318); 
+                    match(input,29,FOLLOW_29_in_jsonArray1340); 
 
                     }
                     break;
                 case 2 :
-                    // Orderly.g:192:7: '[' jsonElementList ']'
+                    // Orderly.g:193:7: '[' jsonElementList ']'
                     {
-                    match(input,28,FOLLOW_28_in_jsonArray1326); 
+                    match(input,28,FOLLOW_28_in_jsonArray1348); 
 
-                    pushFollow(FOLLOW_jsonElementList_in_jsonArray1328);
+                    pushFollow(FOLLOW_jsonElementList_in_jsonArray1350);
                     jsonElementList();
 
                     state._fsp--;
 
 
-                    match(input,29,FOLLOW_29_in_jsonArray1330); 
+                    match(input,29,FOLLOW_29_in_jsonArray1352); 
 
                     }
                     break;
@@ -1909,19 +1937,19 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "jsonElementList"
-    // Orderly.g:195:1: jsonElementList : jsonValue ( ',' jsonValue )* ;
+    // Orderly.g:196:1: jsonElementList : jsonValue ( ',' jsonValue )* ;
     public final void jsonElementList() throws RecognitionException {
         try {
-            // Orderly.g:196:5: ( jsonValue ( ',' jsonValue )* )
-            // Orderly.g:196:7: jsonValue ( ',' jsonValue )*
+            // Orderly.g:197:5: ( jsonValue ( ',' jsonValue )* )
+            // Orderly.g:197:7: jsonValue ( ',' jsonValue )*
             {
-            pushFollow(FOLLOW_jsonValue_in_jsonElementList1347);
+            pushFollow(FOLLOW_jsonValue_in_jsonElementList1369);
             jsonValue();
 
             state._fsp--;
 
 
-            // Orderly.g:196:17: ( ',' jsonValue )*
+            // Orderly.g:197:17: ( ',' jsonValue )*
             loop30:
             do {
                 int alt30=2;
@@ -1934,11 +1962,11 @@ public class OrderlyParser extends Parser {
 
                 switch (alt30) {
             	case 1 :
-            	    // Orderly.g:196:18: ',' jsonValue
+            	    // Orderly.g:197:18: ',' jsonValue
             	    {
-            	    match(input,21,FOLLOW_21_in_jsonElementList1350); 
+            	    match(input,21,FOLLOW_21_in_jsonElementList1372); 
 
-            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList1352);
+            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList1374);
             	    jsonValue();
 
             	    state._fsp--;
@@ -1979,105 +2007,105 @@ public class OrderlyParser extends Parser {
     public static final BitSet FOLLOW_definition_suffix_in_unnamed_entry85 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_36_in_unnamed_entry93 = new BitSet(new long[]{0x000000401B008000L});
     public static final BitSet FOLLOW_range_in_unnamed_entry97 = new BitSet(new long[]{0x000000001B008000L});
-    public static final BitSet FOLLOW_perl_regex_in_unnamed_entry100 = new BitSet(new long[]{0x000000001B000000L});
-    public static final BitSet FOLLOW_definition_suffix_in_unnamed_entry103 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_enum_values_in_definition_suffix120 = new BitSet(new long[]{0x000000000B000002L});
-    public static final BitSet FOLLOW_default_value_in_definition_suffix123 = new BitSet(new long[]{0x0000000009000002L});
-    public static final BitSet FOLLOW_requires_in_definition_suffix126 = new BitSet(new long[]{0x0000000008000002L});
-    public static final BitSet FOLLOW_optional_marker_in_definition_suffix129 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_definition_prefix148 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_range_in_definition_prefix152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_definition_prefix163 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_range_in_definition_prefix167 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_definition_prefix178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULL_in_definition_prefix188 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_definition_prefix198 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_definition_prefix213 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_definition_prefix218 = new BitSet(new long[]{0x000000BFC0002000L});
-    public static final BitSet FOLLOW_unnamed_entries_in_definition_prefix220 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_definition_prefix225 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_range_in_definition_prefix227 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_definition_prefix241 = new BitSet(new long[]{0x0000000010000000L});
-    public static final BitSet FOLLOW_28_in_definition_prefix245 = new BitSet(new long[]{0x0000003FC0002000L});
-    public static final BitSet FOLLOW_unnamed_entry_in_definition_prefix247 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_definition_prefix249 = new BitSet(new long[]{0x0000004000000002L});
-    public static final BitSet FOLLOW_range_in_definition_prefix251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_definition_prefix262 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_definition_prefix266 = new BitSet(new long[]{0x000000BFC0002000L});
-    public static final BitSet FOLLOW_named_entries_in_definition_prefix268 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_definition_prefix273 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_additional_marker_in_definition_prefix276 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_definition_prefix288 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_definition_prefix293 = new BitSet(new long[]{0x0000003FC0002000L});
-    public static final BitSet FOLLOW_unnamed_entry_in_definition_prefix295 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_definition_prefix297 = new BitSet(new long[]{0x0000003FC0002000L});
-    public static final BitSet FOLLOW_unnamed_entries_in_definition_prefix299 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_definition_prefix301 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_definition_prefix_in_named_entry323 = new BitSet(new long[]{0x0000000000010800L});
-    public static final BitSet FOLLOW_property_name_in_named_entry327 = new BitSet(new long[]{0x000000001B000000L});
-    public static final BitSet FOLLOW_definition_suffix_in_named_entry331 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_named_entry339 = new BitSet(new long[]{0x0000004000010800L});
-    public static final BitSet FOLLOW_range_in_named_entry343 = new BitSet(new long[]{0x0000000000010800L});
-    public static final BitSet FOLLOW_property_name_in_named_entry346 = new BitSet(new long[]{0x000000001B008000L});
-    public static final BitSet FOLLOW_perl_regex_in_named_entry350 = new BitSet(new long[]{0x000000001B000000L});
-    public static final BitSet FOLLOW_definition_suffix_in_named_entry353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_named_entry_in_named_entries382 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_23_in_named_entries387 = new BitSet(new long[]{0x0000003FC0002000L});
-    public static final BitSet FOLLOW_named_entry_in_named_entries391 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_23_in_named_entries396 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_unnamed_entry_in_unnamed_entries426 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_23_in_unnamed_entries431 = new BitSet(new long[]{0x0000003FC0002000L});
-    public static final BitSet FOLLOW_unnamed_entry_in_unnamed_entries435 = new BitSet(new long[]{0x0000000000800002L});
-    public static final BitSet FOLLOW_23_in_unnamed_entries442 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_property_name_in_csv_property_names460 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_csv_property_names463 = new BitSet(new long[]{0x0000000000010800L});
-    public static final BitSet FOLLOW_property_name_in_csv_property_names465 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_24_in_requires481 = new BitSet(new long[]{0x0000000000010800L});
-    public static final BitSet FOLLOW_csv_property_names_in_requires483 = new BitSet(new long[]{0x0000000004000000L});
-    public static final BitSet FOLLOW_26_in_requires485 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_27_in_optional_marker499 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_additional_marker516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonArray_in_enum_values533 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_25_in_default_value550 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonValue_in_default_value552 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_range579 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range583 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_range585 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range589 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_range591 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_range601 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range605 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_range607 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_range609 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_range619 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_range621 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range625 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_range627 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REGEX_in_perl_regex656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULL_in_jsonValue1154 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonBooleanLiteral_in_jsonValue1162 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonValue1170 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_jsonValue1178 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonObject_in_jsonValue1186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonArray_in_jsonValue1194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_jsonObject1240 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_jsonObject1242 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_jsonObject1250 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_jsonMemberList_in_jsonObject1252 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_jsonObject1254 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonMember1271 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_jsonMember1273 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonMember1275 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonMember_in_jsonMemberList1292 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_jsonMemberList1295 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_jsonMemberList_in_jsonMemberList1297 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_jsonArray1316 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_jsonArray1318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_jsonArray1326 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonElementList_in_jsonArray1328 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_jsonArray1330 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1347 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_jsonElementList1350 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1352 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_perl_regex_in_unnamed_entry104 = new BitSet(new long[]{0x000000001B000000L});
+    public static final BitSet FOLLOW_definition_suffix_in_unnamed_entry109 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_enum_values_in_definition_suffix126 = new BitSet(new long[]{0x000000000B000002L});
+    public static final BitSet FOLLOW_default_value_in_definition_suffix129 = new BitSet(new long[]{0x0000000009000002L});
+    public static final BitSet FOLLOW_requires_in_definition_suffix132 = new BitSet(new long[]{0x0000000008000002L});
+    public static final BitSet FOLLOW_optional_marker_in_definition_suffix135 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_definition_prefix154 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_range_in_definition_prefix158 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_definition_prefix169 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_range_in_definition_prefix173 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_definition_prefix184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULL_in_definition_prefix194 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_definition_prefix204 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_definition_prefix219 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_definition_prefix224 = new BitSet(new long[]{0x000000BFC0002000L});
+    public static final BitSet FOLLOW_unnamed_entries_in_definition_prefix226 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_definition_prefix231 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_range_in_definition_prefix233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_definition_prefix249 = new BitSet(new long[]{0x0000000010000000L});
+    public static final BitSet FOLLOW_28_in_definition_prefix253 = new BitSet(new long[]{0x0000003FC0002000L});
+    public static final BitSet FOLLOW_unnamed_entry_in_definition_prefix255 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_definition_prefix257 = new BitSet(new long[]{0x0000004000000002L});
+    public static final BitSet FOLLOW_range_in_definition_prefix259 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_definition_prefix270 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_definition_prefix274 = new BitSet(new long[]{0x000000BFC0002000L});
+    public static final BitSet FOLLOW_named_entries_in_definition_prefix276 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_definition_prefix281 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_additional_marker_in_definition_prefix284 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_definition_prefix296 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_definition_prefix301 = new BitSet(new long[]{0x0000003FC0002000L});
+    public static final BitSet FOLLOW_unnamed_entry_in_definition_prefix303 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_definition_prefix305 = new BitSet(new long[]{0x0000003FC0002000L});
+    public static final BitSet FOLLOW_unnamed_entries_in_definition_prefix307 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_definition_prefix309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_definition_prefix_in_named_entry331 = new BitSet(new long[]{0x0000000000010800L});
+    public static final BitSet FOLLOW_property_name_in_named_entry335 = new BitSet(new long[]{0x000000001B000000L});
+    public static final BitSet FOLLOW_definition_suffix_in_named_entry339 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_named_entry347 = new BitSet(new long[]{0x0000004000010800L});
+    public static final BitSet FOLLOW_range_in_named_entry351 = new BitSet(new long[]{0x0000000000010800L});
+    public static final BitSet FOLLOW_property_name_in_named_entry356 = new BitSet(new long[]{0x000000001B008000L});
+    public static final BitSet FOLLOW_perl_regex_in_named_entry362 = new BitSet(new long[]{0x000000001B000000L});
+    public static final BitSet FOLLOW_definition_suffix_in_named_entry367 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_named_entry_in_named_entries396 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_23_in_named_entries401 = new BitSet(new long[]{0x0000003FC0002000L});
+    public static final BitSet FOLLOW_named_entry_in_named_entries405 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_23_in_named_entries410 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_unnamed_entry_in_unnamed_entries440 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_23_in_unnamed_entries445 = new BitSet(new long[]{0x0000003FC0002000L});
+    public static final BitSet FOLLOW_unnamed_entry_in_unnamed_entries449 = new BitSet(new long[]{0x0000000000800002L});
+    public static final BitSet FOLLOW_23_in_unnamed_entries456 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_property_name_in_csv_property_names474 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_21_in_csv_property_names477 = new BitSet(new long[]{0x0000000000010800L});
+    public static final BitSet FOLLOW_property_name_in_csv_property_names479 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_24_in_requires495 = new BitSet(new long[]{0x0000000000010800L});
+    public static final BitSet FOLLOW_csv_property_names_in_requires497 = new BitSet(new long[]{0x0000000004000000L});
+    public static final BitSet FOLLOW_26_in_requires499 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_27_in_optional_marker513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_additional_marker530 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonArray_in_enum_values547 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_25_in_default_value564 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonValue_in_default_value566 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_range593 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range597 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_range599 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range603 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_range605 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_range615 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range619 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_range621 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_range623 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_range633 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_range635 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range639 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_range641 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REGEX_in_perl_regex676 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULL_in_jsonValue1176 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonBooleanLiteral_in_jsonValue1184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_jsonValue1192 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_jsonValue1200 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonObject_in_jsonValue1208 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonArray_in_jsonValue1216 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_jsonObject1262 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_jsonObject1264 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_jsonObject1272 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_jsonMemberList_in_jsonObject1274 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_jsonObject1276 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_jsonMember1293 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_jsonMember1295 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonMember1297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonMember_in_jsonMemberList1314 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_21_in_jsonMemberList1317 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_jsonMemberList_in_jsonMemberList1319 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_jsonArray1338 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_jsonArray1340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_jsonArray1348 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonElementList_in_jsonArray1350 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_jsonArray1352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1369 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_21_in_jsonElementList1372 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1374 = new BitSet(new long[]{0x0000000000200002L});
 
 }

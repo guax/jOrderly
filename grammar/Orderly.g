@@ -7,6 +7,7 @@ options {
 @header {
 package net.guax.jorderly.parser;
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import java.util.HashMap;
 import net.guax.jorderly.json.*;
 import java.math.BigDecimal;
@@ -23,7 +24,7 @@ orderly_schema returns [JsonProperty rootProperty]
     
 unnamed_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } definition_suffix
-    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} perl_regex? definition_suffix
+    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
     ;
 
 definition_suffix
@@ -46,7 +47,7 @@ definition_prefix returns [JsonProperty property]
 
 named_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName($property_name.text); } definition_suffix
-    |	'string' { $property = new JsonString(); } range? property_name {$property.setName($property_name.text);} perl_regex? definition_suffix
+    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName($property_name.text);} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
     ;
 
 named_entries returns [HashMap<String, JsonProperty> properties]
@@ -95,8 +96,8 @@ property_name
 	|	STRING
 	;
 
-perl_regex
-	:	REGEX
+perl_regex returns [RegularExpression regex]
+	:	exp=REGEX {regex = new RegularExpression(exp.getText());}
 	;
     
 /************************
