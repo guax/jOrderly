@@ -11,17 +11,27 @@ import java.util.List;
  * @author guax
  */
 public class JsonArray extends JsonProperty {
-    
+
     protected List<JsonProperty> properties;
 
     public List<JsonProperty> getProperties() {
         return properties;
     }
+    
+    Range range;
+
+    public Range getRange() {
+        return range;
+    }
+
+    public void setRange(Range range) {
+        this.range = range;
+    }
 
     public void setProperties(List<JsonProperty> properties) {
         this.properties = properties;
     }
-    
+
     protected <T> T findInstance(Class<T> clazz) {
         for (Object o : this.properties) {
             if (o != null && o.getClass() == clazz) {
@@ -34,12 +44,10 @@ public class JsonArray extends JsonProperty {
 
     @Override
     public boolean allow(Class type) {
-        if(this.getClass() == type || this.findInstance(type) != null) {
+        if (this.getClass() == type || this.findInstance(type) != null) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
-    
 }

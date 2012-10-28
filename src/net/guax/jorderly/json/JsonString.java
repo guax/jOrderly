@@ -9,5 +9,13 @@ package net.guax.jorderly.json;
  * @author guax
  */
 public class JsonString extends JsonProperty {
-    
+    Range range;
+
+    public Range getRange() {
+        return range;
+    }
+
+    public void setRange(Range range) {
+        this.range = range;
+    }
 }

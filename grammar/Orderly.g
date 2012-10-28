@@ -23,7 +23,7 @@ orderly_schema returns [JsonProperty rootProperty]
     
 unnamed_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } definition_suffix
-    |	'string' { $property = new JsonString(); } range? perl_regex? definition_suffix
+    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} perl_regex? definition_suffix
     ;
 
 definition_suffix
@@ -37,9 +37,9 @@ definition_prefix returns [JsonProperty property]
     |	'null' { $property = new JsonNull(); }
     |	'any' { $property = new JsonAny(); }
     // a tuple-typed array 
-    |	'array' { $property = new JsonArray(); }  '{' unnamed_entries? {JsonArray.class.cast($property).setProperties($unnamed_entries.properties);} '}' range?
+    |	'array' { $property = new JsonArray(); }  '{' unnamed_entries? {JsonArray.class.cast($property).setProperties($unnamed_entries.properties);} '}' range? {JsonArray.class.cast($property).setRange($range.range);}
     // a simple-typed array (notice the '*' marker is disallowed)
-    |	'array' { $property = new JsonArray(); } '[' unnamed_entry ']' range?
+    |	'array' { $property = new JsonArray(); } '[' unnamed_entry ']' range? {JsonArray.class.cast($property).setRange($range.range);}
     |	'object' { $property = new JsonObject(); } '{' named_entries? { JsonObject.class.cast($property).setProperties($named_entries.properties); } '}' (additional_marker { JsonObject.class.cast($property).setAllowAdditionalProperties(true); })?
     |	'union'  { $property = new JsonUnion(); } '{' unnamed_entry ';' unnamed_entries '}' // At least two entries are required
     ;
