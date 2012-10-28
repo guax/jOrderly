@@ -1,1 +1,1 @@
-["one","two"]
+[123.2, "string", null, false, {"type":"object"}]
