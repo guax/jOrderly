@@ -117,10 +117,11 @@ jsonMemberList
     ;
 
 jsonArray
-    : '[' ']'
+    : '[' {JsonArray.class.cast(this.expectedProperty).inRange(0)}? ']'
     | '[' jsonElementList ']'
     ;
 
 jsonElementList
-    : jsonValue (',' jsonValue)*
+    @init {int length = 0;}
+    : jsonValue {length++;} (',' jsonValue {length++;})* {JsonArray.class.cast(this.expectedProperty).inRange(length)}?
     ;

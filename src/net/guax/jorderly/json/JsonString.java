@@ -35,8 +35,6 @@ public class JsonString extends JsonProperty {
     
     protected boolean inRange(String value) {
         // lower bound > value.lenght
-        int test = this.range.lowerBound.compareTo(new BigDecimal(value.length()));
-        int test2 = this.range.upperBound.compareTo(new BigDecimal(value.length()));
         if (this.range.lowerBound != null && this.range.lowerBound.compareTo(new BigDecimal(value.length())) > 0) {
             return false;
         }

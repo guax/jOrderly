@@ -4,7 +4,9 @@
  */
 package net.guax.jorderly.json;
 
+import java.math.BigDecimal;
 import java.util.List;
+import org.antlr.runtime.FailedPredicateException;
 
 /**
  *
@@ -30,6 +32,19 @@ public class JsonArray extends JsonProperty {
 
     public void setProperties(List<JsonProperty> properties) {
         this.properties = properties;
+    }
+    
+    public boolean inRange(int value) throws FailedPredicateException {
+        if (this.range.lowerBound != null && this.range.lowerBound.compareTo(new BigDecimal(value)) > 0) {
+            throw new FailedPredicateException(this.input, "string", "String does not obey character range");
+        }
+        
+        // upper bound < value.lenght
+        if (this.range.upperBound != null && this.range.upperBound.compareTo(new BigDecimal(value)) < 0) {
+            throw new FailedPredicateException(this.input, "string", "String does not obey character range");
+        }
+        
+        return true;
     }
 
     protected <T> T findInstance(Class<T> clazz) {
