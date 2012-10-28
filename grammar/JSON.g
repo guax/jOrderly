@@ -102,7 +102,7 @@ jsonValue
 	@after { this.expectedProperty = expected; }
     : { expected.allow(JsonNull.class) }? NULL
     | { expected.allow(JsonBoolean.class) }? jsonBooleanLiteral
-    | { expected.allow(JsonString.class) }? STRING
+    | { expected.allow(JsonString.class) }? string=STRING { JsonString.class.cast(expected).isValid($string.getText()) }?
     | { expected.allow(JsonNumber.class) }? number=NUMBER { JsonNumber.class.cast(expected).isValidNumber($number.getText()) }?
     | { expected.allow(JsonObject.class) }? jsonObject
     | { expected.allow(JsonArray.class) }? jsonArray

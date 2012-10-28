@@ -1,4 +1,4 @@
-// $ANTLR 3.4 JSON.g 2012-10-27 22:25:52
+// $ANTLR 3.4 JSON.g 2012-10-28 13:33:18
 
 package net.guax.jorderly.parser;
 
@@ -213,13 +213,14 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonValue"
-    // JSON.g:100:1: jsonValue : ({...}? NULL |{...}? jsonBooleanLiteral |{...}? STRING |{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray );
+    // JSON.g:100:1: jsonValue : ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray );
     public final void jsonValue() throws RecognitionException {
+        Token string=null;
         Token number=null;
 
          JsonProperty expected = this.expectedProperty; expected.setInput(this.input); 
         try {
-            // JSON.g:103:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}? STRING |{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray )
+            // JSON.g:103:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray )
             int alt2=6;
             switch ( input.LA(1) ) {
             case NULL:
@@ -289,13 +290,17 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // JSON.g:105:7: {...}? STRING
+                    // JSON.g:105:7: {...}?string= STRING {...}?
                     {
                     if ( !(( expected.allow(JsonString.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonString.class) ");
                     }
 
-                    match(input,STRING,FOLLOW_STRING_in_jsonValue634); 
+                    string=(Token)match(input,STRING,FOLLOW_STRING_in_jsonValue636); 
+
+                    if ( !(( JsonString.class.cast(expected).isValid(string.getText()) )) ) {
+                        throw new FailedPredicateException(input, "jsonValue", " JsonString.class.cast(expected).isValid($string.getText()) ");
+                    }
 
                     }
                     break;
@@ -306,7 +311,7 @@ public class JSONParser extends Parser {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonNumber.class) ");
                     }
 
-                    number=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue646); 
+                    number=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue650); 
 
                     if ( !(( JsonNumber.class.cast(expected).isValidNumber(number.getText()) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " JsonNumber.class.cast(expected).isValidNumber($number.getText()) ");
@@ -321,7 +326,7 @@ public class JSONParser extends Parser {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonObject.class) ");
                     }
 
-                    pushFollow(FOLLOW_jsonObject_in_jsonValue658);
+                    pushFollow(FOLLOW_jsonObject_in_jsonValue662);
                     jsonObject();
 
                     state._fsp--;
@@ -336,7 +341,7 @@ public class JSONParser extends Parser {
                         throw new FailedPredicateException(input, "jsonValue", " expected.allow(JsonArray.class) ");
                     }
 
-                    pushFollow(FOLLOW_jsonArray_in_jsonValue668);
+                    pushFollow(FOLLOW_jsonArray_in_jsonValue672);
                     jsonArray();
 
                     state._fsp--;
@@ -369,11 +374,11 @@ public class JSONParser extends Parser {
             // JSON.g:112:5: ( STRING ':' jsonValue )
             // JSON.g:112:7: STRING ':' jsonValue
             {
-            match(input,STRING,FOLLOW_STRING_in_jsonMember689); 
+            match(input,STRING,FOLLOW_STRING_in_jsonMember693); 
 
-            match(input,21,FOLLOW_21_in_jsonMember691); 
+            match(input,21,FOLLOW_21_in_jsonMember695); 
 
-            pushFollow(FOLLOW_jsonValue_in_jsonMember693);
+            pushFollow(FOLLOW_jsonValue_in_jsonMember697);
             jsonValue();
 
             state._fsp--;
@@ -403,7 +408,7 @@ public class JSONParser extends Parser {
             // JSON.g:116:5: ( jsonMember ( ',' jsonMemberList )? )
             // JSON.g:116:7: jsonMember ( ',' jsonMemberList )?
             {
-            pushFollow(FOLLOW_jsonMember_in_jsonMemberList710);
+            pushFollow(FOLLOW_jsonMember_in_jsonMemberList714);
             jsonMember();
 
             state._fsp--;
@@ -420,9 +425,9 @@ public class JSONParser extends Parser {
                 case 1 :
                     // JSON.g:116:19: ',' jsonMemberList
                     {
-                    match(input,20,FOLLOW_20_in_jsonMemberList713); 
+                    match(input,20,FOLLOW_20_in_jsonMemberList717); 
 
-                    pushFollow(FOLLOW_jsonMemberList_in_jsonMemberList715);
+                    pushFollow(FOLLOW_jsonMemberList_in_jsonMemberList719);
                     jsonMemberList();
 
                     state._fsp--;
@@ -487,24 +492,24 @@ public class JSONParser extends Parser {
                 case 1 :
                     // JSON.g:120:7: '[' ']'
                     {
-                    match(input,22,FOLLOW_22_in_jsonArray734); 
+                    match(input,22,FOLLOW_22_in_jsonArray738); 
 
-                    match(input,23,FOLLOW_23_in_jsonArray736); 
+                    match(input,23,FOLLOW_23_in_jsonArray740); 
 
                     }
                     break;
                 case 2 :
                     // JSON.g:121:7: '[' jsonElementList ']'
                     {
-                    match(input,22,FOLLOW_22_in_jsonArray744); 
+                    match(input,22,FOLLOW_22_in_jsonArray748); 
 
-                    pushFollow(FOLLOW_jsonElementList_in_jsonArray746);
+                    pushFollow(FOLLOW_jsonElementList_in_jsonArray750);
                     jsonElementList();
 
                     state._fsp--;
 
 
-                    match(input,23,FOLLOW_23_in_jsonArray748); 
+                    match(input,23,FOLLOW_23_in_jsonArray752); 
 
                     }
                     break;
@@ -532,7 +537,7 @@ public class JSONParser extends Parser {
             // JSON.g:125:5: ( jsonValue ( ',' jsonValue )* )
             // JSON.g:125:7: jsonValue ( ',' jsonValue )*
             {
-            pushFollow(FOLLOW_jsonValue_in_jsonElementList765);
+            pushFollow(FOLLOW_jsonValue_in_jsonElementList769);
             jsonValue();
 
             state._fsp--;
@@ -553,9 +558,9 @@ public class JSONParser extends Parser {
             	case 1 :
             	    // JSON.g:125:18: ',' jsonValue
             	    {
-            	    match(input,20,FOLLOW_20_in_jsonElementList768); 
+            	    match(input,20,FOLLOW_20_in_jsonElementList772); 
 
-            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList770);
+            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList774);
             	    jsonValue();
 
             	    state._fsp--;
@@ -598,23 +603,23 @@ public class JSONParser extends Parser {
     public static final BitSet FOLLOW_25_in_jsonObject584 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_NULL_in_jsonValue614 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_jsonBooleanLiteral_in_jsonValue624 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonValue634 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_jsonValue646 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonObject_in_jsonValue658 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonArray_in_jsonValue668 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonMember689 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_jsonMember691 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonMember693 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonMember_in_jsonMemberList710 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_20_in_jsonMemberList713 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_jsonMemberList_in_jsonMemberList715 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_jsonArray734 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_jsonArray736 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_jsonArray744 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonElementList_in_jsonArray746 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_jsonArray748 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList765 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_20_in_jsonElementList768 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList770 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_STRING_in_jsonValue636 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_jsonValue650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonObject_in_jsonValue662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonArray_in_jsonValue672 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_jsonMember693 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_jsonMember695 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonMember697 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonMember_in_jsonMemberList714 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_20_in_jsonMemberList717 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_jsonMemberList_in_jsonMemberList719 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_jsonArray738 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_jsonArray740 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_jsonArray748 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonElementList_in_jsonArray750 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_jsonArray752 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList769 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_20_in_jsonElementList772 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList774 = new BitSet(new long[]{0x0000000000100002L});
 
 }
