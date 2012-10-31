@@ -4,9 +4,9 @@
 txtund=$(tput sgr 0 1)          # Underline
 txtbld=$(tput bold)             # Bold
 bldred=${txtbld}$(tput setaf 1) #  red
+bldgrn=${txtbld}$(tput setaf 2) #  green
 bldblu=${txtbld}$(tput setaf 4) #  blue
 bldwht=${txtbld}$(tput setaf 7) #  white
-bldgrn='\e[1;32m'               #  green
 txtrst=$(tput sgr0)             # Reset
 
 TEST_PATH="tests/grammarBasics"
