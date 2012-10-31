@@ -10,6 +10,7 @@ bldgrn='\e[1;32m'               #  green
 txtrst=$(tput sgr0)             # Reset
 
 TEST_PATH="tests/grammarBasics"
+JORDERLY="java -cp lib/*:dist/jorderly.jar net.guax.jorderly.Main"
 
 for testCase in `ls ${TEST_PATH}`; do
 
@@ -25,12 +26,12 @@ for testCase in `ls ${TEST_PATH}`; do
             s=$( printf "%${#jsonFile}s" ); echo "${s// /-}"
             echo -n ${bldred}
             if [[ "$jsonFile" == *"not-"* ]]; then
-                java -jar dist/jorderly.jar ${TEST_PATH}/${testCase}/*.orderly $jsonFile
+                $JORDERLY ${TEST_PATH}/${testCase}/*.orderly $jsonFile
                 if [ $? = 0 ]; then
                     echo -e "FAILURE, NOT A SINGLE ERROR ON TEST!"
                 fi
             else
-                java -jar dist/jorderly.jar ${TEST_PATH}/${testCase}/*.orderly $jsonFile || echo -e "FAILURE ON TEST!"
+                $JORDERLY ${TEST_PATH}/${testCase}/*.orderly $jsonFile || echo -e "FAILURE ON TEST!"
             fi
             echo -n ${txtrst}
             echo -e "\n"
