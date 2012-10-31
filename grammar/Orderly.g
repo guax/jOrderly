@@ -40,7 +40,7 @@ definition_prefix returns [JsonProperty property]
     // a tuple-typed array 
     |	'array' { $property = new JsonArray(); }  '{' unnamed_entries? {JsonArray.class.cast($property).setProperties($unnamed_entries.properties);} '}' range? {JsonArray.class.cast($property).setRange($range.range);}
     // a simple-typed array (notice the '*' marker is disallowed)
-    |	'array' { $property = new JsonArray(); } '[' { HashMap propertyMap = new HashMap<String, JsonProperty>(); } un=unnamed_entry {propertyMap.put($un.property.getClass().getName(),$un.property); JsonArray.class.cast($property).setProperties(propertyMap); } ']' range? {JsonArray.class.cast($property).setRange($range.range);}
+    |	'array' { $property = new JsonArray(); } '[' ({ HashMap propertyMap = new HashMap<String, JsonProperty>(); } un=unnamed_entry {propertyMap.put($un.property.getClass().getName(),$un.property); JsonArray.class.cast($property).setProperties(propertyMap); })? ']' range? {JsonArray.class.cast($property).setRange($range.range);}
     |	'object' { $property = new JsonObject(); } '{' named_entries? { JsonObject.class.cast($property).setProperties($named_entries.properties); } '}' (additional_marker { JsonObject.class.cast($property).setAllowAdditionalProperties(true); })?
     |	'union'  { $property = new JsonUnion(); } '{' unnamed_entry ';' unnamed_entries '}' // At least two entries are required
     ;

@@ -27,7 +27,11 @@ public class JsonArray extends JsonProperty {
     }
     
     public JsonProperty getProperty(String type) {
-        return properties.get(type);
+        if(this.properties != null) {
+            return properties.get(type);
+        }
+        
+        return new JsonAny();
     }
     
     public boolean inArray;
@@ -47,6 +51,10 @@ public class JsonArray extends JsonProperty {
     }
     
     public boolean inRange(int value) throws FailedPredicateException {
+        if(this.range == null){
+            return true;
+        }
+        
         if (this.range.lowerBound != null && this.range.lowerBound.compareTo(new BigDecimal(value)) > 0) {
             throw new FailedPredicateException(this.input, "string", "String does not obey character range");
         }
@@ -60,6 +68,10 @@ public class JsonArray extends JsonProperty {
     }
 
     protected <T> T findInstance(Class<T> clazz) {
+        if(this.properties == null) {
+            return null;
+        }
+        
         for (Object o : this.properties.values()) {
             if (o != null && o.getClass() == clazz) {
                 return clazz.cast(o);
@@ -71,6 +83,11 @@ public class JsonArray extends JsonProperty {
 
     @Override
     public boolean allow(Class type) {
+        // We allow anything if we don't have defined properties.
+        if (this.properties == null) {
+            return true;
+        }
+        
         if (this.getClass() == type || this.findInstance(type) != null) {
             return true;
         } else {

@@ -10,4 +10,8 @@ package net.guax.jorderly.json;
  */
 public class JsonAny extends JsonProperty {
     
+    @Override
+    public boolean allow(Class type) {
+        return true;
+    }
 }

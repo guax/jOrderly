@@ -1,4 +1,4 @@
-// $ANTLR 3.4 JSON.g 2012-10-30 22:11:43
+// $ANTLR 3.4 JSON.g 2012-10-30 22:53:23
 
 package net.guax.jorderly.parser;
 
@@ -226,9 +226,14 @@ public class JSONParser extends Parser {
         Token string=null;
         Token number=null;
 
-         JsonProperty expected = this.expectedProperty; expected.setInput(this.input); 
+
+                JsonProperty expected = this.expectedProperty;
+                expected.setInput(this.input);
+
+                boolean isAny = this.expectedProperty instanceof JsonAny;
+            
         try {
-            // JSON.g:111:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray )
+            // JSON.g:116:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray )
             int alt2=6;
             switch ( input.LA(1) ) {
             case NULL:
@@ -272,7 +277,7 @@ public class JSONParser extends Parser {
 
             switch (alt2) {
                 case 1 :
-                    // JSON.g:111:7: {...}? NULL
+                    // JSON.g:116:7: {...}? NULL
                     {
                     if ( !(( this.expectedProperty.allow(JsonNull.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonNull.class) ");
@@ -283,7 +288,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // JSON.g:112:7: {...}? jsonBooleanLiteral
+                    // JSON.g:117:7: {...}? jsonBooleanLiteral
                     {
                     if ( !(( this.expectedProperty.allow(JsonBoolean.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonBoolean.class) ");
@@ -300,47 +305,47 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // JSON.g:113:7: {...}?string= STRING {...}?
+                    // JSON.g:118:7: {...}?string= STRING {...}?
                     {
                     if ( !(( this.expectedProperty.allow(JsonString.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonString.class) ");
                     }
 
-                    this.expectedProperty = resolvArrayContext(JsonString.class.getName());
+                    this.expectedProperty = resolvArrayContext(JsonString.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
                     string=(Token)match(input,STRING,FOLLOW_STRING_in_jsonValue640); 
 
-                    if ( !(( JsonString.class.cast(this.expectedProperty).isValid(string.getText()) )) ) {
-                        throw new FailedPredicateException(input, "jsonValue", " JsonString.class.cast(this.expectedProperty).isValid($string.getText()) ");
+                    if ( !(( isAny || JsonString.class.cast(this.expectedProperty).isValid(string.getText()) )) ) {
+                        throw new FailedPredicateException(input, "jsonValue", " isAny || JsonString.class.cast(this.expectedProperty).isValid($string.getText()) ");
                     }
 
                     }
                     break;
                 case 4 :
-                    // JSON.g:114:7: {...}?number= NUMBER {...}?
+                    // JSON.g:119:7: {...}?number= NUMBER {...}?
                     {
                     if ( !(( this.expectedProperty.allow(JsonNumber.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonNumber.class) ");
                     }
 
-                    this.expectedProperty = resolvArrayContext(JsonNumber.class.getName());
+                    this.expectedProperty = resolvArrayContext(JsonNumber.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
                     number=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue656); 
 
-                    if ( !(( JsonNumber.class.cast(this.expectedProperty).isValidNumber(number.getText()) )) ) {
-                        throw new FailedPredicateException(input, "jsonValue", " JsonNumber.class.cast(this.expectedProperty).isValidNumber($number.getText()) ");
+                    if ( !(( isAny || JsonNumber.class.cast(this.expectedProperty).isValidNumber(number.getText()) )) ) {
+                        throw new FailedPredicateException(input, "jsonValue", " isAny || JsonNumber.class.cast(this.expectedProperty).isValidNumber($number.getText()) ");
                     }
 
                     }
                     break;
                 case 5 :
-                    // JSON.g:115:7: {...}? jsonObject
+                    // JSON.g:120:7: {...}? jsonObject
                     {
                     if ( !(( this.expectedProperty.allow(JsonObject.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonObject.class) ");
                     }
 
-                    this.expectedProperty = resolvArrayContext(JsonObject.class.getName());
+                    this.expectedProperty = resolvArrayContext(JsonObject.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
                     pushFollow(FOLLOW_jsonObject_in_jsonValue670);
                     jsonObject();
@@ -351,15 +356,15 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // JSON.g:116:7: {...}? jsonArray
+                    // JSON.g:121:7: {...}? jsonArray
                     {
                     if ( !(( this.expectedProperty.allow(JsonArray.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonArray.class) ");
                     }
 
-                    this.expectedProperty = resolvArrayContext(JsonArray.class.getName());
+                    this.expectedProperty = resolvArrayContext(JsonArray.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
-                     JsonArray.class.cast(this.expectedProperty).setInArray(true); 
+                     if(!isAny) {JsonArray.class.cast(this.expectedProperty).setInArray(true);} 
 
                     pushFollow(FOLLOW_jsonArray_in_jsonValue684);
                     jsonArray();
@@ -367,7 +372,7 @@ public class JSONParser extends Parser {
                     state._fsp--;
 
 
-                     JsonArray.class.cast(this.expectedProperty).setInArray(false); 
+                     if(!isAny) {  JsonArray.class.cast(this.expectedProperty).setInArray(false); }
 
                     }
                     break;
@@ -390,11 +395,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonMember"
-    // JSON.g:119:1: jsonMember : STRING ':' jsonValue ;
+    // JSON.g:124:1: jsonMember : STRING ':' jsonValue ;
     public final void jsonMember() throws RecognitionException {
         try {
-            // JSON.g:120:5: ( STRING ':' jsonValue )
-            // JSON.g:120:7: STRING ':' jsonValue
+            // JSON.g:125:5: ( STRING ':' jsonValue )
+            // JSON.g:125:7: STRING ':' jsonValue
             {
             match(input,STRING,FOLLOW_STRING_in_jsonMember707); 
 
@@ -424,11 +429,11 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonMemberList"
-    // JSON.g:123:1: jsonMemberList : jsonMember ( ',' jsonMemberList )? ;
+    // JSON.g:128:1: jsonMemberList : jsonMember ( ',' jsonMemberList )? ;
     public final void jsonMemberList() throws RecognitionException {
         try {
-            // JSON.g:124:5: ( jsonMember ( ',' jsonMemberList )? )
-            // JSON.g:124:7: jsonMember ( ',' jsonMemberList )?
+            // JSON.g:129:5: ( jsonMember ( ',' jsonMemberList )? )
+            // JSON.g:129:7: jsonMember ( ',' jsonMemberList )?
             {
             pushFollow(FOLLOW_jsonMember_in_jsonMemberList728);
             jsonMember();
@@ -436,7 +441,7 @@ public class JSONParser extends Parser {
             state._fsp--;
 
 
-            // JSON.g:124:18: ( ',' jsonMemberList )?
+            // JSON.g:129:18: ( ',' jsonMemberList )?
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -445,7 +450,7 @@ public class JSONParser extends Parser {
             }
             switch (alt3) {
                 case 1 :
-                    // JSON.g:124:19: ',' jsonMemberList
+                    // JSON.g:129:19: ',' jsonMemberList
                     {
                     match(input,20,FOLLOW_20_in_jsonMemberList731); 
 
@@ -479,10 +484,10 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonArray"
-    // JSON.g:127:1: jsonArray : ( '[' {...}? ']' | '[' jsonElementList ']' );
+    // JSON.g:132:1: jsonArray : ( '[' {...}? ']' | '[' jsonElementList ']' );
     public final void jsonArray() throws RecognitionException {
         try {
-            // JSON.g:128:5: ( '[' {...}? ']' | '[' jsonElementList ']' )
+            // JSON.g:133:5: ( '[' {...}? ']' | '[' jsonElementList ']' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -512,7 +517,7 @@ public class JSONParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // JSON.g:128:7: '[' {...}? ']'
+                    // JSON.g:133:7: '[' {...}? ']'
                     {
                     match(input,22,FOLLOW_22_in_jsonArray752); 
 
@@ -525,7 +530,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // JSON.g:129:7: '[' jsonElementList ']'
+                    // JSON.g:134:7: '[' jsonElementList ']'
                     {
                     match(input,22,FOLLOW_22_in_jsonArray764); 
 
@@ -557,12 +562,14 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonElementList"
-    // JSON.g:132:1: jsonElementList : jsonValue ( ',' jsonValue )* {...}?;
+    // JSON.g:137:1: jsonElementList : jsonValue ( ',' jsonValue )* {...}?;
     public final void jsonElementList() throws RecognitionException {
-        int length = 0;
+
+                int length = 0;
+            
         try {
-            // JSON.g:134:5: ( jsonValue ( ',' jsonValue )* {...}?)
-            // JSON.g:134:7: jsonValue ( ',' jsonValue )* {...}?
+            // JSON.g:141:5: ( jsonValue ( ',' jsonValue )* {...}?)
+            // JSON.g:141:7: jsonValue ( ',' jsonValue )* {...}?
             {
             pushFollow(FOLLOW_jsonValue_in_jsonElementList794);
             jsonValue();
@@ -572,7 +579,7 @@ public class JSONParser extends Parser {
 
             length++;
 
-            // JSON.g:134:29: ( ',' jsonValue )*
+            // JSON.g:141:29: ( ',' jsonValue )*
             loop5:
             do {
                 int alt5=2;
@@ -585,7 +592,7 @@ public class JSONParser extends Parser {
 
                 switch (alt5) {
             	case 1 :
-            	    // JSON.g:134:30: ',' jsonValue
+            	    // JSON.g:141:30: ',' jsonValue
             	    {
             	    match(input,20,FOLLOW_20_in_jsonElementList799); 
 
