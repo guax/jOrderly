@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Orderly.g 2012-11-02 16:42:27
+// $ANTLR 3.4 Orderly.g 2012-11-02 17:27:44
 
 package net.guax.jorderly.parser;
 
@@ -854,7 +854,7 @@ public class OrderlyParser extends Parser {
                     state._fsp--;
 
 
-                     property.setName((property_name11!=null?input.toString(property_name11.start,property_name11.stop):null)); 
+                     property.setName(JsonString.trimQuotes((property_name11!=null?input.toString(property_name11.start,property_name11.stop):null))); 
 
                     pushFollow(FOLLOW_definition_suffix_in_named_entry348);
                     definition_suffix();
@@ -902,9 +902,9 @@ public class OrderlyParser extends Parser {
                     state._fsp--;
 
 
-                    property.setName((property_name13!=null?input.toString(property_name13.start,property_name13.stop):null));
+                    property.setName(JsonString.trimQuotes((property_name13!=null?input.toString(property_name13.start,property_name13.stop):null)));
 
-                    // Orderly.g:50:177: (regex= perl_regex )?
+                    // Orderly.g:50:200: (regex= perl_regex )?
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -913,7 +913,7 @@ public class OrderlyParser extends Parser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // Orderly.g:50:177: regex= perl_regex
+                            // Orderly.g:50:200: regex= perl_regex
                             {
                             pushFollow(FOLLOW_perl_regex_in_named_entry371);
                             regex=perl_regex();

@@ -23,6 +23,9 @@ public class JsonObject extends JsonProperty {
     }
     
     public JsonProperty getProperty(String name) {
+        if(((this.properties !=null && !this.properties.containsKey(name)) || this.properties == null) && this.allowAdditionalProperties) {
+            return new JsonAny();
+        }
         return this.properties.get(name);
     }
 

@@ -1,4 +1,4 @@
-// $ANTLR 3.4 JSON.g 2012-11-02 16:42:28
+// $ANTLR 3.4 JSON.g 2012-11-02 17:27:45
 
 package net.guax.jorderly.parser;
 
@@ -441,7 +441,7 @@ public class JSONParser extends Parser {
             {
             property=(Token)match(input,STRING,FOLLOW_STRING_in_jsonMember800); 
 
-            this.expectedProperty = JsonObject.class.cast(expected).getProperty(property.getText());
+            if(!isAny) { this.expectedProperty = JsonObject.class.cast(expected).getProperty(JsonString.trimQuotes(property.getText())); }
 
             match(input,21,FOLLOW_21_in_jsonMember804); 
 

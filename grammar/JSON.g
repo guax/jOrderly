@@ -140,7 +140,7 @@ jsonMember
         boolean isAny = this.expectedProperty instanceof JsonAny;
     }
     @after { this.expectedProperty = expected; }
-    : property=STRING {this.expectedProperty = JsonObject.class.cast(expected).getProperty($property.getText());} ':' jsonValue
+    : property=STRING {if(!isAny) { this.expectedProperty = JsonObject.class.cast(expected).getProperty(JsonString.trimQuotes($property.getText())); }} ':' jsonValue
     ;
 
 jsonArray

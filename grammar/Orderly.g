@@ -46,8 +46,8 @@ definition_prefix returns [JsonProperty property]
     ;
 
 named_entry returns [JsonProperty property]
-    :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName($property_name.text); } definition_suffix
-    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName($property_name.text);} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
+    :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName(JsonString.trimQuotes($property_name.text)); } definition_suffix
+    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName(JsonString.trimQuotes($property_name.text));} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
     ;
 
 named_entries returns [HashMap<String, JsonProperty> properties]
