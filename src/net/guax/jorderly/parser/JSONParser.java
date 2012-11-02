@@ -1,4 +1,4 @@
-// $ANTLR 3.4 JSON.g 2012-10-30 22:53:23
+// $ANTLR 3.4 JSON.g 2012-11-02 16:42:28
 
 package net.guax.jorderly.parser;
 
@@ -69,7 +69,7 @@ public class JSONParser extends Parser {
         }
 
         public JsonProperty resolvArrayContext(String type) {
-            if (this.expectedProperty instanceof JsonArray && JsonArray.class.cast(this.expectedProperty).inArray) {
+            if (this.expectedProperty instanceof JsonArray && JsonArray.class.cast(this.expectedProperty).inside) {
                 return JsonArray.class.cast(this.expectedProperty).getProperty(type);
             }
 
@@ -147,25 +147,25 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonObject"
-    // JSON.g:104:1: jsonObject : ( '{' '}' | '{' jsonMemberList '}' );
+    // JSON.g:104:1: jsonObject : ( '{' '}' | '{' jsonMember ( ',' jsonMember )* '}' );
     public final void jsonObject() throws RecognitionException {
         try {
-            // JSON.g:105:5: ( '{' '}' | '{' jsonMemberList '}' )
-            int alt1=2;
-            int LA1_0 = input.LA(1);
+            // JSON.g:105:5: ( '{' '}' | '{' jsonMember ( ',' jsonMember )* '}' )
+            int alt2=2;
+            int LA2_0 = input.LA(1);
 
-            if ( (LA1_0==24) ) {
-                int LA1_1 = input.LA(2);
+            if ( (LA2_0==24) ) {
+                int LA2_1 = input.LA(2);
 
-                if ( (LA1_1==25) ) {
-                    alt1=1;
+                if ( (LA2_1==25) ) {
+                    alt2=1;
                 }
-                else if ( (LA1_1==STRING) ) {
-                    alt1=2;
+                else if ( (LA2_1==STRING) ) {
+                    alt2=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 1, 1, input);
+                        new NoViableAltException("", 2, 1, input);
 
                     throw nvae;
 
@@ -173,12 +173,12 @@ public class JSONParser extends Parser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 1, 0, input);
+                    new NoViableAltException("", 2, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt1) {
+            switch (alt2) {
                 case 1 :
                     // JSON.g:105:7: '{' '}'
                     {
@@ -189,17 +189,49 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // JSON.g:106:7: '{' jsonMemberList '}'
+                    // JSON.g:106:7: '{' jsonMember ( ',' jsonMember )* '}'
                     {
                     match(input,24,FOLLOW_24_in_jsonObject580); 
 
-                    pushFollow(FOLLOW_jsonMemberList_in_jsonObject582);
-                    jsonMemberList();
+                    pushFollow(FOLLOW_jsonMember_in_jsonObject582);
+                    jsonMember();
 
                     state._fsp--;
 
 
-                    match(input,25,FOLLOW_25_in_jsonObject584); 
+                    // JSON.g:106:22: ( ',' jsonMember )*
+                    loop1:
+                    do {
+                        int alt1=2;
+                        int LA1_0 = input.LA(1);
+
+                        if ( (LA1_0==20) ) {
+                            alt1=1;
+                        }
+
+
+                        switch (alt1) {
+                    	case 1 :
+                    	    // JSON.g:106:23: ',' jsonMember
+                    	    {
+                    	    match(input,20,FOLLOW_20_in_jsonObject585); 
+
+                    	    pushFollow(FOLLOW_jsonMember_in_jsonObject587);
+                    	    jsonMember();
+
+                    	    state._fsp--;
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop1;
+                        }
+                    } while (true);
+
+
+                    match(input,25,FOLLOW_25_in_jsonObject591); 
 
                     }
                     break;
@@ -221,7 +253,7 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonValue"
-    // JSON.g:108:1: jsonValue : ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray );
+    // JSON.g:109:1: jsonValue : ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray );
     public final void jsonValue() throws RecognitionException {
         Token string=null;
         Token number=null;
@@ -233,62 +265,62 @@ public class JSONParser extends Parser {
                 boolean isAny = this.expectedProperty instanceof JsonAny;
             
         try {
-            // JSON.g:116:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray )
-            int alt2=6;
+            // JSON.g:118:5: ({...}? NULL |{...}? jsonBooleanLiteral |{...}?string= STRING {...}?|{...}?number= NUMBER {...}?|{...}? jsonObject |{...}? jsonArray )
+            int alt3=6;
             switch ( input.LA(1) ) {
             case NULL:
                 {
-                alt2=1;
+                alt3=1;
                 }
                 break;
             case FALSE:
             case TRUE:
                 {
-                alt2=2;
+                alt3=2;
                 }
                 break;
             case STRING:
                 {
-                alt2=3;
+                alt3=3;
                 }
                 break;
             case NUMBER:
                 {
-                alt2=4;
+                alt3=4;
                 }
                 break;
             case 24:
                 {
-                alt2=5;
+                alt3=5;
                 }
                 break;
             case 22:
                 {
-                alt2=6;
+                alt3=6;
                 }
                 break;
             default:
                 NoViableAltException nvae =
-                    new NoViableAltException("", 2, 0, input);
+                    new NoViableAltException("", 3, 0, input);
 
                 throw nvae;
 
             }
 
-            switch (alt2) {
+            switch (alt3) {
                 case 1 :
-                    // JSON.g:116:7: {...}? NULL
+                    // JSON.g:118:7: {...}? NULL
                     {
                     if ( !(( this.expectedProperty.allow(JsonNull.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonNull.class) ");
                     }
 
-                    match(input,NULL,FOLLOW_NULL_in_jsonValue614); 
+                    match(input,NULL,FOLLOW_NULL_in_jsonValue627); 
 
                     }
                     break;
                 case 2 :
-                    // JSON.g:117:7: {...}? jsonBooleanLiteral
+                    // JSON.g:120:7: {...}? jsonBooleanLiteral
                     {
                     if ( !(( this.expectedProperty.allow(JsonBoolean.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonBoolean.class) ");
@@ -296,7 +328,7 @@ public class JSONParser extends Parser {
 
                     this.expectedProperty = resolvArrayContext(JsonBoolean.class.getName());
 
-                    pushFollow(FOLLOW_jsonBooleanLiteral_in_jsonValue626);
+                    pushFollow(FOLLOW_jsonBooleanLiteral_in_jsonValue643);
                     jsonBooleanLiteral();
 
                     state._fsp--;
@@ -305,7 +337,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 3 :
-                    // JSON.g:118:7: {...}?string= STRING {...}?
+                    // JSON.g:122:7: {...}?string= STRING {...}?
                     {
                     if ( !(( this.expectedProperty.allow(JsonString.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonString.class) ");
@@ -313,7 +345,7 @@ public class JSONParser extends Parser {
 
                     this.expectedProperty = resolvArrayContext(JsonString.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
-                    string=(Token)match(input,STRING,FOLLOW_STRING_in_jsonValue640); 
+                    string=(Token)match(input,STRING,FOLLOW_STRING_in_jsonValue662); 
 
                     if ( !(( isAny || JsonString.class.cast(this.expectedProperty).isValid(string.getText()) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " isAny || JsonString.class.cast(this.expectedProperty).isValid($string.getText()) ");
@@ -322,7 +354,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 4 :
-                    // JSON.g:119:7: {...}?number= NUMBER {...}?
+                    // JSON.g:124:7: {...}?number= NUMBER {...}?
                     {
                     if ( !(( this.expectedProperty.allow(JsonNumber.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonNumber.class) ");
@@ -330,7 +362,7 @@ public class JSONParser extends Parser {
 
                     this.expectedProperty = resolvArrayContext(JsonNumber.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
-                    number=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue656); 
+                    number=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue683); 
 
                     if ( !(( isAny || JsonNumber.class.cast(this.expectedProperty).isValidNumber(number.getText()) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " isAny || JsonNumber.class.cast(this.expectedProperty).isValidNumber($number.getText()) ");
@@ -339,7 +371,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 5 :
-                    // JSON.g:120:7: {...}? jsonObject
+                    // JSON.g:126:7: {...}? jsonObject
                     {
                     if ( !(( this.expectedProperty.allow(JsonObject.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonObject.class) ");
@@ -347,7 +379,7 @@ public class JSONParser extends Parser {
 
                     this.expectedProperty = resolvArrayContext(JsonObject.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
-                    pushFollow(FOLLOW_jsonObject_in_jsonValue670);
+                    pushFollow(FOLLOW_jsonObject_in_jsonValue714);
                     jsonObject();
 
                     state._fsp--;
@@ -356,7 +388,7 @@ public class JSONParser extends Parser {
                     }
                     break;
                 case 6 :
-                    // JSON.g:121:7: {...}? jsonArray
+                    // JSON.g:130:7: {...}? jsonArray
                     {
                     if ( !(( this.expectedProperty.allow(JsonArray.class) )) ) {
                         throw new FailedPredicateException(input, "jsonValue", " this.expectedProperty.allow(JsonArray.class) ");
@@ -364,15 +396,15 @@ public class JSONParser extends Parser {
 
                     this.expectedProperty = resolvArrayContext(JsonArray.class.getName()); isAny = this.expectedProperty instanceof JsonAny;
 
-                     if(!isAny) {JsonArray.class.cast(this.expectedProperty).setInArray(true);} 
+                     if(!isAny) {JsonArray.class.cast(this.expectedProperty).setInside(true);} 
 
-                    pushFollow(FOLLOW_jsonArray_in_jsonValue684);
+                    pushFollow(FOLLOW_jsonArray_in_jsonValue751);
                     jsonArray();
 
                     state._fsp--;
 
 
-                     if(!isAny) {  JsonArray.class.cast(this.expectedProperty).setInArray(false); }
+                     if(!isAny) {JsonArray.class.cast(this.expectedProperty).setInside(false); }
 
                     }
                     break;
@@ -395,17 +427,25 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonMember"
-    // JSON.g:124:1: jsonMember : STRING ':' jsonValue ;
+    // JSON.g:137:1: jsonMember : property= STRING ':' jsonValue ;
     public final void jsonMember() throws RecognitionException {
+        Token property=null;
+
+
+                JsonProperty expected = this.expectedProperty;
+                boolean isAny = this.expectedProperty instanceof JsonAny;
+            
         try {
-            // JSON.g:125:5: ( STRING ':' jsonValue )
-            // JSON.g:125:7: STRING ':' jsonValue
+            // JSON.g:143:5: (property= STRING ':' jsonValue )
+            // JSON.g:143:7: property= STRING ':' jsonValue
             {
-            match(input,STRING,FOLLOW_STRING_in_jsonMember707); 
+            property=(Token)match(input,STRING,FOLLOW_STRING_in_jsonMember800); 
 
-            match(input,21,FOLLOW_21_in_jsonMember709); 
+            this.expectedProperty = JsonObject.class.cast(expected).getProperty(property.getText());
 
-            pushFollow(FOLLOW_jsonValue_in_jsonMember711);
+            match(input,21,FOLLOW_21_in_jsonMember804); 
+
+            pushFollow(FOLLOW_jsonValue_in_jsonMember806);
             jsonValue();
 
             state._fsp--;
@@ -413,6 +453,7 @@ public class JSONParser extends Parser {
 
             }
 
+             this.expectedProperty = expected; 
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -428,66 +469,11 @@ public class JSONParser extends Parser {
 
 
 
-    // $ANTLR start "jsonMemberList"
-    // JSON.g:128:1: jsonMemberList : jsonMember ( ',' jsonMemberList )? ;
-    public final void jsonMemberList() throws RecognitionException {
-        try {
-            // JSON.g:129:5: ( jsonMember ( ',' jsonMemberList )? )
-            // JSON.g:129:7: jsonMember ( ',' jsonMemberList )?
-            {
-            pushFollow(FOLLOW_jsonMember_in_jsonMemberList728);
-            jsonMember();
-
-            state._fsp--;
-
-
-            // JSON.g:129:18: ( ',' jsonMemberList )?
-            int alt3=2;
-            int LA3_0 = input.LA(1);
-
-            if ( (LA3_0==20) ) {
-                alt3=1;
-            }
-            switch (alt3) {
-                case 1 :
-                    // JSON.g:129:19: ',' jsonMemberList
-                    {
-                    match(input,20,FOLLOW_20_in_jsonMemberList731); 
-
-                    pushFollow(FOLLOW_jsonMemberList_in_jsonMemberList733);
-                    jsonMemberList();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        return ;
-    }
-    // $ANTLR end "jsonMemberList"
-
-
-
     // $ANTLR start "jsonArray"
-    // JSON.g:132:1: jsonArray : ( '[' {...}? ']' | '[' jsonElementList ']' );
+    // JSON.g:146:1: jsonArray : ( '[' {...}? ']' | '[' jsonElementList ']' );
     public final void jsonArray() throws RecognitionException {
         try {
-            // JSON.g:133:5: ( '[' {...}? ']' | '[' jsonElementList ']' )
+            // JSON.g:147:5: ( '[' {...}? ']' | '[' jsonElementList ']' )
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -517,30 +503,30 @@ public class JSONParser extends Parser {
             }
             switch (alt4) {
                 case 1 :
-                    // JSON.g:133:7: '[' {...}? ']'
+                    // JSON.g:147:7: '[' {...}? ']'
                     {
-                    match(input,22,FOLLOW_22_in_jsonArray752); 
+                    match(input,22,FOLLOW_22_in_jsonArray823); 
 
                     if ( !((JsonArray.class.cast(this.expectedProperty).inRange(0))) ) {
                         throw new FailedPredicateException(input, "jsonArray", "JsonArray.class.cast(this.expectedProperty).inRange(0)");
                     }
 
-                    match(input,23,FOLLOW_23_in_jsonArray756); 
+                    match(input,23,FOLLOW_23_in_jsonArray827); 
 
                     }
                     break;
                 case 2 :
-                    // JSON.g:134:7: '[' jsonElementList ']'
+                    // JSON.g:148:7: '[' jsonElementList ']'
                     {
-                    match(input,22,FOLLOW_22_in_jsonArray764); 
+                    match(input,22,FOLLOW_22_in_jsonArray835); 
 
-                    pushFollow(FOLLOW_jsonElementList_in_jsonArray766);
+                    pushFollow(FOLLOW_jsonElementList_in_jsonArray837);
                     jsonElementList();
 
                     state._fsp--;
 
 
-                    match(input,23,FOLLOW_23_in_jsonArray768); 
+                    match(input,23,FOLLOW_23_in_jsonArray839); 
 
                     }
                     break;
@@ -562,16 +548,16 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonElementList"
-    // JSON.g:137:1: jsonElementList : jsonValue ( ',' jsonValue )* {...}?;
+    // JSON.g:151:1: jsonElementList : jsonValue ( ',' jsonValue )* {...}?;
     public final void jsonElementList() throws RecognitionException {
 
                 int length = 0;
             
         try {
-            // JSON.g:141:5: ( jsonValue ( ',' jsonValue )* {...}?)
-            // JSON.g:141:7: jsonValue ( ',' jsonValue )* {...}?
+            // JSON.g:155:5: ( jsonValue ( ',' jsonValue )* {...}?)
+            // JSON.g:155:7: jsonValue ( ',' jsonValue )* {...}?
             {
-            pushFollow(FOLLOW_jsonValue_in_jsonElementList794);
+            pushFollow(FOLLOW_jsonValue_in_jsonElementList865);
             jsonValue();
 
             state._fsp--;
@@ -579,7 +565,7 @@ public class JSONParser extends Parser {
 
             length++;
 
-            // JSON.g:141:29: ( ',' jsonValue )*
+            // JSON.g:155:29: ( ',' jsonValue )*
             loop5:
             do {
                 int alt5=2;
@@ -592,11 +578,11 @@ public class JSONParser extends Parser {
 
                 switch (alt5) {
             	case 1 :
-            	    // JSON.g:141:30: ',' jsonValue
+            	    // JSON.g:155:30: ',' jsonValue
             	    {
-            	    match(input,20,FOLLOW_20_in_jsonElementList799); 
+            	    match(input,20,FOLLOW_20_in_jsonElementList870); 
 
-            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList801);
+            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList872);
             	    jsonValue();
 
             	    state._fsp--;
@@ -641,27 +627,26 @@ public class JSONParser extends Parser {
     public static final BitSet FOLLOW_24_in_jsonObject570 = new BitSet(new long[]{0x0000000002000000L});
     public static final BitSet FOLLOW_25_in_jsonObject572 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_24_in_jsonObject580 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_jsonMemberList_in_jsonObject582 = new BitSet(new long[]{0x0000000002000000L});
-    public static final BitSet FOLLOW_25_in_jsonObject584 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULL_in_jsonValue614 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonBooleanLiteral_in_jsonValue626 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonValue640 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_jsonValue656 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonObject_in_jsonValue670 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonArray_in_jsonValue684 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonMember707 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_jsonMember709 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonMember711 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonMember_in_jsonMemberList728 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_20_in_jsonMemberList731 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_jsonMemberList_in_jsonMemberList733 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_jsonArray752 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_jsonArray756 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_jsonArray764 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonElementList_in_jsonArray766 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_jsonArray768 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList794 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_20_in_jsonElementList799 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList801 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_jsonMember_in_jsonObject582 = new BitSet(new long[]{0x0000000002100000L});
+    public static final BitSet FOLLOW_20_in_jsonObject585 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_jsonMember_in_jsonObject587 = new BitSet(new long[]{0x0000000002100000L});
+    public static final BitSet FOLLOW_25_in_jsonObject591 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULL_in_jsonValue627 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonBooleanLiteral_in_jsonValue643 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_jsonValue662 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_jsonValue683 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonObject_in_jsonValue714 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonArray_in_jsonValue751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_jsonMember800 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_jsonMember804 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonMember806 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_jsonArray823 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_jsonArray827 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_jsonArray835 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonElementList_in_jsonArray837 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_jsonArray839 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList865 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_20_in_jsonElementList870 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList872 = new BitSet(new long[]{0x0000000000100002L});
 
 }

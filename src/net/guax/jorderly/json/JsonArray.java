@@ -34,10 +34,10 @@ public class JsonArray extends JsonProperty {
         return new JsonAny();
     }
     
-    public boolean inArray;
+    public boolean inside;
 
-    public void setInArray(boolean inArray) {
-        this.inArray = inArray;
+    public void setInside(boolean inside) {
+        this.inside = inside;
     }
     
     Range range;

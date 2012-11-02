@@ -25,7 +25,7 @@ package net.guax.jorderly.parser;
     }
 
     public JsonProperty resolvArrayContext(String type) {
-        if (this.expectedProperty instanceof JsonArray && JsonArray.class.cast(this.expectedProperty).inArray) {
+        if (this.expectedProperty instanceof JsonArray && JsonArray.class.cast(this.expectedProperty).inside) {
             return JsonArray.class.cast(this.expectedProperty).getProperty(type);
         }
 
@@ -105,6 +105,7 @@ jsonObject
     : '{' '}'
     | '{' jsonMember (',' jsonMember)* '}'
     ;
+
 jsonValue
 	@init {
         JsonProperty expected = this.expectedProperty;
@@ -113,16 +114,33 @@ jsonValue
         boolean isAny = this.expectedProperty instanceof JsonAny;
     }
 	@after { this.expectedProperty = expected; }
+    // Null
     : { this.expectedProperty.allow(JsonNull.class) }? NULL
-    | { this.expectedProperty.allow(JsonBoolean.class) }? {this.expectedProperty = resolvArrayContext(JsonBoolean.class.getName());} jsonBooleanLiteral
+    // Boolean
+    | { this.expectedProperty.allow(JsonBoolean.class) }?{this.expectedProperty = resolvArrayContext(JsonBoolean.class.getName());} jsonBooleanLiteral
+    // String
     | { this.expectedProperty.allow(JsonString.class) }? {this.expectedProperty = resolvArrayContext(JsonString.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} string=STRING { isAny || JsonString.class.cast(this.expectedProperty).isValid($string.getText()) }?
+    // Number
     | { this.expectedProperty.allow(JsonNumber.class) }? {this.expectedProperty = resolvArrayContext(JsonNumber.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} number=NUMBER { isAny || JsonNumber.class.cast(this.expectedProperty).isValidNumber($number.getText()) }?
-    | { this.expectedProperty.allow(JsonObject.class) }? {this.expectedProperty = resolvArrayContext(JsonObject.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} jsonObject
-    | { this.expectedProperty.allow(JsonArray.class) }? {this.expectedProperty = resolvArrayContext(JsonArray.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} { if(!isAny) {JsonArray.class.cast(this.expectedProperty).setInArray(true);} } jsonArray { if(!isAny) {  JsonArray.class.cast(this.expectedProperty).setInArray(false); }}
+    // Object
+    | { this.expectedProperty.allow(JsonObject.class) }?
+      {this.expectedProperty = resolvArrayContext(JsonObject.class.getName()); isAny = this.expectedProperty instanceof JsonAny;}
+      jsonObject
+    // Array
+    | { this.expectedProperty.allow(JsonArray.class) }?
+      {this.expectedProperty = resolvArrayContext(JsonArray.class.getName()); isAny = this.expectedProperty instanceof JsonAny;}
+      { if(!isAny) {JsonArray.class.cast(this.expectedProperty).setInside(true);} }
+      jsonArray
+      { if(!isAny) {JsonArray.class.cast(this.expectedProperty).setInside(false); }}
     ;
     
 jsonMember
-    : STRING ':' jsonValue
+    @init {
+        JsonProperty expected = this.expectedProperty;
+        boolean isAny = this.expectedProperty instanceof JsonAny;
+    }
+    @after { this.expectedProperty = expected; }
+    : property=STRING {this.expectedProperty = JsonObject.class.cast(expected).getProperty($property.getText());} ':' jsonValue
     ;
 
 jsonArray

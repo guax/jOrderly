@@ -1,0 +1,10 @@
+object {
+    string "string";
+    number "number";
+    array [] "array";
+    null "null";
+    integer "integer";
+    boolean "boolean";
+    any stuff;
+    object {}* sub_object;
+}
