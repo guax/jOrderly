@@ -103,7 +103,7 @@ jsonBooleanLiteral
 
 jsonObject
     : '{' '}'
-    | '{' jsonMemberList '}'
+    | '{' jsonMember (',' jsonMember)* '}'
     ;
 jsonValue
 	@init {
@@ -123,10 +123,6 @@ jsonValue
     
 jsonMember
     : STRING ':' jsonValue
-    ;
-
-jsonMemberList
-    : jsonMember (',' jsonMemberList)?
     ;
 
 jsonArray

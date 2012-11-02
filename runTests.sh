@@ -25,7 +25,7 @@ for testCase in `ls ${TEST_PATH}`; do
             echo "${bldwht}${jsonFile}${txtrst}"
             s=$( printf "%${#jsonFile}s" ); echo "${s// /-}"
             echo -n ${bldred}
-            if [[ "$jsonFile" == *"not-"* ]]; then
+            if [[ "$jsonFile" == *"fail-"* ]]; then
                 $JORDERLY ${TEST_PATH}/${testCase}/*.orderly $jsonFile
                 if [ $? = 0 ]; then
                     echo -e "FAILURE, NOT A SINGLE ERROR ON TEST!"
