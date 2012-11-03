@@ -1,4 +1,4 @@
-// $ANTLR 3.4 JSON.g 2012-11-03 18:00:22
+// $ANTLR 3.4 JSON.g 2012-11-03 18:43:50
 
 package net.guax.jorderly.parser;
 
@@ -496,25 +496,28 @@ public class JSONParser extends Parser {
 
 
     // $ANTLR start "jsonArray"
-    // JSON.g:164:1: jsonArray : ( '[' {...}? ']' | '[' jsonElementList ']' );
+    // JSON.g:164:1: jsonArray : ( '[' {...}? ']' | '[' jsonValue ( ',' jsonValue )* {...}? ']' );
     public final void jsonArray() throws RecognitionException {
+
+                int length = 0;
+            
         try {
-            // JSON.g:165:5: ( '[' {...}? ']' | '[' jsonElementList ']' )
-            int alt4=2;
-            int LA4_0 = input.LA(1);
+            // JSON.g:168:5: ( '[' {...}? ']' | '[' jsonValue ( ',' jsonValue )* {...}? ']' )
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-            if ( (LA4_0==22) ) {
-                int LA4_1 = input.LA(2);
+            if ( (LA5_0==22) ) {
+                int LA5_1 = input.LA(2);
 
-                if ( (LA4_1==23) ) {
-                    alt4=1;
+                if ( (LA5_1==23) ) {
+                    alt5=1;
                 }
-                else if ( (LA4_1==FALSE||(LA4_1 >= NULL && LA4_1 <= NUMBER)||(LA4_1 >= STRING && LA4_1 <= TRUE)||LA4_1==22||LA4_1==24) ) {
-                    alt4=2;
+                else if ( (LA5_1==FALSE||(LA5_1 >= NULL && LA5_1 <= NUMBER)||(LA5_1 >= STRING && LA5_1 <= TRUE)||LA5_1==22||LA5_1==24) ) {
+                    alt5=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 4, 1, input);
+                        new NoViableAltException("", 5, 1, input);
 
                     throw nvae;
 
@@ -522,37 +525,77 @@ public class JSONParser extends Parser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 4, 0, input);
+                    new NoViableAltException("", 5, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt4) {
+            switch (alt5) {
                 case 1 :
-                    // JSON.g:165:7: '[' {...}? ']'
+                    // JSON.g:168:7: '[' {...}? ']'
                     {
-                    match(input,22,FOLLOW_22_in_jsonArray836); 
+                    match(input,22,FOLLOW_22_in_jsonArray845); 
 
                     if ( !((JsonArray.class.cast(this.expectedProperty).inRange(0))) ) {
                         throw new FailedPredicateException(input, "jsonArray", "JsonArray.class.cast(this.expectedProperty).inRange(0)");
                     }
 
-                    match(input,23,FOLLOW_23_in_jsonArray840); 
+                    match(input,23,FOLLOW_23_in_jsonArray849); 
 
                     }
                     break;
                 case 2 :
-                    // JSON.g:166:7: '[' jsonElementList ']'
+                    // JSON.g:169:7: '[' jsonValue ( ',' jsonValue )* {...}? ']'
                     {
-                    match(input,22,FOLLOW_22_in_jsonArray848); 
+                    match(input,22,FOLLOW_22_in_jsonArray857); 
 
-                    pushFollow(FOLLOW_jsonElementList_in_jsonArray850);
-                    jsonElementList();
+                    pushFollow(FOLLOW_jsonValue_in_jsonArray859);
+                    jsonValue();
 
                     state._fsp--;
 
 
-                    match(input,23,FOLLOW_23_in_jsonArray852); 
+                    length++;
+
+                    // JSON.g:169:33: ( ',' jsonValue )*
+                    loop4:
+                    do {
+                        int alt4=2;
+                        int LA4_0 = input.LA(1);
+
+                        if ( (LA4_0==20) ) {
+                            alt4=1;
+                        }
+
+
+                        switch (alt4) {
+                    	case 1 :
+                    	    // JSON.g:169:34: ',' jsonValue
+                    	    {
+                    	    match(input,20,FOLLOW_20_in_jsonArray864); 
+
+                    	    pushFollow(FOLLOW_jsonValue_in_jsonArray866);
+                    	    jsonValue();
+
+                    	    state._fsp--;
+
+
+                    	    length++;
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop4;
+                        }
+                    } while (true);
+
+
+                    if ( !((JsonArray.class.cast(this.expectedProperty).inRange(length))) ) {
+                        throw new FailedPredicateException(input, "jsonArray", "JsonArray.class.cast(this.expectedProperty).inRange(length)");
+                    }
+
+                    match(input,23,FOLLOW_23_in_jsonArray874); 
 
                     }
                     break;
@@ -570,79 +613,6 @@ public class JSONParser extends Parser {
         return ;
     }
     // $ANTLR end "jsonArray"
-
-
-
-    // $ANTLR start "jsonElementList"
-    // JSON.g:169:1: jsonElementList : jsonValue ( ',' jsonValue )* {...}?;
-    public final void jsonElementList() throws RecognitionException {
-
-                int length = 0;
-            
-        try {
-            // JSON.g:173:5: ( jsonValue ( ',' jsonValue )* {...}?)
-            // JSON.g:173:7: jsonValue ( ',' jsonValue )* {...}?
-            {
-            pushFollow(FOLLOW_jsonValue_in_jsonElementList878);
-            jsonValue();
-
-            state._fsp--;
-
-
-            length++;
-
-            // JSON.g:173:29: ( ',' jsonValue )*
-            loop5:
-            do {
-                int alt5=2;
-                int LA5_0 = input.LA(1);
-
-                if ( (LA5_0==20) ) {
-                    alt5=1;
-                }
-
-
-                switch (alt5) {
-            	case 1 :
-            	    // JSON.g:173:30: ',' jsonValue
-            	    {
-            	    match(input,20,FOLLOW_20_in_jsonElementList883); 
-
-            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList885);
-            	    jsonValue();
-
-            	    state._fsp--;
-
-
-            	    length++;
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop5;
-                }
-            } while (true);
-
-
-            if ( !((JsonArray.class.cast(this.expectedProperty).inRange(length))) ) {
-                throw new FailedPredicateException(input, "jsonElementList", "JsonArray.class.cast(this.expectedProperty).inRange(length)");
-            }
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        return ;
-    }
-    // $ANTLR end "jsonElementList"
 
     // Delegated rules
 
@@ -666,13 +636,12 @@ public class JSONParser extends Parser {
     public static final BitSet FOLLOW_STRING_in_jsonMember813 = new BitSet(new long[]{0x0000000000200000L});
     public static final BitSet FOLLOW_21_in_jsonMember817 = new BitSet(new long[]{0x0000000001436100L});
     public static final BitSet FOLLOW_jsonValue_in_jsonMember819 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_jsonArray836 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_jsonArray840 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_22_in_jsonArray848 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonElementList_in_jsonArray850 = new BitSet(new long[]{0x0000000000800000L});
-    public static final BitSet FOLLOW_23_in_jsonArray852 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList878 = new BitSet(new long[]{0x0000000000100002L});
-    public static final BitSet FOLLOW_20_in_jsonElementList883 = new BitSet(new long[]{0x0000000001436100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList885 = new BitSet(new long[]{0x0000000000100002L});
+    public static final BitSet FOLLOW_22_in_jsonArray845 = new BitSet(new long[]{0x0000000000800000L});
+    public static final BitSet FOLLOW_23_in_jsonArray849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_jsonArray857 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonArray859 = new BitSet(new long[]{0x0000000000900000L});
+    public static final BitSet FOLLOW_20_in_jsonArray864 = new BitSet(new long[]{0x0000000001436100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonArray866 = new BitSet(new long[]{0x0000000000900000L});
+    public static final BitSet FOLLOW_23_in_jsonArray874 = new BitSet(new long[]{0x0000000000000002L});
 
 }

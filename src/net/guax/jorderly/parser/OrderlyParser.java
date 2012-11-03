@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Orderly.g 2012-11-03 18:00:21
+// $ANTLR 3.4 Orderly.g 2012-11-03 18:43:49
 
 package net.guax.jorderly.parser;
 
@@ -1894,25 +1894,25 @@ public class OrderlyParser extends Parser {
 
 
     // $ANTLR start "jsonArray"
-    // Orderly.g:197:1: jsonArray : ( '[' ']' | '[' jsonElementList ']' );
+    // Orderly.g:197:1: jsonArray : ( '[' ']' | '[' jsonValue ( ',' jsonValue )* ']' );
     public final void jsonArray() throws RecognitionException {
         try {
-            // Orderly.g:198:5: ( '[' ']' | '[' jsonElementList ']' )
-            int alt30=2;
-            int LA30_0 = input.LA(1);
+            // Orderly.g:198:5: ( '[' ']' | '[' jsonValue ( ',' jsonValue )* ']' )
+            int alt31=2;
+            int LA31_0 = input.LA(1);
 
-            if ( (LA30_0==28) ) {
-                int LA30_1 = input.LA(2);
+            if ( (LA31_0==28) ) {
+                int LA31_1 = input.LA(2);
 
-                if ( (LA30_1==29) ) {
-                    alt30=1;
+                if ( (LA31_1==29) ) {
+                    alt31=1;
                 }
-                else if ( (LA30_1==FALSE||(LA30_1 >= NULL && LA30_1 <= NUMBER)||(LA30_1 >= STRING && LA30_1 <= TRUE)||LA30_1==28||LA30_1==38) ) {
-                    alt30=2;
+                else if ( (LA31_1==FALSE||(LA31_1 >= NULL && LA31_1 <= NUMBER)||(LA31_1 >= STRING && LA31_1 <= TRUE)||LA31_1==28||LA31_1==38) ) {
+                    alt31=2;
                 }
                 else {
                     NoViableAltException nvae =
-                        new NoViableAltException("", 30, 1, input);
+                        new NoViableAltException("", 31, 1, input);
 
                     throw nvae;
 
@@ -1920,12 +1920,12 @@ public class OrderlyParser extends Parser {
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 30, 0, input);
+                    new NoViableAltException("", 31, 0, input);
 
                 throw nvae;
 
             }
-            switch (alt30) {
+            switch (alt31) {
                 case 1 :
                     // Orderly.g:198:7: '[' ']'
                     {
@@ -1936,17 +1936,49 @@ public class OrderlyParser extends Parser {
                     }
                     break;
                 case 2 :
-                    // Orderly.g:199:7: '[' jsonElementList ']'
+                    // Orderly.g:199:7: '[' jsonValue ( ',' jsonValue )* ']'
                     {
                     match(input,28,FOLLOW_28_in_jsonArray1381); 
 
-                    pushFollow(FOLLOW_jsonElementList_in_jsonArray1383);
-                    jsonElementList();
+                    pushFollow(FOLLOW_jsonValue_in_jsonArray1383);
+                    jsonValue();
 
                     state._fsp--;
 
 
-                    match(input,29,FOLLOW_29_in_jsonArray1385); 
+                    // Orderly.g:199:21: ( ',' jsonValue )*
+                    loop30:
+                    do {
+                        int alt30=2;
+                        int LA30_0 = input.LA(1);
+
+                        if ( (LA30_0==21) ) {
+                            alt30=1;
+                        }
+
+
+                        switch (alt30) {
+                    	case 1 :
+                    	    // Orderly.g:199:22: ',' jsonValue
+                    	    {
+                    	    match(input,21,FOLLOW_21_in_jsonArray1386); 
+
+                    	    pushFollow(FOLLOW_jsonValue_in_jsonArray1388);
+                    	    jsonValue();
+
+                    	    state._fsp--;
+
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop30;
+                        }
+                    } while (true);
+
+
+                    match(input,29,FOLLOW_29_in_jsonArray1392); 
 
                     }
                     break;
@@ -1964,68 +1996,6 @@ public class OrderlyParser extends Parser {
         return ;
     }
     // $ANTLR end "jsonArray"
-
-
-
-    // $ANTLR start "jsonElementList"
-    // Orderly.g:202:1: jsonElementList : jsonValue ( ',' jsonValue )* ;
-    public final void jsonElementList() throws RecognitionException {
-        try {
-            // Orderly.g:203:5: ( jsonValue ( ',' jsonValue )* )
-            // Orderly.g:203:7: jsonValue ( ',' jsonValue )*
-            {
-            pushFollow(FOLLOW_jsonValue_in_jsonElementList1402);
-            jsonValue();
-
-            state._fsp--;
-
-
-            // Orderly.g:203:17: ( ',' jsonValue )*
-            loop31:
-            do {
-                int alt31=2;
-                int LA31_0 = input.LA(1);
-
-                if ( (LA31_0==21) ) {
-                    alt31=1;
-                }
-
-
-                switch (alt31) {
-            	case 1 :
-            	    // Orderly.g:203:18: ',' jsonValue
-            	    {
-            	    match(input,21,FOLLOW_21_in_jsonElementList1405); 
-
-            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList1407);
-            	    jsonValue();
-
-            	    state._fsp--;
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop31;
-                }
-            } while (true);
-
-
-            }
-
-        }
-        catch (RecognitionException re) {
-            reportError(re);
-            recover(input,re);
-        }
-
-        finally {
-        	// do for sure before leaving
-        }
-        return ;
-    }
-    // $ANTLR end "jsonElementList"
 
     // Delegated rules
 
@@ -2133,10 +2103,9 @@ public class OrderlyParser extends Parser {
     public static final BitSet FOLLOW_28_in_jsonArray1371 = new BitSet(new long[]{0x0000000020000000L});
     public static final BitSet FOLLOW_29_in_jsonArray1373 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_28_in_jsonArray1381 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonElementList_in_jsonArray1383 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_jsonArray1385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1402 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_jsonElementList1405 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1407 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonArray1383 = new BitSet(new long[]{0x0000000020200000L});
+    public static final BitSet FOLLOW_21_in_jsonArray1386 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonArray1388 = new BitSet(new long[]{0x0000000020200000L});
+    public static final BitSet FOLLOW_29_in_jsonArray1392 = new BitSet(new long[]{0x0000000000000002L});
 
 }

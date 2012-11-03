@@ -162,13 +162,9 @@ jsonMember
     ;
 
 jsonArray
-    : '[' {JsonArray.class.cast(this.expectedProperty).inRange(0)}? ']'
-    | '[' jsonElementList ']'
-    ;
-
-jsonElementList
     @init {
         int length = 0;
     }
-    : jsonValue {length++;} (',' jsonValue {length++;})* {JsonArray.class.cast(this.expectedProperty).inRange(length)}?
+    : '[' {JsonArray.class.cast(this.expectedProperty).inRange(0)}? ']'
+    | '[' jsonValue {length++;} (',' jsonValue {length++;})* {JsonArray.class.cast(this.expectedProperty).inRange(length)}? ']'
     ;

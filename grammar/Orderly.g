@@ -196,9 +196,5 @@ jsonMemberList
 
 jsonArray
     : '[' ']'
-    | '[' jsonElementList ']'
-    ;
-
-jsonElementList
-    : jsonValue (',' jsonValue)*
+    | '[' jsonValue (',' jsonValue)* ']'
     ;
