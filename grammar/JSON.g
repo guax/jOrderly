@@ -26,7 +26,9 @@ package net.guax.jorderly.parser;
 
     public JsonProperty resolvArrayContext(String type) {
         if (this.expectedProperty instanceof JsonArray && JsonArray.class.cast(this.expectedProperty).inside) {
-            return JsonArray.class.cast(this.expectedProperty).getProperty(type);
+            JsonProperty resolvedObject = JsonArray.class.cast(this.expectedProperty).getProperty(type);
+            resolvedObject.setInput(this.input);
+            return resolvedObject;
         }
 
         return this.expectedProperty;
