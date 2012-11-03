@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Orderly.g 2012-11-03 17:28:48
+// $ANTLR 3.4 Orderly.g 2012-11-03 17:43:56
 
 package net.guax.jorderly.parser;
 
@@ -502,10 +502,10 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "INT"
     public final void mINT() throws RecognitionException {
         try {
-            // Orderly.g:111:14: ( ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ ) )
-            // Orderly.g:111:16: ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ )
+            // Orderly.g:117:14: ( ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ ) )
+            // Orderly.g:117:16: ( '-' | '+' )? ( DIGIT | '1' .. '9' ( DIGIT )+ )
             {
-            // Orderly.g:111:16: ( '-' | '+' )?
+            // Orderly.g:117:16: ( '-' | '+' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -532,7 +532,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // Orderly.g:111:30: ( DIGIT | '1' .. '9' ( DIGIT )+ )
+            // Orderly.g:117:30: ( DIGIT | '1' .. '9' ( DIGIT )+ )
             int alt3=2;
             int LA3_0 = input.LA(1);
 
@@ -558,7 +558,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // Orderly.g:111:31: DIGIT
+                    // Orderly.g:117:31: DIGIT
                     {
                     mDIGIT(); 
 
@@ -566,11 +566,11 @@ public class OrderlyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Orderly.g:111:39: '1' .. '9' ( DIGIT )+
+                    // Orderly.g:117:39: '1' .. '9' ( DIGIT )+
                     {
                     matchRange('1','9'); 
 
-                    // Orderly.g:111:48: ( DIGIT )+
+                    // Orderly.g:117:48: ( DIGIT )+
                     int cnt2=0;
                     loop2:
                     do {
@@ -628,8 +628,8 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "EXP"
     public final void mEXP() throws RecognitionException {
         try {
-            // Orderly.g:109:14: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
-            // Orderly.g:109:16: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
+            // Orderly.g:115:14: ( ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+ )
+            // Orderly.g:115:16: ( 'e' | 'E' ) ( '+' | '-' )? ( DIGIT )+
             {
             if ( input.LA(1)=='E'||input.LA(1)=='e' ) {
                 input.consume();
@@ -641,7 +641,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // Orderly.g:109:30: ( '+' | '-' )?
+            // Orderly.g:115:30: ( '+' | '-' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -668,7 +668,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // Orderly.g:109:42: ( DIGIT )+
+            // Orderly.g:115:42: ( DIGIT )+
             int cnt5=0;
             loop5:
             do {
@@ -720,12 +720,12 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "FRAC"
     public final void mFRAC() throws RecognitionException {
         try {
-            // Orderly.g:112:4: ( '.' ( DIGIT )+ )
-            // Orderly.g:112:6: '.' ( DIGIT )+
+            // Orderly.g:118:4: ( '.' ( DIGIT )+ )
+            // Orderly.g:118:6: '.' ( DIGIT )+
             {
             match('.'); 
 
-            // Orderly.g:112:10: ( DIGIT )+
+            // Orderly.g:118:10: ( DIGIT )+
             int cnt6=0;
             loop6:
             do {
@@ -779,13 +779,13 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = NUMBER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:116:5: ( INT ( FRAC )? ( EXP )? )
-            // Orderly.g:116:7: INT ( FRAC )? ( EXP )?
+            // Orderly.g:122:5: ( INT ( FRAC )? ( EXP )? )
+            // Orderly.g:122:7: INT ( FRAC )? ( EXP )?
             {
             mINT(); 
 
 
-            // Orderly.g:116:11: ( FRAC )?
+            // Orderly.g:122:11: ( FRAC )?
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -794,7 +794,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // Orderly.g:116:11: FRAC
+                    // Orderly.g:122:11: FRAC
                     {
                     mFRAC(); 
 
@@ -805,7 +805,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // Orderly.g:116:17: ( EXP )?
+            // Orderly.g:122:17: ( EXP )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -814,7 +814,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // Orderly.g:116:17: EXP
+                    // Orderly.g:122:17: EXP
                     {
                     mEXP(); 
 
@@ -841,8 +841,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = NULL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:120:5: ( 'null' )
-            // Orderly.g:120:7: 'null'
+            // Orderly.g:126:5: ( 'null' )
+            // Orderly.g:126:7: 'null'
             {
             match("null"); 
 
@@ -864,8 +864,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = TRUE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:124:5: ( 'true' )
-            // Orderly.g:124:7: 'true'
+            // Orderly.g:130:5: ( 'true' )
+            // Orderly.g:130:7: 'true'
             {
             match("true"); 
 
@@ -887,8 +887,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = FALSE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:128:5: ( 'false' )
-            // Orderly.g:128:7: 'false'
+            // Orderly.g:134:5: ( 'false' )
+            // Orderly.g:134:7: 'false'
             {
             match("false"); 
 
@@ -908,12 +908,12 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "EscapeSequence"
     public final void mEscapeSequence() throws RecognitionException {
         try {
-            // Orderly.g:132:9: ( '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
-            // Orderly.g:132:13: '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // Orderly.g:138:9: ( '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' ) )
+            // Orderly.g:138:13: '\\\\' ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             {
             match('\\'); 
 
-            // Orderly.g:132:18: ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
+            // Orderly.g:138:18: ( UnicodeEscape | 'b' | 't' | 'n' | 'f' | 'r' | '\\\"' | '\\'' | '\\\\' )
             int alt9=9;
             switch ( input.LA(1) ) {
             case 'u':
@@ -971,7 +971,7 @@ public class OrderlyLexer extends Lexer {
 
             switch (alt9) {
                 case 1 :
-                    // Orderly.g:132:19: UnicodeEscape
+                    // Orderly.g:138:19: UnicodeEscape
                     {
                     mUnicodeEscape(); 
 
@@ -979,56 +979,56 @@ public class OrderlyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Orderly.g:132:34: 'b'
+                    // Orderly.g:138:34: 'b'
                     {
                     match('b'); 
 
                     }
                     break;
                 case 3 :
-                    // Orderly.g:132:38: 't'
+                    // Orderly.g:138:38: 't'
                     {
                     match('t'); 
 
                     }
                     break;
                 case 4 :
-                    // Orderly.g:132:42: 'n'
+                    // Orderly.g:138:42: 'n'
                     {
                     match('n'); 
 
                     }
                     break;
                 case 5 :
-                    // Orderly.g:132:46: 'f'
+                    // Orderly.g:138:46: 'f'
                     {
                     match('f'); 
 
                     }
                     break;
                 case 6 :
-                    // Orderly.g:132:50: 'r'
+                    // Orderly.g:138:50: 'r'
                     {
                     match('r'); 
 
                     }
                     break;
                 case 7 :
-                    // Orderly.g:132:54: '\\\"'
+                    // Orderly.g:138:54: '\\\"'
                     {
                     match('\"'); 
 
                     }
                     break;
                 case 8 :
-                    // Orderly.g:132:59: '\\''
+                    // Orderly.g:138:59: '\\''
                     {
                     match('\''); 
 
                     }
                     break;
                 case 9 :
-                    // Orderly.g:132:64: '\\\\'
+                    // Orderly.g:138:64: '\\\\'
                     {
                     match('\\'); 
 
@@ -1051,8 +1051,8 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "UnicodeEscape"
     public final void mUnicodeEscape() throws RecognitionException {
         try {
-            // Orderly.g:136:5: ( 'u' HexDigit HexDigit HexDigit HexDigit )
-            // Orderly.g:136:7: 'u' HexDigit HexDigit HexDigit HexDigit
+            // Orderly.g:142:5: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+            // Orderly.g:142:7: 'u' HexDigit HexDigit HexDigit HexDigit
             {
             match('u'); 
 
@@ -1081,7 +1081,7 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "HexDigit"
     public final void mHexDigit() throws RecognitionException {
         try {
-            // Orderly.g:140:5: ( DIGIT | 'A' .. 'F' | 'a' .. 'f' )
+            // Orderly.g:146:5: ( DIGIT | 'A' .. 'F' | 'a' .. 'f' )
             // Orderly.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'F')||(input.LA(1) >= 'a' && input.LA(1) <= 'f') ) {
@@ -1107,7 +1107,7 @@ public class OrderlyLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // Orderly.g:144:5: ( '0' .. '9' )
+            // Orderly.g:150:5: ( '0' .. '9' )
             // Orderly.g:
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9') ) {
@@ -1135,12 +1135,12 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = REGEX;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:148:2: ( '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/' )
-            // Orderly.g:148:4: '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/'
+            // Orderly.g:154:2: ( '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/' )
+            // Orderly.g:154:4: '/' ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )* '/'
             {
             match('/'); 
 
-            // Orderly.g:148:8: ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )*
+            // Orderly.g:154:8: ( '\\\\' . |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' ) )*
             loop10:
             do {
                 int alt10=3;
@@ -1156,7 +1156,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // Orderly.g:148:10: '\\\\' .
+            	    // Orderly.g:154:10: '\\\\' .
             	    {
             	    match('\\'); 
 
@@ -1165,7 +1165,7 @@ public class OrderlyLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Orderly.g:148:19: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' )
+            	    // Orderly.g:154:19: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '/' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '.')||(input.LA(1) >= '0' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1204,12 +1204,12 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:151:9: ( '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' )
-            // Orderly.g:152:5: '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
+            // Orderly.g:157:9: ( '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"' )
+            // Orderly.g:158:5: '\"' ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )* '\"'
             {
             match('\"'); 
 
-            // Orderly.g:152:9: ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
+            // Orderly.g:158:9: ( EscapeSequence |~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' ) )*
             loop11:
             do {
                 int alt11=3;
@@ -1225,7 +1225,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // Orderly.g:152:11: EscapeSequence
+            	    // Orderly.g:158:11: EscapeSequence
             	    {
             	    mEscapeSequence(); 
 
@@ -1233,7 +1233,7 @@ public class OrderlyLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // Orderly.g:152:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
+            	    // Orderly.g:158:28: ~ ( '\\u0000' .. '\\u001f' | '\\\\' | '\\\"' )
             	    {
             	    if ( (input.LA(1) >= ' ' && input.LA(1) <= '!')||(input.LA(1) >= '#' && input.LA(1) <= '[')||(input.LA(1) >= ']' && input.LA(1) <= '\uFFFF') ) {
             	        input.consume();
@@ -1272,8 +1272,8 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = IDENTIFIER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:156:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )* )
-            // Orderly.g:156:7: ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
+            // Orderly.g:162:5: ( ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )* )
+            // Orderly.g:162:7: ( 'a' .. 'z' | 'A' .. 'Z' | DIGIT ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
             {
             if ( (input.LA(1) >= '0' && input.LA(1) <= '9')||(input.LA(1) >= 'A' && input.LA(1) <= 'Z')||(input.LA(1) >= 'a' && input.LA(1) <= 'z') ) {
                 input.consume();
@@ -1285,7 +1285,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // Orderly.g:156:37: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
+            // Orderly.g:162:37: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '-' | DIGIT )*
             loop12:
             do {
                 int alt12=2;
@@ -1335,10 +1335,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:159:3: ( ( ' ' | '\\n' | '\\r' | '\\t' )+ )
-            // Orderly.g:159:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
+            // Orderly.g:165:3: ( ( ' ' | '\\n' | '\\r' | '\\t' )+ )
+            // Orderly.g:165:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
             {
-            // Orderly.g:159:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
+            // Orderly.g:165:5: ( ' ' | '\\n' | '\\r' | '\\t' )+
             int cnt13=0;
             loop13:
             do {
@@ -1395,10 +1395,10 @@ public class OrderlyLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // Orderly.g:161:9: ( ( '//' | '#' ) ( . )* ( '\\n' | '\\r' ) )
-            // Orderly.g:161:11: ( '//' | '#' ) ( . )* ( '\\n' | '\\r' )
+            // Orderly.g:167:9: ( ( '//' | '#' ) ( . )* ( '\\n' | '\\r' ) )
+            // Orderly.g:167:11: ( '//' | '#' ) ( . )* ( '\\n' | '\\r' )
             {
-            // Orderly.g:161:11: ( '//' | '#' )
+            // Orderly.g:167:11: ( '//' | '#' )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
@@ -1417,7 +1417,7 @@ public class OrderlyLexer extends Lexer {
             }
             switch (alt14) {
                 case 1 :
-                    // Orderly.g:161:12: '//'
+                    // Orderly.g:167:12: '//'
                     {
                     match("//"); 
 
@@ -1426,7 +1426,7 @@ public class OrderlyLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // Orderly.g:161:19: '#'
+                    // Orderly.g:167:19: '#'
                     {
                     match('#'); 
 
@@ -1436,7 +1436,7 @@ public class OrderlyLexer extends Lexer {
             }
 
 
-            // Orderly.g:161:25: ( . )*
+            // Orderly.g:167:25: ( . )*
             loop15:
             do {
                 int alt15=2;
@@ -1452,7 +1452,7 @@ public class OrderlyLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // Orderly.g:161:25: .
+            	    // Orderly.g:167:25: .
             	    {
             	    matchAny(); 
 

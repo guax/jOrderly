@@ -18,6 +18,10 @@ import java.math.BigDecimal;
 package net.guax.jorderly.parser;
 }
 
+@members {
+    JsonProperty currentProperty;
+}
+
 orderly_schema returns [JsonProperty rootProperty]
     :	unnamed_entry ';'? { $rootProperty = $unnamed_entry.property;}
     ;
@@ -32,6 +36,8 @@ definition_suffix
 	;
 
 definition_prefix returns [JsonProperty property]
+    // Defining last property so we can defnition_suffix the s*** out of it
+    @after { this.currentProperty = $property; }
     :	'integer' { $property = new JsonInteger(); } range? {JsonInteger.class.cast($property).setRange($range.range);}
     |	'number' { $property = new JsonNumber(); } range? {JsonNumber.class.cast($property).setRange($range.range);}
     |	'boolean' { $property = new JsonBoolean(); }
@@ -69,7 +75,7 @@ requires
 	;
 
 optional_marker
-    :	'?'
+    :	'?' {this.currentProperty.setOptional(true);}
     ;
 
 additional_marker

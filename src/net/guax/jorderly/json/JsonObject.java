@@ -52,6 +52,14 @@ public class JsonObject extends JsonProperty {
     public void startKeyMark() {
         if (this.properties != null) {
             this.keyMark = new ArrayList<String>(this.properties.keySet());
+            
+            // Removing optional values
+            for(JsonProperty property : this.properties.values()) {
+                if(property.isOptional()) {
+                    this.keyMark.remove(property.getName());
+                }
+            }
+            
         }
         this.allMark = new ArrayList<String>();
     }
