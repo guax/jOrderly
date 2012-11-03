@@ -9,7 +9,7 @@ bldblu=${txtbld}$(tput setaf 4) #  blue
 bldwht=${txtbld}$(tput setaf 7) #  white
 txtrst=$(tput sgr0)             # Reset
 
-TEST_PATH="tests/grammarBasics"
+TEST_PATH="tests"
 JORDERLY="java -cp lib/*:dist/jorderly.jar net.guax.jorderly.Main"
 
 for testCase in `ls ${TEST_PATH}`; do
