@@ -102,8 +102,17 @@ jsonBooleanLiteral
     ;
 
 jsonObject
-    : '{' '}'
-    | '{' jsonMember (',' jsonMember)* '}'
+    @init {
+        boolean isAny = this.expectedProperty instanceof JsonAny;
+        JsonObject jo = null;
+        
+        if(!isAny) {
+            jo = JsonObject.class.cast(this.expectedProperty);
+            jo.startKeyMark();
+        }
+    }
+    : '{' '}' {(!isAny && jo.finishKeyMark()) || isAny}?
+    | '{' jsonMember (',' jsonMember)* '}' {(!isAny && jo.finishKeyMark()) || isAny}?
     ;
 
 jsonValue
@@ -140,7 +149,14 @@ jsonMember
         boolean isAny = this.expectedProperty instanceof JsonAny;
     }
     @after { this.expectedProperty = expected; }
-    : property=STRING {if(!isAny) { this.expectedProperty = JsonObject.class.cast(expected).getProperty(JsonString.trimQuotes($property.getText())); }} ':' jsonValue
+    : property=STRING {
+        if(!isAny) {
+            String key = JsonString.trimQuotes($property.getText());
+            JsonObject jo = JsonObject.class.cast(expected);
+            jo.markKey(key);
+            this.expectedProperty = jo.getProperty(key);
+        }
+    } ':' jsonValue
     ;
 
 jsonArray

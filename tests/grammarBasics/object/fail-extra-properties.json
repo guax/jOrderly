@@ -1,0 +1,11 @@
+{
+    "sub_object" : {"any": "stuff"},
+    "string" : "string",
+    "number" : 123.123,
+    "array" : ["stuff", 23],
+    "null" : null,
+    "integer" : 123,
+    "boolean" : true,
+    "stuff" : {"nothing":"here"},
+    "extra" : "property"
+}
