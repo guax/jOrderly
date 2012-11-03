@@ -1,9 +1,0 @@
-object {
-    string an;     # almost a keyword
-    string any;    # it *is* a keyword so error here
-    string anyone; # a keyword and thensome
-    string "any";  # a quoted keyword
-    string "this is a keyword with spaces"; // self documenting
-    string "\"";   # escaping alone
-    string "\"'!#$%&(@%*^!)#)!^\\"; # lotsa stuff in addition to escaping
-}
