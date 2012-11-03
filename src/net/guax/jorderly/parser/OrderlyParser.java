@@ -1,4 +1,4 @@
-// $ANTLR 3.4 Orderly.g 2012-11-03 17:43:55
+// $ANTLR 3.4 Orderly.g 2012-11-03 17:55:17
 
 package net.guax.jorderly.parser;
 
@@ -1353,6 +1353,8 @@ public class OrderlyParser extends Parser {
             state._fsp--;
 
 
+            this.currentProperty.setOptional(true);
+
             }
 
         }
@@ -1438,15 +1440,15 @@ public class OrderlyParser extends Parser {
                 case 1 :
                     // Orderly.g:95:7: '{' lower= NUMBER ',' upper= NUMBER '}'
                     {
-                    match(input,38,FOLLOW_38_in_range624); 
+                    match(input,38,FOLLOW_38_in_range626); 
 
-                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range628); 
+                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range630); 
 
-                    match(input,21,FOLLOW_21_in_range630); 
+                    match(input,21,FOLLOW_21_in_range632); 
 
-                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range634); 
+                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range636); 
 
-                    match(input,39,FOLLOW_39_in_range636); 
+                    match(input,39,FOLLOW_39_in_range638); 
 
                     range.lowerBound = new BigDecimal(lower.getText()); range.upperBound = new BigDecimal(upper.getText());
 
@@ -1455,13 +1457,13 @@ public class OrderlyParser extends Parser {
                 case 2 :
                     // Orderly.g:96:7: '{' lower= NUMBER ',' '}'
                     {
-                    match(input,38,FOLLOW_38_in_range646); 
+                    match(input,38,FOLLOW_38_in_range648); 
 
-                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range650); 
+                    lower=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range652); 
 
-                    match(input,21,FOLLOW_21_in_range652); 
+                    match(input,21,FOLLOW_21_in_range654); 
 
-                    match(input,39,FOLLOW_39_in_range654); 
+                    match(input,39,FOLLOW_39_in_range656); 
 
                     range.lowerBound = new BigDecimal(lower.getText());
 
@@ -1470,13 +1472,13 @@ public class OrderlyParser extends Parser {
                 case 3 :
                     // Orderly.g:97:7: '{' ',' upper= NUMBER '}'
                     {
-                    match(input,38,FOLLOW_38_in_range664); 
+                    match(input,38,FOLLOW_38_in_range666); 
 
-                    match(input,21,FOLLOW_21_in_range666); 
+                    match(input,21,FOLLOW_21_in_range668); 
 
-                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range670); 
+                    upper=(Token)match(input,NUMBER,FOLLOW_NUMBER_in_range672); 
 
-                    match(input,39,FOLLOW_39_in_range672); 
+                    match(input,39,FOLLOW_39_in_range674); 
 
                     range.upperBound = new BigDecimal(upper.getText());
 
@@ -1555,7 +1557,7 @@ public class OrderlyParser extends Parser {
             // Orderly.g:106:2: (exp= REGEX )
             // Orderly.g:106:4: exp= REGEX
             {
-            exp=(Token)match(input,REGEX,FOLLOW_REGEX_in_perl_regex707); 
+            exp=(Token)match(input,REGEX,FOLLOW_REGEX_in_perl_regex709); 
 
             regex = new RegularExpression(exp.getText());
 
@@ -1626,14 +1628,14 @@ public class OrderlyParser extends Parser {
                 case 1 :
                     // Orderly.g:171:7: NULL
                     {
-                    match(input,NULL,FOLLOW_NULL_in_jsonValue1207); 
+                    match(input,NULL,FOLLOW_NULL_in_jsonValue1209); 
 
                     }
                     break;
                 case 2 :
                     // Orderly.g:172:7: jsonBooleanLiteral
                     {
-                    pushFollow(FOLLOW_jsonBooleanLiteral_in_jsonValue1215);
+                    pushFollow(FOLLOW_jsonBooleanLiteral_in_jsonValue1217);
                     jsonBooleanLiteral();
 
                     state._fsp--;
@@ -1644,21 +1646,21 @@ public class OrderlyParser extends Parser {
                 case 3 :
                     // Orderly.g:173:7: STRING
                     {
-                    match(input,STRING,FOLLOW_STRING_in_jsonValue1223); 
+                    match(input,STRING,FOLLOW_STRING_in_jsonValue1225); 
 
                     }
                     break;
                 case 4 :
                     // Orderly.g:174:7: NUMBER
                     {
-                    match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue1231); 
+                    match(input,NUMBER,FOLLOW_NUMBER_in_jsonValue1233); 
 
                     }
                     break;
                 case 5 :
                     // Orderly.g:175:7: jsonObject
                     {
-                    pushFollow(FOLLOW_jsonObject_in_jsonValue1239);
+                    pushFollow(FOLLOW_jsonObject_in_jsonValue1241);
                     jsonObject();
 
                     state._fsp--;
@@ -1669,7 +1671,7 @@ public class OrderlyParser extends Parser {
                 case 6 :
                     // Orderly.g:176:7: jsonArray
                     {
-                    pushFollow(FOLLOW_jsonArray_in_jsonValue1247);
+                    pushFollow(FOLLOW_jsonArray_in_jsonValue1249);
                     jsonArray();
 
                     state._fsp--;
@@ -1764,24 +1766,24 @@ public class OrderlyParser extends Parser {
                 case 1 :
                     // Orderly.g:185:7: '{' '}'
                     {
-                    match(input,38,FOLLOW_38_in_jsonObject1293); 
+                    match(input,38,FOLLOW_38_in_jsonObject1295); 
 
-                    match(input,39,FOLLOW_39_in_jsonObject1295); 
+                    match(input,39,FOLLOW_39_in_jsonObject1297); 
 
                     }
                     break;
                 case 2 :
                     // Orderly.g:186:7: '{' jsonMemberList '}'
                     {
-                    match(input,38,FOLLOW_38_in_jsonObject1303); 
+                    match(input,38,FOLLOW_38_in_jsonObject1305); 
 
-                    pushFollow(FOLLOW_jsonMemberList_in_jsonObject1305);
+                    pushFollow(FOLLOW_jsonMemberList_in_jsonObject1307);
                     jsonMemberList();
 
                     state._fsp--;
 
 
-                    match(input,39,FOLLOW_39_in_jsonObject1307); 
+                    match(input,39,FOLLOW_39_in_jsonObject1309); 
 
                     }
                     break;
@@ -1809,11 +1811,11 @@ public class OrderlyParser extends Parser {
             // Orderly.g:190:5: ( STRING ':' jsonValue )
             // Orderly.g:190:7: STRING ':' jsonValue
             {
-            match(input,STRING,FOLLOW_STRING_in_jsonMember1324); 
+            match(input,STRING,FOLLOW_STRING_in_jsonMember1326); 
 
-            match(input,22,FOLLOW_22_in_jsonMember1326); 
+            match(input,22,FOLLOW_22_in_jsonMember1328); 
 
-            pushFollow(FOLLOW_jsonValue_in_jsonMember1328);
+            pushFollow(FOLLOW_jsonValue_in_jsonMember1330);
             jsonValue();
 
             state._fsp--;
@@ -1843,7 +1845,7 @@ public class OrderlyParser extends Parser {
             // Orderly.g:194:5: ( jsonMember ( ',' jsonMemberList )? )
             // Orderly.g:194:7: jsonMember ( ',' jsonMemberList )?
             {
-            pushFollow(FOLLOW_jsonMember_in_jsonMemberList1345);
+            pushFollow(FOLLOW_jsonMember_in_jsonMemberList1347);
             jsonMember();
 
             state._fsp--;
@@ -1860,9 +1862,9 @@ public class OrderlyParser extends Parser {
                 case 1 :
                     // Orderly.g:194:19: ',' jsonMemberList
                     {
-                    match(input,21,FOLLOW_21_in_jsonMemberList1348); 
+                    match(input,21,FOLLOW_21_in_jsonMemberList1350); 
 
-                    pushFollow(FOLLOW_jsonMemberList_in_jsonMemberList1350);
+                    pushFollow(FOLLOW_jsonMemberList_in_jsonMemberList1352);
                     jsonMemberList();
 
                     state._fsp--;
@@ -1927,24 +1929,24 @@ public class OrderlyParser extends Parser {
                 case 1 :
                     // Orderly.g:198:7: '[' ']'
                     {
-                    match(input,28,FOLLOW_28_in_jsonArray1369); 
+                    match(input,28,FOLLOW_28_in_jsonArray1371); 
 
-                    match(input,29,FOLLOW_29_in_jsonArray1371); 
+                    match(input,29,FOLLOW_29_in_jsonArray1373); 
 
                     }
                     break;
                 case 2 :
                     // Orderly.g:199:7: '[' jsonElementList ']'
                     {
-                    match(input,28,FOLLOW_28_in_jsonArray1379); 
+                    match(input,28,FOLLOW_28_in_jsonArray1381); 
 
-                    pushFollow(FOLLOW_jsonElementList_in_jsonArray1381);
+                    pushFollow(FOLLOW_jsonElementList_in_jsonArray1383);
                     jsonElementList();
 
                     state._fsp--;
 
 
-                    match(input,29,FOLLOW_29_in_jsonArray1383); 
+                    match(input,29,FOLLOW_29_in_jsonArray1385); 
 
                     }
                     break;
@@ -1972,7 +1974,7 @@ public class OrderlyParser extends Parser {
             // Orderly.g:203:5: ( jsonValue ( ',' jsonValue )* )
             // Orderly.g:203:7: jsonValue ( ',' jsonValue )*
             {
-            pushFollow(FOLLOW_jsonValue_in_jsonElementList1400);
+            pushFollow(FOLLOW_jsonValue_in_jsonElementList1402);
             jsonValue();
 
             state._fsp--;
@@ -1993,9 +1995,9 @@ public class OrderlyParser extends Parser {
             	case 1 :
             	    // Orderly.g:203:18: ',' jsonValue
             	    {
-            	    match(input,21,FOLLOW_21_in_jsonElementList1403); 
+            	    match(input,21,FOLLOW_21_in_jsonElementList1405); 
 
-            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList1405);
+            	    pushFollow(FOLLOW_jsonValue_in_jsonElementList1407);
             	    jsonValue();
 
             	    state._fsp--;
@@ -2097,44 +2099,44 @@ public class OrderlyParser extends Parser {
     public static final BitSet FOLLOW_jsonArray_in_enum_values578 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_25_in_default_value595 = new BitSet(new long[]{0x0000004010036100L});
     public static final BitSet FOLLOW_jsonValue_in_default_value597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_range624 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range628 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_range630 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range634 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_range636 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_range646 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range650 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_range652 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_range654 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_range664 = new BitSet(new long[]{0x0000000000200000L});
-    public static final BitSet FOLLOW_21_in_range666 = new BitSet(new long[]{0x0000000000004000L});
-    public static final BitSet FOLLOW_NUMBER_in_range670 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_range672 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_REGEX_in_perl_regex707 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NULL_in_jsonValue1207 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonBooleanLiteral_in_jsonValue1215 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonValue1223 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_NUMBER_in_jsonValue1231 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonObject_in_jsonValue1239 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonArray_in_jsonValue1247 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_jsonObject1293 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_jsonObject1295 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_jsonObject1303 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_jsonMemberList_in_jsonObject1305 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_jsonObject1307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STRING_in_jsonMember1324 = new BitSet(new long[]{0x0000000000400000L});
-    public static final BitSet FOLLOW_22_in_jsonMember1326 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonMember1328 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonMember_in_jsonMemberList1345 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_jsonMemberList1348 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_jsonMemberList_in_jsonMemberList1350 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_jsonArray1369 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_jsonArray1371 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_28_in_jsonArray1379 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonElementList_in_jsonArray1381 = new BitSet(new long[]{0x0000000020000000L});
-    public static final BitSet FOLLOW_29_in_jsonArray1383 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1400 = new BitSet(new long[]{0x0000000000200002L});
-    public static final BitSet FOLLOW_21_in_jsonElementList1403 = new BitSet(new long[]{0x0000004010036100L});
-    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1405 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_38_in_range626 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range630 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_range632 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range636 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_range638 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_range648 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range652 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_range654 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_range656 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_range666 = new BitSet(new long[]{0x0000000000200000L});
+    public static final BitSet FOLLOW_21_in_range668 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_NUMBER_in_range672 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_range674 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_REGEX_in_perl_regex709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NULL_in_jsonValue1209 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonBooleanLiteral_in_jsonValue1217 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_jsonValue1225 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_NUMBER_in_jsonValue1233 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonObject_in_jsonValue1241 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonArray_in_jsonValue1249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_jsonObject1295 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_jsonObject1297 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_jsonObject1305 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_jsonMemberList_in_jsonObject1307 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_jsonObject1309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STRING_in_jsonMember1326 = new BitSet(new long[]{0x0000000000400000L});
+    public static final BitSet FOLLOW_22_in_jsonMember1328 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonMember1330 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonMember_in_jsonMemberList1347 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_21_in_jsonMemberList1350 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_jsonMemberList_in_jsonMemberList1352 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_jsonArray1371 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_jsonArray1373 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_28_in_jsonArray1381 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonElementList_in_jsonArray1383 = new BitSet(new long[]{0x0000000020000000L});
+    public static final BitSet FOLLOW_29_in_jsonArray1385 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1402 = new BitSet(new long[]{0x0000000000200002L});
+    public static final BitSet FOLLOW_21_in_jsonElementList1405 = new BitSet(new long[]{0x0000004010036100L});
+    public static final BitSet FOLLOW_jsonValue_in_jsonElementList1407 = new BitSet(new long[]{0x0000000000200002L});
 
 }

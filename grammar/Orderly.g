@@ -87,7 +87,7 @@ enum_values
     ;
 
 default_value
-    :	'=' jsonValue
+    :	'=' jsonValue {this.currentProperty.setOptional(true);}
 	;
 
 range returns [Range range]
