@@ -56,12 +56,12 @@ public class JsonArray extends JsonProperty {
         }
         
         if (this.range.lowerBound != null && this.range.lowerBound.compareTo(new BigDecimal(value)) > 0) {
-            throw new FailedPredicateException(this.input, "string", "String does not obey character range");
+            throw new FailedPredicateException(this.input, "array", "Array has less elements then it should");
         }
         
         // upper bound < value.lenght
         if (this.range.upperBound != null && this.range.upperBound.compareTo(new BigDecimal(value)) < 0) {
-            throw new FailedPredicateException(this.input, "string", "String does not obey character range");
+            throw new FailedPredicateException(this.input, "array", "Array has more elements then it should");
         }
         
         return true;
