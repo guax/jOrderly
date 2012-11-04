@@ -8,14 +8,11 @@ array {
     integer size;
     string documentation;
     string CoreletType [ "standalone", "dependent", "provider" ];
-    # if CoreletType is "standalone" or "provider", then
-    # CoreletAPIVersion must be present
-    integer CoreletAPIVersion ?;
-    # if CoreletType is "dependent", then CoreletRequires must be present
+    integer CoreletAPIVersion? <CoreletType in ["standalone", "provider"]>;
     object {
       string Name;
       string Version;
       string Minversion;
-    } CoreletRequires ?;
-  }*;
+    } CoreletRequires?;
+  }* <CoreletType = "dependent">;
 };

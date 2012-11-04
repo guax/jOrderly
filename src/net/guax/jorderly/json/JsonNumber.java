@@ -12,7 +12,15 @@ import org.antlr.runtime.FailedPredicateException;
  */
 public class JsonNumber extends JsonProperty {
     
+    BigDecimal value;
+    
     Range range;
+    
+    public JsonNumber() {}
+    
+    public JsonNumber(String value) {
+        this.value = new BigDecimal(value);
+    }
 
     public Range getRange() {
         return range;

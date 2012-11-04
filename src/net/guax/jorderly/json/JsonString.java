@@ -15,6 +15,13 @@ import org.antlr.runtime.FailedPredicateException;
 public class JsonString extends JsonProperty {
     RegularExpression regex;
     
+    String value = "";
+    
+    public JsonString() {}
+    public JsonString(String value) {
+        this.value = JsonString.trimQuotes(value);
+    }
+    
     public static String trimQuotes(String quoted_string) {
         return quoted_string.replaceAll("\"*$|^\"*", "");
     }

@@ -1,5 +1,7 @@
 package net.guax.jorderly.json;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import org.antlr.runtime.IntStream;
 
@@ -8,6 +10,10 @@ import org.antlr.runtime.IntStream;
  * @author guax
  */
 abstract public class JsonProperty {
+    
+    public JsonProperty() {
+        this.requires = new HashMap<String, ArrayList<JsonProperty>>();
+    }
     
     IntStream input;
 
@@ -28,7 +34,7 @@ abstract public class JsonProperty {
     
     protected boolean optional = false;
     
-    protected List<String> requires = null;
+    protected HashMap<String, ArrayList<JsonProperty>> requires = null;
     
     protected List<Value> enumValues = null;
     
@@ -62,13 +68,13 @@ abstract public class JsonProperty {
     public void setOptional(boolean optional) {
         this.optional = optional;
     }
-
-    public List<String> getRequires() {
-        return requires;
+    
+    public void addRequires(String property) {
+        this.requires.put(property, null);
     }
-
-    public void setRequires(List<String> requires) {
-        this.requires = requires;
+    
+    public void addRequires(String property, ArrayList<JsonProperty> value) {
+        this.requires.put(property, value);
     }
 
     public List<Value> getEnumValues() {

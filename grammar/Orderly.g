@@ -19,7 +19,9 @@ package net.guax.jorderly.parser;
 }
 
 @members {
+    // The following variables are temporary and should not be trusted for long.
     JsonProperty currentProperty;
+    String currentRequire;
 }
 
 orderly_schema returns [JsonProperty rootProperty]
@@ -32,7 +34,7 @@ unnamed_entry returns [JsonProperty property]
     ;
 
 definition_suffix
-    :	enum_values? default_value? requires? optional_marker?
+    :	optional_marker? enum_values? default_value? requires?
 	;
 
 definition_prefix returns [JsonProperty property]
@@ -66,12 +68,24 @@ unnamed_entries returns [HashMap<String, JsonProperty> properties]
     :	un1=unnamed_entry {$properties.put($un1.property.getClass().getName(),$un1.property);} (';' un2=unnamed_entry {$properties.put($un2.property.getClass().getName(), $un2.property);} )* ';'?
     ;
 
-csv_property_names
-    :	property_name (',' property_name)*
-	;
+require_conditional
+    @init {
+        ArrayList requires = new ArrayList<JsonProperty>();
+    }
+    @after {
+        this.currentProperty.addRequires(this.currentRequire, requires);
+    }
+    : '=' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} )
+    | 'in' '[' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} ) (',' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} ))* ']'
+    | {this.currentProperty.addRequires(this.currentRequire);}
+    ;
+
+require_property
+    : property_name {this.currentRequire = JsonString.trimQuotes($property_name.text);} require_conditional
+    ;
 
 requires
-    :	'<' csv_property_names '>'
+    :	'<' require_property (',' require_property)* '>'
 	;
 
 optional_marker
