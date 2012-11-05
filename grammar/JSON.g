@@ -128,11 +128,11 @@ jsonValue
     // Null
     : { this.expectedProperty.allow(JsonNull.class) }? NULL
     // Boolean
-    | { this.expectedProperty.allow(JsonBoolean.class) }?{this.expectedProperty = resolvArrayContext(JsonBoolean.class.getName());} jsonBooleanLiteral
+    | { this.expectedProperty.allow(JsonBoolean.class) }? {this.expectedProperty = resolvArrayContext(JsonBoolean.class.getName());} jsonBooleanLiteral
     // String
-    | { this.expectedProperty.allow(JsonString.class) }? {this.expectedProperty = resolvArrayContext(JsonString.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} string=STRING { isAny || JsonString.class.cast(this.expectedProperty).isValid($string.getText()) }?
+    | { this.expectedProperty.allow(JsonString.class) }? {this.expectedProperty = resolvArrayContext(JsonString.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} string=STRING { isAny || JsonString.class.cast(this.expectedProperty).isValid($string.getText()) }? {if(!isAny) {JsonString.class.cast(this.expectedProperty).setValue($string.getText());}}
     // Number
-    | { this.expectedProperty.allow(JsonNumber.class) }? {this.expectedProperty = resolvArrayContext(JsonNumber.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} number=NUMBER { isAny || JsonNumber.class.cast(this.expectedProperty).isValidNumber($number.getText()) }?
+    | { this.expectedProperty.allow(JsonNumber.class) }? {this.expectedProperty = resolvArrayContext(JsonNumber.class.getName()); isAny = this.expectedProperty instanceof JsonAny;} number=NUMBER { isAny || JsonNumber.class.cast(this.expectedProperty).isValidNumber($number.getText()) }? {if(!isAny) {JsonNumber.class.cast(this.expectedProperty).setValue($number.getText());}}
     // Object
     | { this.expectedProperty.allow(JsonObject.class) }?
       {this.expectedProperty = resolvArrayContext(JsonObject.class.getName()); isAny = this.expectedProperty instanceof JsonAny;}

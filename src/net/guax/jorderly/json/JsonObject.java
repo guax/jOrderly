@@ -77,13 +77,59 @@ public class JsonObject extends JsonProperty {
         }
     }
     
+    protected boolean passRequirement(String key) {
+        JsonProperty requires_candidate = this.properties.get(key);
+        if(!requires_candidate.requires.isEmpty()) {
+            HashMap<String, ArrayList<JsonProperty>> requires = requires_candidate.requires;
+            for (String requirement : requires.keySet()) {
+                if(!this.allMark.contains(requirement)) {
+                    // requirement does not exists so this is optional
+                    // check next
+                    continue;
+                }
+                
+                if (requires.get(requirement) == null) {
+                    // requirement not met because required property exists
+                    return false;
+                }
+                else {
+                    // Conditional requirement
+                    ArrayList<JsonProperty> allRequirements = requires.get(requirement);
+                    // For each aceptable value
+                    boolean equalToSomething = false;
+                    for (JsonProperty value : allRequirements) {
+                        if(value.equals(this.properties.get(requirement))) {
+                            equalToSomething = true;
+                        }
+                    }
+                    if(equalToSomething) {
+                        return false;
+                    }
+                    continue;
+                }
+            }
+            // No errors
+            return true;
+        }
+        // No requires, then it should exist.
+        return false;
+    }
+    
     public boolean finishKeyMark() throws FailedPredicateException {
         if (this.properties != null && this.keyMark.size() > 0) {
             String keys = "";
+            
+            int requires_check_remains = 0;
             for(String key : this.keyMark) {
-                keys += key + " ";
+                if(!this.passRequirement(key)) {
+                    keys += key + " ";
+                    requires_check_remains++;
+                }
             }
-            throw new FailedPredicateException(this.input, "object", "Missing properties: " + keys);
+            
+            if(requires_check_remains > 0) {
+                throw new FailedPredicateException(this.input, "object", "Missing properties: " + keys);
+            }
         }
         return true;
     }

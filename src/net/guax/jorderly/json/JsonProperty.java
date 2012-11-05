@@ -85,4 +85,8 @@ abstract public class JsonProperty {
         this.enumValues = enumValues;
     }
     
+    public boolean equals(JsonProperty object) {
+        throw new UnsupportedOperationException("Not implemented for this type.");
+    }
+    
 }

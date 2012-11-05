@@ -42,6 +42,6 @@ public class OrderlyParser {
     
     public static void main(String[] args) throws IOException, RecognitionException {
         OrderlyParser parser = new OrderlyParser();
-        int errors = parser.parseFiles("tests/browserplus/browserplus_services.orderly", "tests/browserplus/browserplus_services.json");
+        int errors = parser.parseFiles("tests/browserplus/browserplus_services.orderly", "tests/browserplus/fail-conditional-requires.json");
     }
 }

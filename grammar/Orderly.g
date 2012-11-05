@@ -34,7 +34,7 @@ unnamed_entry returns [JsonProperty property]
     ;
 
 definition_suffix
-    :	optional_marker? enum_values? default_value? requires?
+    :	optional_marker? enum_values? default_value?
 	;
 
 definition_prefix returns [JsonProperty property]
@@ -54,8 +54,8 @@ definition_prefix returns [JsonProperty property]
     ;
 
 named_entry returns [JsonProperty property]
-    :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName(JsonString.trimQuotes($property_name.text)); } definition_suffix
-    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName(JsonString.trimQuotes($property_name.text));} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
+    :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName(JsonString.trimQuotes($property_name.text)); } definition_suffix requires?
+    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName(JsonString.trimQuotes($property_name.text));} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix requires?
     ;
 
 named_entries returns [HashMap<String, JsonProperty> properties]
@@ -71,6 +71,8 @@ unnamed_entries returns [HashMap<String, JsonProperty> properties]
 require_conditional
     @init {
         ArrayList requires = new ArrayList<JsonProperty>();
+        // optionality is redundant with requires
+        this.currentProperty.setOptional(false);
     }
     @after {
         this.currentProperty.addRequires(this.currentRequire, requires);

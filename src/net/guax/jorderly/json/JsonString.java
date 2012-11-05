@@ -16,6 +16,10 @@ public class JsonString extends JsonProperty {
     RegularExpression regex;
     
     String value = "";
+
+    public void setValue(String value) {
+        this.value = JsonString.trimQuotes(value);
+    }
     
     public JsonString() {}
     public JsonString(String value) {
@@ -68,5 +72,13 @@ public class JsonString extends JsonProperty {
         }
         
         return true;
+    }
+    
+    @Override
+    public boolean equals(JsonProperty object) {
+        if(object instanceof JsonString ) {
+            return JsonString.class.cast(object).value.equals(this.value);
+        }
+        return false;
     }
 }

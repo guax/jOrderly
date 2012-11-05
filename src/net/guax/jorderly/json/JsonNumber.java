@@ -22,6 +22,10 @@ public class JsonNumber extends JsonProperty {
         this.value = new BigDecimal(value);
     }
 
+    public void setValue(String value) {
+        this.value = new BigDecimal(value);
+    }
+
     public Range getRange() {
         return range;
     }
@@ -48,5 +52,13 @@ public class JsonNumber extends JsonProperty {
         }
         
         return true;
+    }
+    
+    @Override
+    public boolean equals(JsonProperty object) {
+        if(object instanceof JsonNumber ) {
+            return JsonNumber.class.cast(object).value.equals(this.value);
+        }
+        return false;
     }
 }

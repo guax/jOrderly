@@ -8,11 +8,11 @@ array {
     integer size;
     string documentation;
     string CoreletType [ "standalone", "dependent", "provider" ];
-    integer CoreletAPIVersion? <CoreletType in ["standalone", "provider"]>;
+    integer CoreletAPIVersion <CoreletType in ["standalone", "provider"]>;
     object {
       string Name;
       string Version;
       string Minversion;
-    } CoreletRequires?;
-  }* <CoreletType = "dependent">;
+    } CoreletRequires <CoreletType = "dependent">;
+  }*;
 };
