@@ -4,6 +4,7 @@
  */
 package net.guax.jorderly;
 
+import java.io.File;
 import java.io.IOException;
 import net.guax.jorderly.json.JsonProperty;
 import net.guax.jorderly.parser.JSONLexer;
@@ -26,6 +27,9 @@ public class OrderlyParser {
         TokenStream tokenStream = new CommonTokenStream(lexer);
         net.guax.jorderly.parser.OrderlyParser parser = new net.guax.jorderly.parser.OrderlyParser(tokenStream);
         
+        String path = new File(jsonFile).getAbsolutePath();
+        parser.setFilePath(path.substring(0, path.lastIndexOf('/')));
+        
         JsonProperty parseTree = parser.orderly_schema();
         
         stream = new ANTLRFileStream(jsonFile);
@@ -42,6 +46,6 @@ public class OrderlyParser {
     
     public static void main(String[] args) throws IOException, RecognitionException {
         OrderlyParser parser = new OrderlyParser();
-        int errors = parser.parseFiles("tests/browserplus/browserplus_services.orderly", "tests/browserplus/fail-conditional-requires.json");
+        int errors = parser.parseFiles("tests/requires/grammar.orderly", "tests/requires/fail-simple-requires.json");
     }
 }

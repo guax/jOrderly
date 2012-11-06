@@ -11,6 +11,7 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
 import java.util.HashMap;
 import net.guax.jorderly.json.*;
 import java.math.BigDecimal;
+import java.io.File;
 }
 
 
@@ -22,15 +23,62 @@ package net.guax.jorderly.parser;
     // The following variables are temporary and should not be trusted for long.
     JsonProperty currentProperty;
     String currentRequire;
+
+    HashMap<String, JsonProperty> imports;
+        
+    String filePath = "";
+    
+    public void setFilePath(String path) {
+        this.filePath = path;
+    }
+
+    public void addImport(String id, String file) throws FailedPredicateException {
+        if(this.imports == null) {
+            this.imports = new HashMap<String, JsonProperty>();
+        }
+        
+        CharStream stream;
+        String path = new File(this.filePath + "/" + JsonString.trimQuotes(file)).getAbsolutePath();
+        try {
+            stream = new ANTLRFileStream(path);
+        
+            OrderlyLexer lexer = new OrderlyLexer(stream);
+            TokenStream tokenStream = new CommonTokenStream(lexer);
+            OrderlyParser parser = new OrderlyParser(tokenStream);
+            
+            
+            parser.setFilePath(path.substring(0, path.lastIndexOf('/')));
+
+            JsonProperty parseTree = parser.orderly_schema();
+            
+            if(parser.getNumberOfSyntaxErrors() > 0) {
+                throw new Exception();
+            }
+            
+            this.imports.put(id, parseTree);
+            
+        } catch (Exception ex) {
+            throw new FailedPredicateException(this.input, "object", "Error parsing import: " + path);
+        }
+    }
 }
 
 orderly_schema returns [JsonProperty rootProperty]
-    :	unnamed_entry ';'? { $rootProperty = $unnamed_entry.property;}
+    :	imports? unnamed_entry ';'? { $rootProperty = $unnamed_entry.property;}
+    ;
+
+import_statement
+    : 'import' file=STRING 'as' id=IDENTIFIER ';' {this.addImport($id.text, $file.text);}
+    ;
+
+imports
+    :   import_statement (import_statement)*
     ;
     
 unnamed_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } definition_suffix
-    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
+    |	'string' { $property = new JsonString(); this.currentProperty = $property; } range? {JsonString.class.cast($property).setRange($range.range);} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
+    |   IDENTIFIER optional_marker?
     ;
 
 definition_suffix
@@ -55,7 +103,8 @@ definition_prefix returns [JsonProperty property]
 
 named_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName(JsonString.trimQuotes($property_name.text)); } definition_suffix requires?
-    |	'string' { $property = new JsonString(); } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName(JsonString.trimQuotes($property_name.text));} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix requires?
+    |	'string' { $property = new JsonString(); this.currentProperty = $property; } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName(JsonString.trimQuotes($property_name.text));} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix requires?
+    |   IDENTIFIER property_name optional_marker? requires?
     ;
 
 named_entries returns [HashMap<String, JsonProperty> properties]
@@ -74,11 +123,8 @@ require_conditional
         // optionality is redundant with requires
         this.currentProperty.setOptional(false);
     }
-    @after {
-        this.currentProperty.addRequires(this.currentRequire, requires);
-    }
-    : '=' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} )
-    | 'in' '[' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} ) (',' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} ))* ']'
+    : '=' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} ) { this.currentProperty.addRequires(this.currentRequire, requires); }
+    | 'in' '[' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} ) (',' ( number=NUMBER {requires.add(new JsonNumber($number.getText()));} | string=STRING {requires.add(new JsonString($string.getText()));} ))* ']' { this.currentProperty.addRequires(this.currentRequire, requires); }
     | {this.currentProperty.addRequires(this.currentRequire);}
     ;
 

@@ -1,0 +1,8 @@
+object {
+    integer previousSubmissions;
+    string name <previousSubmissions = 0>;
+
+    string job?;
+    number salary <job>;
+    string field <job = "physicist">
+}*;

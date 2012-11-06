@@ -1,18 +1,18 @@
 # A schema describing the data returned from the BrowserPlus services
 # API at http://browserplus.yahoo.com/api/v3/corelets/osx
 array {
-  object {
-    string name;
-    string versionString;
-    string os [ "ind", "osx", "win32" ];
-    integer size;
-    string documentation;
-    string CoreletType [ "standalone", "dependent", "provider" ];
-    integer CoreletAPIVersion <CoreletType in ["standalone", "provider"]>;
     object {
-      string Name;
-      string Version;
-      string Minversion;
-    } CoreletRequires <CoreletType = "dependent">;
-  }*;
+        string name;
+        string versionString;
+        string os [ "ind", "osx", "win32" ];
+        integer size;
+        string documentation;
+        string CoreletType [ "standalone", "dependent", "provider" ];
+        integer CoreletAPIVersion <CoreletType in ["standalone", "provider"]>;
+        object {
+            string Name;
+            string Version;
+            string Minversion;
+        } CoreletRequires <CoreletType = "dependent">;
+    }*;
 };

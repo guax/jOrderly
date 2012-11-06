@@ -1,0 +1,4 @@
+object {
+    string name;
+    integer age;
+}

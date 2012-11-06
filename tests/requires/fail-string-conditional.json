@@ -1,0 +1,7 @@
+// Must fail for "field" attr only
+{
+    "previousSubmissions" : 0,
+    "name" : "Albert",
+    "job" : "physicist",
+    "salary" : 3000.00
+}

@@ -1,0 +1,6 @@
+import "aditional.orderly.import" as Person;
+
+object {
+    Person father;
+    array [Person] children;
+}
