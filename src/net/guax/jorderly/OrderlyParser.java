@@ -46,6 +46,6 @@ public class OrderlyParser {
     
     public static void main(String[] args) throws IOException, RecognitionException {
         OrderlyParser parser = new OrderlyParser();
-        int errors = parser.parseFiles("tests/requires/grammar.orderly", "tests/requires/fail-simple-requires.json");
+        int errors = parser.parseFiles("tests/import/grammar.orderly", "tests/import/import.json");
     }
 }

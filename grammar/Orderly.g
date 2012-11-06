@@ -78,7 +78,6 @@ imports
 unnamed_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } definition_suffix
     |	'string' { $property = new JsonString(); this.currentProperty = $property; } range? {JsonString.class.cast($property).setRange($range.range);} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix
-    |   IDENTIFIER optional_marker?
     ;
 
 definition_suffix
@@ -99,12 +98,12 @@ definition_prefix returns [JsonProperty property]
     |	'array' { $property = new JsonArray(); } '[' ({ HashMap propertyMap = new HashMap<String, JsonProperty>(); } un=unnamed_entry {propertyMap.put($un.property.getClass().getName(),$un.property); JsonArray.class.cast($property).setProperties(propertyMap); })? ']' range? {JsonArray.class.cast($property).setRange($range.range);}
     |	'object' { $property = new JsonObject(); } '{' named_entries? { JsonObject.class.cast($property).setProperties($named_entries.properties); } '}' (additional_marker { JsonObject.class.cast($property).setAllowAdditionalProperties(true); })?
     |	'union'  { $property = new JsonUnion(); } '{' unnamed_entry ';' unnamed_entries '}' // At least two entries are required
+    |   id=IDENTIFIER {$property = this.imports.get($id.text);}
     ;
 
 named_entry returns [JsonProperty property]
     :	definition_prefix { $property = $definition_prefix.property; } property_name { $property.setName(JsonString.trimQuotes($property_name.text)); } definition_suffix requires?
     |	'string' { $property = new JsonString(); this.currentProperty = $property; } range? {JsonString.class.cast($property).setRange($range.range);} property_name {$property.setName(JsonString.trimQuotes($property_name.text));} regex=perl_regex? {JsonString.class.cast($property).setRegExp($regex.regex);} definition_suffix requires?
-    |   IDENTIFIER property_name optional_marker? requires?
     ;
 
 named_entries returns [HashMap<String, JsonProperty> properties]
